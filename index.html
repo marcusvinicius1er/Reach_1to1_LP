@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Face-to-Face Coaching at NOGS | REACH by Antoine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #000000; 
+      line-height: 1.6; 
+    }
+    
+    /* Clients Row */
+    .clients-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+    
+    .client-avatars {
+      display: flex;
+      margin-left: -8px;
+    }
+    
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 3px solid #000;
+      margin-left: -12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+    }
+    
+    .avatar:nth-child(1) { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .avatar:nth-child(2) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .avatar:nth-child(3) { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .avatar:nth-child(4) { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+    .avatar:nth-child(5) { background: linear-gradient(135deg, #ff6413 0%, #ffa366 100%); }
+    .avatar:nth-child(6) { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+    .avatar:nth-child(7) { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+    .avatar:nth-child(8) { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+    
+    .clients-text {
+      color: #cccccc;
+      font-size: 17px;
+      font-weight: 500;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: #000000;
+      color: #fff;
+      padding: 80px 20px 60px;
+    }
+    
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .hero-text {
+      text-align: left;
+    }
+    
+    .hero-image {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(255, 100, 19, 0.3);
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+    
+    .hero h1 br {
+      display: block;
+      content: "";
+      margin-top: 10px;
+    }
+    
+    .hero p {
+      font-size: 19px;
+      margin-bottom: 0;
+      font-weight: 400;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .btn {
+      display: inline-block;
+      background: #ff6413;
+      color: #fff;
+      padding: 18px 40px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .btn:hover {
+      background: #e55510;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 100, 19, 0.3);
+    }
+    
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Sections */
+    section {
+      padding: 60px 20px;
+    }
+    
+    .section-dark {
+      background: #f8f9fa;
+    }
+    
+    h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(28px, 4.5vw, 42px);
+      font-weight: 800;
+      margin-bottom: 25px;
+      line-height: 1.25;
+      color: #000000;
+      letter-spacing: -0.02em;
+    }
+    
+    h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(21px, 3vw, 28px);
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #ff6413;
+    }
+    
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      line-height: 1.75;
+      color: #333;
+      font-weight: 400;
+    }
+    
+    /* Video Section right after hero */
+    .video-section {
+      background: #fff;
+      padding: 40px 20px 60px;
+    }
+    
+    .video-placeholder {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+    
+    .video-placeholder img {
+      width: 100%;
+      height: auto;
+      display: block;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    
+    /* Location Callout */
+    .location-box {
+      background: #fff;
+      border: 2px solid #ff6413;
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 700px;
+      text-align: center;
+    }
+    
+    .location-box p {
+      margin-bottom: 10px;
+      color: #000000;
+      font-weight: 500;
+    }
+    
+    .location-box strong {
+      font-size: 20px;
+      color: #000000;
+      font-weight: 700;
+    }
+    
+    /* Pain Points List */
+    .pain-list {
+      list-style: none;
+      max-width: 700px;
+      margin: 30px auto;
+    }
+    
+    .pain-list li {
+      font-size: 18px;
+      margin-bottom: 15px;
+      padding-left: 35px;
+      position: relative;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+    
+    .pain-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #ff6413;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    
+    /* Benefits Cards */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin: 40px auto;
+      max-width: 900px;
+    }
+    
+    .benefit-card {
+      background: #fff;
+      padding: 25px;
+      border-left: 4px solid #ff6413;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    
+    .benefit-card:last-child {
+      grid-column: 1 / -1;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+    
+    .benefit-card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    
+    .benefit-card p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+    
+    /* Pricing Section */
+    .pricing-section {
+      background: #f8f9fa;
+      padding: 50px 20px 45px;
+    }
+    
+    .pricing-cards-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 25px auto 30px;
+    }
+    
+    .pricing-card {
+      background: #fff;
+      border: 3px solid #ff6413;
+      border-radius: 12px;
+      padding: 25px 20px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 100, 19, 0.2);
+    }
+    
+    .pricing-card.best-value {
+      border-width: 4px;
+    }
+    
+    .best-value-badge {
+      position: absolute;
+      top: -15px;
+      right: 20px;
+      background: #ff6413;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .pricing-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 15px;
+    }
+    
+    .pricing-card .price {
+      font-family: 'Inter', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      color: #ff6413;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    
+    .pricing-card .price-detail {
+      font-size: 15px;
+      color: #999;
+      margin-bottom: 20px;
+    }
+    
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0 20px;
+      text-align: left;
+    }
+    
+    .pricing-features li {
+      padding: 6px 0 6px 28px;
+      position: relative;
+      font-size: 14px;
+      color: #333;
+      line-height: 1.3;
+    }
+    
+    .pricing-features li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #ff6413;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .pricing-card .btn {
+      width: 100%;
+      padding: 14px 25px;
+      font-size: 15px;
+    }
+    
+    .trial-note {
+      background: #fff9f5;
+      border: 2px solid #ff6413;
+      border-radius: 12px;
+      padding: 20px 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .trial-note p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #000;
+    }
+    
+    .trial-note strong {
+      font-weight: 700;
+      color: #000;
+    }
+    
+    /* FAQ Accordion */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      background: #1a1a1a;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-question {
+      padding: 25px 30px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    
+    .faq-question:hover {
+      background: #252525;
+    }
+    
+    .faq-question h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #fff;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .faq-toggle {
+      color: #ff6413;
+      font-size: 28px;
+      font-weight: 300;
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+    
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 0 30px 25px;
+    }
+    
+    .faq-answer p {
+      color: #ccc;
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0;
+      font-weight: 400;
+    }
+    
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1100px;
+      margin: 40px auto;
+    }
+    
+    .testimonial {
+      background: #fff;
+      padding: 30px 25px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .testimonial-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6413, #ff8040);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .testimonial p {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 15px;
+      font-weight: 400;
+      line-height: 1.6;
+      font-style: normal;
+    }
+    
+    .testimonial-author {
+      font-weight: 700;
+      color: #000;
+      font-style: normal;
+      font-size: 16px;
+    }
+    
+    .testimonial-role {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 20px;
+      background: #0a0a0a;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+    
+    .cta-section h2 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    
+    .cta-section p {
+      font-size: 20px;
+      color: #999;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      padding: 18px 45px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      display: inline-block;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 2px solid #fff;
+      cursor: pointer;
+    }
+    
+    .btn-secondary:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-2px);
+    }
+    
+    /* Footer */
+    footer {
+      background: #000000;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 30px;
+      right: 30px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .whatsapp-float:hover {
+      background-color: #20ba5a;
+      transform: scale(1.1);
+      box-shadow: 2px 2px 30px rgba(37, 211, 102, 0.5);
+    }
+    
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: white;
+    }
+    
+    /* Responsive */
+    @media (max-width: 991px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+      }
+      
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .hero-text {
+        text-align: center;
+      }
+      
+      /* Timeline responsive - passer en vertical avec ligne à gauche */
+      .timeline-container {
+        padding-left: 60px !important;
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+      }
+      
+      .timeline-line-base,
+      .timeline-line-progress {
+        left: 20px !important;
+        transform: none !important;
+      }
+      
+      .timeline-item {
+        display: block !important;
+        grid-template-columns: none !important;
+        gap: 0 !important;
+        margin-bottom: 60px !important;
+        padding-left: 0 !important;
+      }
+      
+      .timeline-badge {
+        position: absolute !important;
+        left: -54px !important;
+        top: 0 !important;
+      }
+      
+      .timeline-badge > div {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 24px !important;
+        border-width: 4px !important;
+      }
+      
+      .timeline-text {
+        text-align: left !important;
+        margin-bottom: 20px;
+      }
+      
+      .timeline-image {
+        max-width: 100% !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .clients-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .avatar {
+        width: 44px;
+        height: 44px;
+        font-size: 13px;
+      }
+      
+      .hero {
+        padding: 60px 15px 40px;
+      }
+      
+      section {
+        padding: 40px 15px;
+      }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 24px;
+      }
+      
+      .whatsapp-float svg {
+        width: 26px;
+        height: 26px;
+      }
+      
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .benefit-card:last-child {
+        max-width: 100%;
+      }
+      
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .pricing-cards-container {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 0 15px;
+      }
+      
+      .pricing-card {
+        padding: 20px 18px;
+      }
+      
+      .pricing-card h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+      
+      .best-value-badge {
+        top: -12px;
+        right: 15px;
+        font-size: 11px;
+        padding: 6px 16px;
+      }
+      
+      .pricing-card .price {
+        font-size: 38px;
+        margin-bottom: 6px;
+      }
+      
+      .pricing-card .price-detail {
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+      
+      .pricing-features {
+        margin: 12px 0 18px;
+      }
+      
+      .pricing-features li {
+        padding: 5px 0 5px 25px;
+        font-size: 13px;
+      }
+      
+      .pricing-card .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+      
+      .trial-note {
+        padding: 18px 20px;
+      }
+      
+      .trial-note p {
+        font-size: 14px;
+      }
+      
+      .faq-container {
+        max-width: 100%;
+      }
+      
+      .faq-question {
+        padding: 20px 20px;
+      }
+      
+      .faq-question h3 {
+        font-size: 16px;
+      }
+      
+      .faq-item.active .faq-answer {
+        padding: 0 20px 20px;
+      }
+      
+      .cta-section {
+        padding: 60px 20px;
+      }
+      
+      .cta-section h2 {
+        font-size: 28px;
+      }
+      
+      .cta-section p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container" style="max-width: 1200px;">
+    <!-- Clients Row -->
+    <div class="clients-row" style="justify-content: flex-start; margin-bottom: 40px;">
+      <div class="client-avatars">
+        <div class="avatar">JD</div>
+        <div class="avatar">SM</div>
+        <div class="avatar">KL</div>
+        <div class="avatar">TR</div>
+        <div class="avatar">MH</div>
+        <div class="avatar">AB</div>
+        <div class="avatar">LC</div>
+        <div class="avatar">PW</div>
+      </div>
+      <span class="clients-text">Join 150+ clients who transformed their lives</span>
+    </div>
+    
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>What if you could drop up to 10kg+ training just 60 minutes, 3 times per&nbsp;week</h1>
+        <p>80% of your results will come from showing up consistently and doing the right exercises. This coaching program makes sure you do both.</p>
+      </div>
+      <div class="hero-image">
+        <img src="01-IMAGES/hero_image.webp" alt="Personal Training at NOGS Dubai" loading="eager">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video Section -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-placeholder">
+      <img src="01-IMAGES/selection_online.webp" alt="Online Coaching Platform" loading="lazy">
+    </div>
+    <p style="text-align: center; margin-top: 15px; font-size: 15px; color: #666; font-weight: 400;">Limited spots. Face-to-face coaching only.</p>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="#pricing" class="btn">Message Me Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- Location Callout -->
+<div class="location-box">
+  <p><strong>📍 TRAINING LOCATION: NOGS, Al Quoz</strong></p>
+  <p>All sessions take place at NOGS - one of Dubai's best performance gyms. Focused, top-tier equipment.</p>
+  <p style="margin-bottom: 0;"><strong>If you can't train here, this isn't for you.</strong></p>
+</div>
+
+<!-- Pain Points Section -->
+<section>
+  <div class="container">
+    <h2 style="text-align: center;">Let Me Guess... You've Tried the Apps, the Programs, the Generic Gym Plans. And You're Still&nbsp;Stuck.</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">Here's the problem: apps can't watch your form. Programs don't adjust when life gets messy. And generic plans don't know YOU.</p>
+    <p style="text-align: center; font-weight: 600; font-size: 20px;">This is different. This is face-to-face coaching.</p>
+    <p style="text-align: center; margin-bottom: 30px;">You show up. I handle everything else.</p>
+    
+    <h3 style="text-align: center; margin-top: 40px;">This is for you if:</h3>
+    <ul class="pain-list">
+      <li>You're carrying 10kg+ you want gone</li>
+      <li>You're tired of yo-yo dieting and BS advice</li>
+      <li>You want energy back, not just weight loss</li>
+      <li>You can train at NOGS, Al Quoz (this is non-negotiable)</li>
+      <li>You're ready to invest in yourself properly</li>
+      <li>You want a coach who actually shows up, not a PDF</li>
+    </ul>
+  </div>
+</section>
+
+<!-- What You Get -->
+<section class="section-dark">
+  <div class="container" style="max-width: 900px;">
+    <h2 style="text-align: center;">Here's What Face-to-Face Coaching Actually Looks&nbsp;Like</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h3>1-on-1 Sessions at NOGS</h3>
+        <p>60-minute sessions, 2-3x per week. Fully personalized to your goals, fitness level, and schedule. I'm there. You're there. No distractions.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <h3>Custom Training Built For You</h3>
+        <p>Not a template. Not a program. A plan designed specifically for your body, your goals, your life. Adjusted as you progress.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <h3>Nutrition Guidance That Works</h3>
+        <p>Simple, practical strategies. No meal prep slavery. No restriction. Just: here's what to eat, here's why, now go live your life.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <h3>WhatsApp Support Between Sessions</h3>
+        <p>Questions? Stuck on something? Message me. I reply. Usually within a few hours.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <h3>Progress Tracking</h3>
+        <p>We track what matters: strength, energy, how you feel, how you look. Not just scale weight (because that lies half the time).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Face-to-Face -->
+<section style="background: #000000; padding: 100px 20px; color: #fff;" id="whySection">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 style="text-align: center; font-size: clamp(36px, 5vw, 56px); font-weight: 800; margin-bottom: 40px; color: #fff;">This is what changes when you stop doing it&nbsp;alone.</h2>
+    
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 80px; font-size: 20px; color: #ccc; line-height: 1.6;">While I can't guarantee you'll drop 10kg in 12 weeks,<br>I CAN guarantee that at the end of every session, you'll know it was worth showing up.</p>
+    
+    <div class="timeline-container" style="position: relative; padding-top: 100px; padding-bottom: 100px;">
+      <!-- Ligne grise de base qui va du haut au bas -->
+      <div class="timeline-line-base" style="position: absolute; left: 50%; transform: translateX(-50%); width: 4px; top: 0; bottom: 0; background: #333; z-index: 0;"></div>
+      
+      <!-- Ligne orange qui s'anime -->
+      <div id="progressLine" class="timeline-line-progress" style="position: absolute; left: 50%; transform: translateX(-50%); width: 4px; top: 0; height: 0%; background: #ff6413; z-index: 1; transition: height 0.1s linear;"></div>
+      
+      <!-- Item 1 -->
+      <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 80px 1fr; gap: 60px; align-items: center; margin-bottom: 120px; position: relative;">
+        <div class="timeline-text text-right" style="text-align: right;">
+          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You finally stop thinking. You just show up and it gets&nbsp;done.</h3>
+          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">Every other time you've tried, it started with a plan, and ended with decision fatigue. Face-to-face coaching removes the mental load. No more guessing, no more planning, no more "what should I train today?" You walk in. I handle the thinking. You train. You leave feeling stronger, clearer, and proud of yourself every single time.</p>
+        </div>
+        <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
+          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">1</div>
+        </div>
+        <div class="timeline-image" style="background: #1a1a1a; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;">
+          <img src="01-IMAGES/stop_thinking.webp" alt="Personal training session" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+        </div>
+      </div>
+      
+      <!-- Item 2 -->
+      <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 80px 1fr; gap: 60px; align-items: center; margin-bottom: 120px; position: relative;">
+        <div class="timeline-image" style="background: #1a1a1a; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;">
+          <img src="01-IMAGES/progress_tracking.webp" alt="Progress tracking app" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+        </div>
+        <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
+          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">2</div>
+        </div>
+        <div class="timeline-text text-left" style="text-align: left;">
+          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You stop breaking promises to&nbsp;yourself.</h3>
+          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">Alone, motivation comes and goes. But when someone's waiting for you at NOGS at 7am? You show up. You follow through. You build the habit. Face-to-face coaching turns your intention into action. That's how you create real momentum and results that stick.</p>
+        </div>
+      </div>
+      
+      <!-- Item 3 -->
+      <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 80px 1fr; gap: 60px; align-items: center; position: relative;">
+        <div class="timeline-text text-right" style="text-align: right;">
+          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You finally make progress that you can feel and&nbsp;see.</h3>
+          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">You've spent months (or years) trying to figure it out on your own. But results don't come from information, they come from execution, consistency, and accountability. 1-on-1 coaching means we're tracking your progress, pushing your limits (safely), and adjusting every week based on you. It's not just a workout. It's a strategy built around your body, your lifestyle, your goals.</p>
+        </div>
+        <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
+          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">3</div>
+        </div>
+        <div class="timeline-image" style="background: #1a1a1a; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;">
+          <img src="01-IMAGES/support_continues.webp" alt="Coaching support via mobile" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+        </div>
+      </div>
+    </div>
+    
+    <p style="text-align: center; font-weight: 600; font-size: 22px; margin-top: 80px; color: #fff; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.5;">It's not more knowledge you need. It's someone to make sure you use it. And that's exactly what we do, together, every week.</p>
+  </div>
+  
+  <script>
+    // Animation de la ligne au scroll
+    function updateProgressLine() {
+      const section = document.getElementById('whySection');
+      const progressLine = document.getElementById('progressLine');
+      
+      if (!section || !progressLine) return;
+      
+      const sectionRect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculer depuis le haut de la section jusqu'au milieu de l'écran
+      const triggerPoint = windowHeight * 0.5;
+      const sectionTop = sectionRect.top;
+      const sectionHeight = sectionRect.height;
+      
+      if (sectionTop < triggerPoint) {
+        const scrolled = triggerPoint - sectionTop;
+        const percentage = (scrolled / sectionHeight) * 100;
+        
+        progressLine.style.height = Math.min(100, Math.max(0, percentage)) + '%';
+      } else {
+        progressLine.style.height = '0%';
+      }
+    }
+    
+    window.addEventListener('scroll', updateProgressLine);
+    window.addEventListener('load', updateProgressLine);
+    window.addEventListener('resize', updateProgressLine);
+  </script>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing-section" id="pricing">
+  <div class="container" style="max-width: 1200px;">
+    <h2 style="text-align: center;">Right. Let's Talk Pricing.</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px; color: #333;">I'm not going to make you "book a call" to find out prices. That's sales BS. Here's how it works:</p>
+    
+    <div class="pricing-cards-container">
+      <!-- Single Session Card -->
+      <div class="pricing-card">
+        <h3>Single Session</h3>
+        <div class="price">450 AED</div>
+        <div class="price-detail">per session</div>
+        
+        <ul class="pricing-features">
+          <li>Fully personalized workout</li>
+          <li>Dedicated guidance</li>
+          <li>Accountability built-in</li>
+        </ul>
+        
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20Single%20Session" class="btn">Get Started</a>
+      </div>
+      
+      <!-- 6 Sessions Package Card -->
+      <div class="pricing-card">
+        <h3>6 Sessions Package</h3>
+        <div class="price">2,400 AED</div>
+        <div class="price-detail">(400 AED/session)</div>
+        
+        <ul class="pricing-features">
+          <li>Progress tracking</li>
+          <li>Nutrition advice</li>
+          <li>Flexible scheduling</li>
+        </ul>
+        
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%206%20Sessions%20Package" class="btn">Get Started</a>
+      </div>
+      
+      <!-- 12 Sessions Package Card - BEST VALUE -->
+      <div class="pricing-card best-value">
+        <div class="best-value-badge">BEST VALUE</div>
+        <h3>12 Sessions Package</h3>
+        <div class="price">3,600 AED</div>
+        <div class="price-detail">(300 AED/session)</div>
+        
+        <ul class="pricing-features">
+          <li>Comprehensive program</li>
+          <li>Adapted intensity</li>
+          <li>Maximum support</li>
+        </ul>
+        
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%2012%20Sessions%20Package" class="btn">Get Started</a>
+      </div>
+    </div>
+    
+    <div class="trial-note">
+      <p><strong>Not sure yet?</strong> Book a trial session for 200 AED to see the gym, meet me, and see if we're a good fit. If you continue with a package, the 200 AED comes off the price. No pressure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section>
+  <div class="container">
+    <h2 style="text-align: center;">Don't Take My Word For It. Here's What Happens When You Actually Do The&nbsp;Work.</h2>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-avatar">S</div>
+        <p>"Working with Antoine has been incredible. Over 6 months, I've seen significant changes. Not only challenging workouts, but constant motivation. Your attention to detail made all the difference."</p>
+        <div class="testimonial-author">Sarah M.</div>
+        <div class="testimonial-role">Lost 12kg in 5 months</div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-avatar">J</div>
+        <p>"Antoine helped me pass my Fire Department beep test. His diet advice and reminders made sessions smooth sailing. His one-on-one coaching is second to none."</p>
+        <div class="testimonial-author">Jake P.</div>
+        <div class="testimonial-role">Improved fitness by 40%</div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-avatar">M</div>
+        <p>"I trained with Antoine to get back in shape after years of inactivity. Where most would have given up on me, Antoine was patient and persisted."</p>
+        <div class="testimonial-author">Michael R.</div>
+        <div class="testimonial-role">Back in shape at 45</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section>
+  <div class="container">
+    <h2 style="text-align: center;">Forget everything you've tried until&nbsp;now.</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 20px;">If you're here, it's because it didn't work. The apps, the programs, the good&nbsp;intentions.</p>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 20px;">Now, we start over. But we do it&nbsp;differently.</p>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 20px;">This time, you've got someone with you. Someone who shows you what to do. Who pushes when it's hard. And makes sure you don't&nbsp;quit.</p>
+    <p style="text-align: center; font-weight: 600; font-size: 20px; margin: 30px auto;">No fluff. No magic. Just work, done right.</p>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px; font-size: 20px;">This time, we do it&nbsp;together.</p>
+    <div style="text-align: center;">
+      <a href="#pricing" class="btn">Message Me Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background: #2a2a2a; padding: 60px 20px;">
+  <div class="container">
+    <h2 style="text-align: center; color: #fff;">Have any questions?</h2>
+    
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Where do sessions happen?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>NOGS, Al Quoz. It's a performance gym with everything we need. If you can't train there, this won't work.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Do I need a NOGS membership?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes. The coaching packages don't include the gym membership. You'll need to sign up separately with NOGS.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>How many sessions per week?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Most clients do 2-3 sessions per week. We'll figure out what works for your schedule and goals.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>What if I'm a complete beginner?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Perfect. That's exactly when face-to-face coaching matters most. We start where you are. No judgment.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Can I try a session first?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes. Trial session is 200 AED. If you sign up for a package after, I'll deduct the 200 AED. Simple.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>What if I can't make a session?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Give me 24 hours notice and we'll reschedule. Life happens. I get it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <h2>Not sure which is right for you?</h2>
+  <p>Book a free consultation and let's discuss your goals, schedule, and find the perfect coaching fit.</p>
+  <a href="#pricing" class="btn-secondary">Book Free Consultation</a>
+</section>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<footer>
+  &copy; 2025 REACH by Antoine | 1-on-1 Coaching at NOGS, Al Quoz | Your Shape Culture Specialist
+</footer>
+
+<script>
+  // FAQ Accordion
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const faqItem = question.parentElement;
+      const isActive = faqItem.classList.contains('active');
+      
+      // Close all other FAQ items
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Toggle current FAQ item
+      if (!isActive) {
+        faqItem.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
+</html>
