@@ -132,7 +132,7 @@
     .hero {
       position: relative;
       color: #fff;
-      padding: 80px 20px 60px;
+      padding: 60px 20px 0;
       overflow: hidden;
       background: #000000;
     }
@@ -147,7 +147,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(3, 1fr);
-      opacity: 0.15;
+      opacity: 0.20;
       z-index: 0;
     }
     
@@ -162,22 +162,24 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 400px 1fr;
+      grid-template-columns: 240px 1fr;
       gap: 80px;
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
+      min-height: 400px;
     }
     
     /* Photo Coach - Premier plan */
     .hero-coach {
       width: 100%;
-      max-width: 400px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(255, 100, 19, 0.4);
+      max-width: 240px;
       position: relative;
       z-index: 2;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+      background: transparent;
+      align-self: end;
+      margin-bottom: 0;
     }
     
     .hero-coach img {
@@ -927,8 +929,13 @@
       }
       
       .hero-coach {
-        max-width: 100%;
+        max-width: 200px;
         margin: 0 auto;
+        align-self: center;
+      }
+      
+      .hero-content {
+        align-items: center;
       }
       
       .hero-text {
@@ -1007,7 +1014,11 @@
       }
       
       .hero {
-        padding: 60px 15px 40px;
+        padding: 50px 15px 0;
+      }
+      
+      .hero-content {
+        min-height: 300px;
       }
       
       section {
