@@ -77,10 +77,31 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #ffffff;
       color: #000000; 
-      line-height: 1.6; 
+      line-height: 1.6;
+      padding-top: 80px;
     }
     
-    /* Clients Row */
+    /* Header fixe avec logo */
+    .header-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      padding: 15px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .header-logo {
+      height: 50px;
+      width: auto;
+    }
+    
+    /* Clients Banner */
     .clients-row {
       display: flex;
       align-items: center;
@@ -90,37 +111,19 @@
       flex-wrap: wrap;
     }
     
-    .client-avatars {
+    .clients-banner {
       display: flex;
-      margin-left: -8px;
-    }
-    
-    .avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 3px solid #000;
-      margin-left: -12px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      align-items: center;
       justify-content: center;
-      font-weight: 600;
-      font-size: 14px;
-      color: #fff;
+      align-items: center;
     }
     
-    .avatar:nth-child(1) { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-    .avatar:nth-child(2) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-    .avatar:nth-child(3) { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-    .avatar:nth-child(4) { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-    .avatar:nth-child(5) { background: linear-gradient(135deg, #ff6413 0%, #ffa366 100%); }
-    .avatar:nth-child(6) { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
-    .avatar:nth-child(7) { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
-    .avatar:nth-child(8) { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+    .clients-banner img {
+      height: 90px;
+      width: auto;
+    }
     
     .clients-text {
-      color: #cccccc;
+      color: #ff6413;
       font-size: 17px;
       font-weight: 500;
     }
@@ -247,24 +250,106 @@
       font-weight: 400;
     }
     
-    /* Video Section right after hero */
-    .video-section {
+    /* Testimonials Carousel Section */
+    .testimonials-carousel-section {
       background: #fff;
-      padding: 30px 20px 40px;
+      padding: 50px 20px;
     }
     
-    .video-placeholder {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 30px;
+    .carousel-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .carousel-title {
       text-align: center;
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 800;
+      margin-bottom: 40px;
+      color: #000;
     }
     
-    .video-placeholder img {
+    .carousel-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      gap: 20px;
+    }
+    
+    .carousel-slide {
+      flex: 0 0 calc(33.333% - 14px);
+      min-width: calc(33.333% - 14px);
+    }
+    
+    .carousel-slide img {
       width: 100%;
       height: auto;
-      display: block;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .carousel-slide img:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(255, 100, 19, 0.2);
+    }
+    
+    /* Navigation Buttons */
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ff6413;
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .carousel-nav:hover {
+      background: #e55510;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .carousel-nav.prev {
+      left: -25px;
+    }
+    
+    .carousel-nav.next {
+      right: -25px;
+    }
+    
+    /* Dots Navigation */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ddd;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .carousel-dot.active {
+      background: #ff6413;
+      width: 30px;
+      border-radius: 6px;
     }
     
     /* Location Callout */
@@ -449,25 +534,104 @@
     }
     
     .trial-note {
-      background: #fff9f5;
-      border: 2px solid #ff6413;
-      border-radius: 12px;
-      padding: 20px 25px;
-      max-width: 1000px;
+      background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+      border: 3px solid #ff6413;
+      border-radius: 16px;
+      padding: 35px 40px;
+      max-width: 900px;
       margin: 0 auto;
       text-align: center;
+      box-shadow: 0 4px 20px rgba(255, 100, 19, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .trial-note::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 100, 19, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .trial-note-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .trial-note h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #000;
+      margin-bottom: 15px;
+      line-height: 1.2;
     }
     
     .trial-note p {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #000;
+      margin: 0 0 25px 0;
+      font-size: 17px;
+      line-height: 1.6;
+      color: #333;
     }
     
-    .trial-note strong {
+    .trial-note .trial-price {
+      display: inline-block;
+      background: #ff6413;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
       font-weight: 700;
-      color: #000;
+      font-size: 20px;
+      margin: 0 5px;
+    }
+    
+    .trial-cta-btn {
+      display: inline-block;
+      background: #25d366;
+      color: #fff;
+      padding: 18px 45px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+    
+    .trial-cta-btn:hover {
+      background: #20ba5a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+    }
+    
+    .trial-cta-btn svg {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+      fill: white;
+    }
+    
+    .pricing-disclaimer {
+      text-align: center;
+      max-width: 800px;
+      margin: 30px auto 0;
+    }
+    
+    .pricing-disclaimer p {
+      font-size: 14px;
+      color: #666;
+      margin: 5px 0;
+      line-height: 1.5;
     }
     
     /* FAQ Accordion */
@@ -537,58 +701,103 @@
       font-weight: 400;
     }
     
-    /* Testimonials */
-    .testimonials-grid {
+    /* Before/After Section */
+    .before-after-section {
+      background: #f8f9fa;
+      padding: 60px 20px;
+    }
+    
+    .before-after-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
       gap: 20px;
-      max-width: 1100px;
-      margin: 30px auto;
-    }
-    
-    .testimonial {
-      background: #fff;
-      padding: 25px 20px;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      text-align: center;
-      position: relative;
-    }
-    
-    .testimonial-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff6413, #ff8040);
-      margin: 0 auto 20px;
-      display: flex;
-      align-items: center;
+      max-width: 1200px;
+      margin: 40px auto;
       justify-content: center;
-      font-size: 36px;
+    }
+    
+    .transformation-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      background: #fff;
+      cursor: pointer;
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 3/4;
+    }
+    
+    .transformation-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 100, 19, 0.2);
+    }
+    
+    .transformation-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .transformation-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .transformation-card:hover .transformation-image-wrapper img {
+      transform: scale(1.05);
+    }
+    
+    .transformation-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.70);
+      padding: 30px 20px;
       color: white;
-      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
     
-    .testimonial p {
+    .transformation-card:hover .transformation-overlay {
+      opacity: 1;
+    }
+    
+    .transformation-text {
       font-size: 15px;
-      color: #444;
-      margin-bottom: 15px;
+      line-height: 1.5;
+      margin-bottom: 20px;
       font-weight: 400;
-      line-height: 1.6;
-      font-style: normal;
+      text-align: center;
+      color: #fff;
     }
     
-    .testimonial-author {
+    .transformation-signature {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
       font-weight: 700;
-      color: #000;
-      font-style: normal;
-      font-size: 16px;
+      margin-bottom: 8px;
+      color: #ff6413;
+      letter-spacing: -0.02em;
+      text-transform: capitalize;
     }
     
-    .testimonial-role {
-      font-size: 14px;
-      color: #666;
-      margin-top: 5px;
+    .transformation-program {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 600;
     }
     
     /* CTA Section */
@@ -742,15 +951,25 @@
     }
     
     @media (max-width: 768px) {
+      .header-logo {
+        height: 40px;
+      }
+      
+      body {
+        padding-top: 70px;
+      }
+      
       .clients-row {
         flex-direction: column;
         gap: 12px;
       }
       
-      .avatar {
-        width: 44px;
-        height: 44px;
-        font-size: 13px;
+      .clients-banner img {
+        height: 60px;
+      }
+      
+      .clients-text {
+        font-size: 14px;
       }
       
       .hero {
@@ -759,6 +978,31 @@
       
       section {
         padding: 40px 15px;
+      }
+      
+      /* Carousel Responsive */
+      .carousel-slide {
+        flex: 0 0 100%;
+        min-width: 100%;
+      }
+      
+      .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+      
+      .carousel-nav.prev {
+        left: 10px;
+      }
+      
+      .carousel-nav.next {
+        right: 10px;
+      }
+      
+      .carousel-title {
+        font-size: 24px;
+        margin-bottom: 30px;
       }
       
       .whatsapp-float {
@@ -782,8 +1026,32 @@
         max-width: 100%;
       }
       
-      .testimonials-grid {
+      .before-after-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .transformation-card {
+        max-width: 100%;
+        aspect-ratio: 3/4;
+      }
+      
+      .before-after-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      
+      .transformation-signature {
+        font-size: 28px;
+      }
+      
+      .transformation-text {
+        font-size: 14px;
+        padding: 0 10px;
+      }
+      
+      .transformation-overlay {
+        padding: 25px 15px;
       }
       
       .pricing-cards-container {
@@ -833,11 +1101,32 @@
       }
       
       .trial-note {
-        padding: 18px 20px;
+        padding: 25px 20px;
+      }
+      
+      .trial-note h3 {
+        font-size: 20px;
       }
       
       .trial-note p {
-        font-size: 14px;
+        font-size: 15px;
+      }
+      
+      .trial-price {
+        font-size: 18px;
+        padding: 6px 16px;
+      }
+      
+      .trial-cta-btn {
+        padding: 15px 35px;
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .trial-cta-btn svg {
+        width: 18px;
+        height: 18px;
       }
       
       .faq-container {
@@ -879,7 +1168,7 @@
     "image": "https://1to1.reach.fitness/01-IMAGES/hero_image.webp",
     "url": "https://1to1.reach.fitness",
     "telephone": "+971585922694",
-    "priceRange": "450-3600 AED",
+    "priceRange": "2400-3600 AED",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "NOGS Gym, Al Quoz",
@@ -916,14 +1205,14 @@
     "offers": [
       {
         "@type": "Offer",
-        "name": "Single Session",
-        "price": "450",
+        "name": "6 Sessions Package",
+        "price": "2400",
         "priceCurrency": "AED"
       },
       {
         "@type": "Offer",
-        "name": "6 Sessions Package",
-        "price": "2400",
+        "name": "8 Sessions Package",
+        "price": "2800",
         "priceCurrency": "AED"
       },
       {
@@ -938,20 +1227,18 @@
 </head>
 <body>
 
+<!-- Header Banner avec Logo -->
+<header class="header-banner">
+  <img src="01-IMAGES/logo_reach.png" alt="REACH by Antony" class="header-logo">
+</header>
+
 <!-- Hero Section -->
 <section class="hero">
   <div class="container" style="max-width: 1200px;">
     <!-- Clients Row -->
-    <div class="clients-row" style="justify-content: flex-start; margin-bottom: 40px;">
-      <div class="client-avatars">
-        <div class="avatar">JD</div>
-        <div class="avatar">SM</div>
-        <div class="avatar">KL</div>
-        <div class="avatar">TR</div>
-        <div class="avatar">MH</div>
-        <div class="avatar">AB</div>
-        <div class="avatar">LC</div>
-        <div class="avatar">PW</div>
+    <div class="clients-row">
+      <div class="clients-banner">
+        <img src="01-IMAGES/banniere.png" alt="Clients" loading="eager">
       </div>
       <span class="clients-text">Join 150+ clients who transformed their lives</span>
     </div>
@@ -968,17 +1255,111 @@
   </div>
 </section>
 
-<!-- Video Section -->
-<section class="video-section">
-  <div class="container">
-    <div class="video-placeholder">
-      <img src="01-IMAGES/selection_online.webp" alt="Online Coaching Platform" loading="lazy">
+<!-- Testimonials Carousel Section -->
+<section class="testimonials-carousel-section">
+  <div class="carousel-container">
+    <h2 class="carousel-title">Don't Take My Word For It. Here's What Happens When You Actually Do The&nbsp;Work.</h2>
+    
+    <button class="carousel-nav prev" onclick="moveCarousel(-1)" aria-label="Previous">‹</button>
+    <button class="carousel-nav next" onclick="moveCarousel(1)" aria-label="Next">›</button>
+    
+    <div class="carousel-track" style="overflow: hidden;">
+      <div class="carousel-wrapper" id="carouselWrapper">
+        <div class="carousel-slide">
+          <img src="01-IMAGES/Carroussel_Linkedin/adham.png" alt="Adham - Client Testimonial" loading="lazy">
+        </div>
+        <div class="carousel-slide">
+          <img src="01-IMAGES/Carroussel_Linkedin/ammar.png" alt="Ammar - Client Testimonial" loading="lazy">
+        </div>
+        <div class="carousel-slide">
+          <img src="01-IMAGES/Carroussel_Linkedin/bassem.png" alt="Bassem - Client Testimonial" loading="lazy">
+        </div>
+        <div class="carousel-slide">
+          <img src="01-IMAGES/Carroussel_Linkedin/enrico.png" alt="Enrico - Client Testimonial" loading="lazy">
+        </div>
+        <div class="carousel-slide">
+          <img src="01-IMAGES/Carroussel_Linkedin/harry.png" alt="Harry - Client Testimonial" loading="lazy">
+        </div>
+        <div class="carousel-slide">
+          <img src="01-IMAGES/Carroussel_Linkedin/hatem.png" alt="Hatem - Client Testimonial" loading="lazy">
+        </div>
+        <div class="carousel-slide">
+          <img src="01-IMAGES/Carroussel_Linkedin/jamil.png" alt="Jamil - Client Testimonial" loading="lazy">
+        </div>
+      </div>
     </div>
-    <p style="text-align: center; margin-top: 15px; font-size: 15px; color: #666; font-weight: 400;">Limited spots. Face-to-face coaching only.</p>
-    <div style="text-align: center; margin-top: 30px;">
-      <a href="#pricing" class="btn" onclick="trackEvent('cta_click', {button_location: 'video_section', button_text: 'Message Me Now'});">Message Me Now</a>
-    </div>
+    
+    <div class="carousel-dots" id="carouselDots"></div>
   </div>
+  
+  <p style="text-align: center; margin-top: 30px; font-size: 15px; color: #666; font-weight: 400;">Limited spots. Face-to-face coaching only.</p>
+  <div style="text-align: center; margin-top: 25px;">
+    <a href="#pricing" class="btn" onclick="trackEvent('cta_click', {button_location: 'testimonials_section', button_text: 'Message Me Now'});">Message Me Now</a>
+  </div>
+  
+  <script>
+    let currentIndex = 0;
+    const wrapper = document.getElementById('carouselWrapper');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+    let slidesToShow = window.innerWidth <= 768 ? 1 : 3;
+    const maxIndex = Math.max(0, totalSlides - slidesToShow);
+    
+    // Create dots
+    const dotsContainer = document.getElementById('carouselDots');
+    for (let i = 0; i <= maxIndex; i++) {
+      const dot = document.createElement('button');
+      dot.classList.add('carousel-dot');
+      if (i === 0) dot.classList.add('active');
+      dot.onclick = () => goToSlide(i);
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dotsContainer.appendChild(dot);
+    }
+    
+    function updateCarousel() {
+      const slideWidth = 100 / slidesToShow;
+      wrapper.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+      
+      // Update dots
+      document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+    
+    function moveCarousel(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = maxIndex;
+      if (currentIndex > maxIndex) currentIndex = 0;
+      updateCarousel();
+    }
+    
+    function goToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+    
+    // Auto-play (optional)
+    let autoplay = setInterval(() => moveCarousel(1), 5000);
+    
+    // Pause on hover
+    document.querySelector('.carousel-container').addEventListener('mouseenter', () => {
+      clearInterval(autoplay);
+    });
+    
+    document.querySelector('.carousel-container').addEventListener('mouseleave', () => {
+      autoplay = setInterval(() => moveCarousel(1), 5000);
+    });
+    
+    // Update on resize
+    window.addEventListener('resize', () => {
+      const newSlidesToShow = window.innerWidth <= 768 ? 1 : 3;
+      if (newSlidesToShow !== slidesToShow) {
+        slidesToShow = newSlidesToShow;
+        currentIndex = 0;
+        updateCarousel();
+      }
+    });
+  </script>
 </section>
 
 <!-- Location Callout -->
@@ -1059,7 +1440,7 @@
       <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 80px 1fr; gap: 60px; align-items: center; margin-bottom: 120px; position: relative;">
         <div class="timeline-text text-right" style="text-align: right;">
           <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You finally stop thinking. You just show up and it gets&nbsp;done.</h3>
-          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">Every other time you've tried, it started with a plan, and ended with decision fatigue. Face-to-face coaching removes the mental load. No more guessing, no more planning, no more "what should I train today?" You walk in. I handle the thinking. You train. You leave feeling stronger, clearer, and proud of yourself every single time.</p>
+          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">Your program is designed for YOUR goals, YOUR body, YOUR abilities. And it's a training you'll finally enjoy and want to&nbsp;do.</p>
         </div>
         <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
           <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">1</div>
@@ -1078,16 +1459,16 @@
           <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">2</div>
         </div>
         <div class="timeline-text text-left" style="text-align: left;">
-          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You stop breaking promises to&nbsp;yourself.</h3>
-          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">Alone, motivation comes and goes. But when someone's waiting for you at NOGS at 7am? You show up. You follow through. You build the habit. Face-to-face coaching turns your intention into action. That's how you create real momentum and results that stick.</p>
+          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You finally make progress that you can feel and&nbsp;see.</h3>
+          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">We track everything. Strength gains. Body composition. Energy levels. You see the results week after&nbsp;week.</p>
         </div>
       </div>
       
       <!-- Item 3 -->
       <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 80px 1fr; gap: 50px; align-items: center; position: relative;">
         <div class="timeline-text text-right" style="text-align: right;">
-          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You finally make progress that you can feel and&nbsp;see.</h3>
-          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">You've spent months (or years) trying to figure it out on your own. But results don't come from information, they come from execution, consistency, and accountability. 1-on-1 coaching means we're tracking your progress, pushing your limits (safely), and adjusting every week based on you. It's not just a workout. It's a strategy built around your body, your lifestyle, your goals.</p>
+          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">The support doesn't stop when you leave the&nbsp;gym.</h3>
+          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">I'm available on WhatsApp between sessions. Struggling? Send me a message. Need advice? I'm there. This isn't just 3 sessions a week, it's ongoing support to keep you on track when it matters&nbsp;most.</p>
         </div>
         <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
           <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">3</div>
@@ -1140,21 +1521,6 @@
     <p style="text-align: center; max-width: 700px; margin: 0 auto 30px; color: #333;">I'm not going to make you "book a call" to find out prices. That's sales BS. Here's how it works:</p>
     
     <div class="pricing-cards-container">
-      <!-- Single Session Card -->
-      <div class="pricing-card">
-        <h3>Single Session</h3>
-        <div class="price">450 AED</div>
-        <div class="price-detail">per session</div>
-        
-        <ul class="pricing-features">
-          <li>Fully personalized workout</li>
-          <li>Dedicated guidance</li>
-          <li>Accountability built-in</li>
-        </ul>
-        
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20Single%20Session" class="btn" onclick="trackEvent('package_click', {package_name: 'Single Session', package_price: '450', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 450, currency: 'AED', content_name: 'Single Session'});">Get Started</a>
-      </div>
-      
       <!-- 6 Sessions Package Card -->
       <div class="pricing-card">
         <h3>6 Sessions Package</h3>
@@ -1168,6 +1534,21 @@
         </ul>
         
         <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%206%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '6 Sessions Package', package_price: '2400', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 2400, currency: 'AED', content_name: '6 Sessions Package'});">Get Started</a>
+      </div>
+      
+      <!-- 8 Sessions Package Card -->
+      <div class="pricing-card">
+        <h3>8 Sessions Package</h3>
+        <div class="price">2,800 AED</div>
+        <div class="price-detail">(350 AED/session)</div>
+        
+        <ul class="pricing-features">
+          <li>Progress tracking</li>
+          <li>Nutrition advice</li>
+          <li>Flexible scheduling</li>
+        </ul>
+        
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%208%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '8 Sessions Package', package_price: '2800', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 2800, currency: 'AED', content_name: '8 Sessions Package'});">Get Started</a>
       </div>
       
       <!-- 12 Sessions Package Card - BEST VALUE -->
@@ -1187,37 +1568,44 @@
       </div>
     </div>
     
+    <div class="pricing-disclaimer">
+      <p>* Does not include NOGS gym membership</p>
+      <p>* Sessions are 60 minutes, fully personalized</p>
+    </div>
+    
     <div class="trial-note">
-      <p><strong>Not sure yet?</strong> Book a trial session for 200 AED to see the gym, meet me, and see if we're a good fit. If you continue with a package, the 200 AED comes off the price. No pressure.</p>
+      <div class="trial-note-content">
+        <h3>Not Sure Yet? Try Before You Commit.</h3>
+        <p>Book a trial session for <span class="trial-price">200 AED</span> to see the gym, meet me, and see if we're a good fit.</p>
+        <p style="font-size: 15px; color: #666; margin-bottom: 25px;">If you continue with a package, the 200 AED comes off the price. No pressure.</p>
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20trial%20session%20for%20200%20AED" class="trial-cta-btn" onclick="trackEvent('trial_click', {button_text: 'Lets Try Now', value: '200', currency: 'AED'}); fbq('track', 'Lead', {value: 200, currency: 'AED', content_name: 'Trial Session'});">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Let's Try Now!
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Testimonials -->
-<section>
+<!-- Before/After Transformations -->
+<section class="before-after-section">
   <div class="container">
-    <h2 style="text-align: center;">Don't Take My Word For It. Here's What Happens When You Actually Do The&nbsp;Work.</h2>
+    <h2 style="text-align: center; margin-bottom: 20px;">Real Clients. Real Results.</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 18px; color: #666;">These transformations didn't happen by accident. They happened through consistency, accountability, and&nbsp;work.</p>
     
-    <div class="testimonials-grid">
-      <div class="testimonial">
-        <div class="testimonial-avatar">S</div>
-        <p>"Working with Antoine has been incredible. Over 6 months, I've seen significant changes. Not only challenging workouts, but constant motivation. Your attention to detail made all the difference."</p>
-        <div class="testimonial-author">Sarah M.</div>
-        <div class="testimonial-role">Lost 12kg in 5 months</div>
-      </div>
-      
-      <div class="testimonial">
-        <div class="testimonial-avatar">J</div>
-        <p>"Antoine helped me pass my Fire Department beep test. His diet advice and reminders made sessions smooth sailing. His one-on-one coaching is second to none."</p>
-        <div class="testimonial-author">Jake P.</div>
-        <div class="testimonial-role">Improved fitness by 40%</div>
-      </div>
-      
-      <div class="testimonial">
-        <div class="testimonial-avatar">M</div>
-        <p>"I trained with Antoine to get back in shape after years of inactivity. Where most would have given up on me, Antoine was patient and persisted."</p>
-        <div class="testimonial-author">Michael R.</div>
-        <div class="testimonial-role">Back in shape at 45</div>
+    <div class="before-after-grid">
+      <!-- Transformation Card 1 - PROTOTYPE -->
+      <div class="transformation-card">
+        <div class="transformation-image-wrapper">
+          <img src="01-IMAGES/Before_After/before:after classic.png" alt="Transformation" loading="lazy">
+          <div class="transformation-overlay">
+            <p class="transformation-text">My biggest win has been improving and increasing my strength in the gym. I love that the programs push my body and mind to achieve what I didn't think was&nbsp;possible.</p>
+            <div class="transformation-signature">Ashlee</div>
+            <div class="transformation-program">HYBRID PROGRAM</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
