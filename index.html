@@ -128,6 +128,13 @@
       font-weight: 500;
     }
     
+    .clients-counter {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 20px;
+      color: #ff6413;
+    }
+    
     /* Hero Section */
     .hero {
       position: relative;
@@ -743,7 +750,7 @@
     
     .before-after-wrapper {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      transition: transform 1s linear;
       gap: 20px;
     }
     
@@ -1332,6 +1339,34 @@
     ]
   }
   </script>
+  
+  <!-- Counter Animation Script -->
+  <script>
+    // Compteur animé pour les clients
+    function animateCounter() {
+      const counter = document.getElementById('clientsCounter');
+      const target = 150;
+      let current = 0;
+      const increment = target / 50; // 50 étapes
+      const duration = 2000; // 2 secondes
+      const stepTime = duration / 50;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          counter.textContent = target;
+          clearInterval(timer);
+        } else {
+          counter.textContent = Math.floor(current);
+        }
+      }, stepTime);
+    }
+    
+    // Démarrer l'animation au chargement
+    window.addEventListener('load', () => {
+      setTimeout(animateCounter, 500);
+    });
+  </script>
 </head>
 <body>
 
@@ -1364,7 +1399,7 @@
       <div class="clients-banner">
         <img src="01-IMAGES/banniere.png" alt="Clients" loading="eager">
       </div>
-      <span class="clients-text">Join 150+ clients who transformed their lives</span>
+      <span class="clients-text">Join <span class="clients-counter" id="clientsCounter">0</span>+ clients who transformed their lives</span>
     </div>
     
     <div class="hero-content">
@@ -1389,9 +1424,6 @@
     <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 18px; color: #666;">These transformations didn't happen by accident. They happened through consistency, accountability, and&nbsp;work.</p>
     
     <div class="before-after-carousel">
-      <button class="before-after-nav prev" onclick="moveBeforeAfter(-1)" aria-label="Previous">‹</button>
-      <button class="before-after-nav next" onclick="moveBeforeAfter(1)" aria-label="Next">›</button>
-      
       <div style="overflow: hidden;">
         <div class="before-after-wrapper" id="beforeAfterWrapper">
           <!-- Transformation Card 1 -->
@@ -1439,8 +1471,6 @@
           </div>
         </div>
       </div>
-      
-      <div class="before-after-dots" id="beforeAfterDots"></div>
     </div>
   </div>
   
@@ -1452,24 +1482,9 @@
     let baSlidesToShow = window.innerWidth <= 768 ? 1 : 3;
     const baMaxIndex = Math.max(0, baTotalSlides - baSlidesToShow);
     
-    // Create dots for Before/After
-    const baDotsContainer = document.getElementById('beforeAfterDots');
-    for (let i = 0; i <= baMaxIndex; i++) {
-      const dot = document.createElement('button');
-      dot.classList.add('before-after-dot');
-      if (i === 0) dot.classList.add('active');
-      dot.onclick = () => goToBeforeAfter(i);
-      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      baDotsContainer.appendChild(dot);
-    }
-    
     function updateBeforeAfter() {
       const slideWidth = 100 / baSlidesToShow;
       baWrapper.style.transform = `translateX(-${baCurrentIndex * slideWidth}%)`;
-      
-      document.querySelectorAll('.before-after-dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === baCurrentIndex);
-      });
     }
     
     function moveBeforeAfter(direction) {
@@ -1479,10 +1494,10 @@
       updateBeforeAfter();
     }
     
-    function goToBeforeAfter(index) {
-      baCurrentIndex = index;
-      updateBeforeAfter();
-    }
+    // Défilement continu automatique (comme TeamAtlas - pas de pause)
+    setInterval(() => {
+      moveBeforeAfter(1);
+    }, 6000); // Plus lent = plus smooth
     
     // Update on resize
     window.addEventListener('resize', () => {
@@ -1715,7 +1730,7 @@
           <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">3</div>
         </div>
         <div class="timeline-image" style="background: #1a1a1a; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;">
-          <img src="01-IMAGES/support_continues.webp" alt="Coaching support via mobile" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+          <img src="01-IMAGES/support_continues.png" alt="Coaching support via mobile" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
         </div>
       </div>
     </div>
