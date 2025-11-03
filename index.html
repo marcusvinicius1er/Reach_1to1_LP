@@ -750,8 +750,21 @@
     
     .before-after-wrapper {
       display: flex;
-      transition: transform 1s linear;
       gap: 20px;
+      animation: scrollBeforeAfter 20s linear infinite;
+    }
+    
+    @keyframes scrollBeforeAfter {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    
+    .before-after-carousel:hover .before-after-wrapper {
+      animation-play-state: running;
     }
     
     .transformation-card {
@@ -762,8 +775,8 @@
       transition: all 0.4s ease;
       background: #fff;
       cursor: pointer;
-      flex: 0 0 calc(33.333% - 14px);
-      min-width: calc(33.333% - 14px);
+      flex: 0 0 300px;
+      min-width: 300px;
       height: 245px;
     }
     
@@ -1426,7 +1439,7 @@
     <div class="before-after-carousel">
       <div style="overflow: hidden;">
         <div class="before-after-wrapper" id="beforeAfterWrapper">
-          <!-- Transformation Card 1 -->
+          <!-- Transformation Cards - Original Set -->
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
               <img src="01-IMAGES/Before_After/before:after classic.png" alt="Ashlee Transformation" loading="lazy">
@@ -1437,7 +1450,6 @@
             </div>
           </div>
           
-          <!-- Transformation Card 2 -->
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
               <img src="01-IMAGES/Before_After/Man feeling better in his skin.png" alt="James Transformation" loading="lazy">
@@ -1448,7 +1460,6 @@
             </div>
           </div>
           
-          <!-- Transformation Card 3 -->
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
               <img src="01-IMAGES/Before_After/The Coach leading with his own transformation.png" alt="Coach Transformation" loading="lazy">
@@ -1459,7 +1470,47 @@
             </div>
           </div>
           
-          <!-- Transformation Card 4 -->
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/alex-transformation.png" alt="Alex Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">This program has been nothing short of transformative. I've pushed my limits and delivered exceptional&nbsp;results.</p>
+                <div class="transformation-signature">Alex</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Duplicate Set for Infinite Loop -->
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/before:after classic.png" alt="Ashlee Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">My biggest win has been improving and increasing my strength in the gym. I love that the programs push my body and mind to achieve what I didn't think was&nbsp;possible.</p>
+                <div class="transformation-signature">Ashlee</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Man feeling better in his skin.png" alt="James Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">I finally feel good in my own skin. Not just physically, but mentally. The training gave me back my confidence and&nbsp;energy.</p>
+                <div class="transformation-signature">James</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/The Coach leading with his own transformation.png" alt="Coach Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">I lead by example. My own transformation taught me what it takes to succeed: consistency, accountability, and showing&nbsp;up.</p>
+                <div class="transformation-signature">Antoine</div>
+              </div>
+            </div>
+          </div>
+          
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
               <img src="01-IMAGES/Before_After/alex-transformation.png" alt="Alex Transformation" loading="lazy">
@@ -1473,42 +1524,6 @@
       </div>
     </div>
   </div>
-  
-  <script>
-    let baCurrentIndex = 0;
-    const baWrapper = document.getElementById('beforeAfterWrapper');
-    const baSlides = document.querySelectorAll('#beforeAfterWrapper .transformation-card');
-    const baTotalSlides = baSlides.length;
-    let baSlidesToShow = window.innerWidth <= 768 ? 1 : 3;
-    const baMaxIndex = Math.max(0, baTotalSlides - baSlidesToShow);
-    
-    function updateBeforeAfter() {
-      const slideWidth = 100 / baSlidesToShow;
-      baWrapper.style.transform = `translateX(-${baCurrentIndex * slideWidth}%)`;
-    }
-    
-    function moveBeforeAfter(direction) {
-      baCurrentIndex += direction;
-      if (baCurrentIndex < 0) baCurrentIndex = baMaxIndex;
-      if (baCurrentIndex > baMaxIndex) baCurrentIndex = 0;
-      updateBeforeAfter();
-    }
-    
-    // Défilement continu automatique (comme TeamAtlas - pas de pause)
-    setInterval(() => {
-      moveBeforeAfter(1);
-    }, 6000); // Plus lent = plus smooth
-    
-    // Update on resize
-    window.addEventListener('resize', () => {
-      const newSlidesToShow = window.innerWidth <= 768 ? 1 : 3;
-      if (newSlidesToShow !== baSlidesToShow) {
-        baSlidesToShow = newSlidesToShow;
-        baCurrentIndex = 0;
-        updateBeforeAfter();
-      }
-    });
-  </script>
 </section>
 
 <!-- Location Callout -->
