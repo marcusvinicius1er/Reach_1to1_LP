@@ -33,32 +33,59 @@
   <meta name="geo.placename" content="Dubai">
   <meta name="geo.position" content="25.1372;55.1851">
   
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1QFXX714H7"></script>
+  <!-- Preload Critical Images -->
+  <link rel="preload" as="image" href="01-IMAGES/logo_reach.png">
+  <link rel="preload" as="image" href="01-IMAGES/hero/COACH.png">
+  <link rel="preload" as="image" href="01-IMAGES/banniere.png">
+  
+  <!-- Google Analytics 4 - Optimized Defer Loading -->
   <script>
+    // Fonction pour tracker les clics (disponible immédiatement)
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-1QFXX714H7');
-    
-    // Fonction pour tracker les clics
     function trackEvent(eventName, eventParams) {
-      gtag('event', eventName, eventParams);
+      if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, eventParams);
+      } else {
+        window.dataLayer.push(['event', eventName, eventParams]);
+      }
     }
+    
+    // Charger GA de manière asynchrone après le chargement de la page
+    window.addEventListener('load', function() {
+      var script = document.createElement('script');
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1QFXX714H7';
+      script.async = true;
+      document.head.appendChild(script);
+      
+      script.onload = function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1QFXX714H7');
+      };
+    });
   </script>
   
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel Code - Optimized Defer Loading -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1551586196184727');
-    fbq('track', 'PageView');
+    // Initialiser fbq stub pour éviter les erreurs
+    window.fbq = window.fbq || function() {
+      (window.fbq.q = window.fbq.q || []).push(arguments);
+    };
+    
+    // Charger Meta Pixel après le chargement de la page
+    window.addEventListener('load', function() {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1551586196184727');
+      fbq('track', 'PageView');
+    });
   </script>
   <noscript>
     <img height="1" width="1" style="display:none" 
@@ -66,10 +93,13 @@
   </noscript>
   <!-- End Meta Pixel Code -->
   
-  <!-- Fonts -->
+  <!-- Fonts - Optimized Loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  </noscript>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
@@ -1392,18 +1422,18 @@
 <section class="hero">
   <!-- Mosaïque Background -->
   <div class="hero-mosaic">
-    <img src="01-IMAGES/hero/19.03.2023 (302 of 403).jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/19.03.2023 (305 of 403).jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/19.03.2023 (310 of 403).jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/19.03.2023 (327 of 403).jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/body-transformation-program.jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/body-transformation.jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/fitness-trainer-dubai.jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/personal-fitness-training-services.jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/instagram. - personal-fitness-coach.jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/_DSC4063_logo.jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/Nouvelle image.jpg" alt="" loading="eager">
-    <img src="01-IMAGES/hero/19.03.2023 (302 of 403).jpg" alt="" loading="eager">
+    <img src="01-IMAGES/hero/19.03.2023 (302 of 403).jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/19.03.2023 (305 of 403).jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/19.03.2023 (310 of 403).jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/19.03.2023 (327 of 403).jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/body-transformation-program.jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/body-transformation.jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/fitness-trainer-dubai.jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/personal-fitness-training-services.jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/instagram. - personal-fitness-coach.jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/_DSC4063_logo.jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/Nouvelle image.jpg" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/19.03.2023 (302 of 403).jpg" alt="" loading="lazy">
   </div>
   
   <div class="container" style="max-width: 1200px; position: relative; z-index: 1;">
@@ -1983,5 +2013,4 @@
 </script>
 
 </body>
-</html>
 </html>
