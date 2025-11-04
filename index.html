@@ -1384,39 +1384,12 @@
   }
   </script>
   
-  <!-- Counter Animation Script -->
-  <script>
-    // Compteur animé pour les clients
-    function animateCounter() {
-      const counter = document.getElementById('clientsCounter');
-      const target = 150;
-      let current = 0;
-      const increment = target / 50; // 50 étapes
-      const duration = 2000; // 2 secondes
-      const stepTime = duration / 50;
-      
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          counter.textContent = target;
-          clearInterval(timer);
-        } else {
-          counter.textContent = Math.floor(current);
-        }
-      }, stepTime);
-    }
-    
-    // Démarrer l'animation au chargement
-    window.addEventListener('load', () => {
-      setTimeout(animateCounter, 500);
-    });
-  </script>
 </head>
 <body>
 
 <!-- Header Banner avec Logo -->
 <header class="header-banner">
-  <img src="01-IMAGES/logo_reach.webp" alt="REACH by Antony" class="header-logo">
+  <img src="01-IMAGES/logo_reach.webp" alt="REACH by Antony" class="header-logo" width="200" height="50">
 </header>
 
 <!-- Hero Section -->
@@ -1441,7 +1414,7 @@
     <!-- Clients Row -->
     <div class="clients-row">
       <div class="clients-banner">
-        <img src="01-IMAGES/banniere.webp" alt="Clients" loading="eager">
+        <img src="01-IMAGES/banniere.webp" alt="Clients" loading="eager" width="400" height="90">
       </div>
       <span class="clients-text">Join <span class="clients-counter" id="clientsCounter">0</span>+ clients who transformed their lives</span>
     </div>
@@ -1449,7 +1422,7 @@
     <div class="hero-content">
       <!-- Photo Coach - Premier plan à GAUCHE -->
       <div class="hero-coach">
-        <img src="01-IMAGES/hero/COACH.webp" alt="Antoine - Personal Coach at NOGS Dubai" loading="eager">
+        <img src="01-IMAGES/hero/COACH.webp" alt="Antoine - Personal Coach at NOGS Dubai" loading="eager" width="240" height="auto">
       </div>
       
       <!-- Accroche à DROITE -->
@@ -1993,6 +1966,31 @@
 </footer>
 
 <script>
+  // Counter Animation (defer)
+  document.addEventListener('DOMContentLoaded', function() {
+    function animateCounter() {
+      const counter = document.getElementById('clientsCounter');
+      if (!counter) return;
+      const target = 150;
+      let current = 0;
+      const increment = target / 50;
+      const duration = 2000;
+      const stepTime = duration / 50;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          counter.textContent = target;
+          clearInterval(timer);
+        } else {
+          counter.textContent = Math.floor(current);
+        }
+      }, stepTime);
+    }
+    
+    setTimeout(animateCounter, 500);
+  });
+
   // FAQ Accordion
   document.querySelectorAll('.faq-question').forEach(question => {
     question.addEventListener('click', () => {
