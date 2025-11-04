@@ -38,7 +38,7 @@
   <link rel="preload" as="image" href="01-IMAGES/hero/COACH.webp">
   <link rel="preload" as="image" href="01-IMAGES/banniere.webp">
   
-  <!-- Google Analytics 4 - Optimized Defer Loading -->
+  <!-- Google Analytics 4 - Load on User Interaction -->
   <script>
     // Fonction pour tracker les clics (disponible immédiatement)
     window.dataLayer = window.dataLayer || [];
@@ -50,8 +50,12 @@
       }
     }
     
-    // Charger GA de manière asynchrone après le chargement de la page
-    window.addEventListener('load', function() {
+    // Charger GA seulement après interaction utilisateur (scroll, clic, ou 3 secondes)
+    var gaLoaded = false;
+    function loadGA() {
+      if (gaLoaded) return;
+      gaLoaded = true;
+      
       var script = document.createElement('script');
       script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1QFXX714H7';
       script.async = true;
@@ -63,18 +67,28 @@
         gtag('js', new Date());
         gtag('config', 'G-1QFXX714H7');
       };
-    });
+    }
+    
+    // Charger après interaction ou 3 secondes
+    window.addEventListener('scroll', loadGA, { once: true, passive: true });
+    window.addEventListener('click', loadGA, { once: true });
+    window.addEventListener('mousemove', loadGA, { once: true, passive: true });
+    setTimeout(loadGA, 3000);
   </script>
   
-  <!-- Meta Pixel Code - Optimized Defer Loading -->
+  <!-- Meta Pixel Code - Load on User Interaction -->
   <script>
     // Initialiser fbq stub pour éviter les erreurs
     window.fbq = window.fbq || function() {
       (window.fbq.q = window.fbq.q || []).push(arguments);
     };
     
-    // Charger Meta Pixel après le chargement de la page
-    window.addEventListener('load', function() {
+    // Charger Meta Pixel seulement après interaction utilisateur
+    var fbLoaded = false;
+    function loadFBPixel() {
+      if (fbLoaded) return;
+      fbLoaded = true;
+      
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -85,7 +99,13 @@
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1551586196184727');
       fbq('track', 'PageView');
-    });
+    }
+    
+    // Charger après interaction ou 3 secondes
+    window.addEventListener('scroll', loadFBPixel, { once: true, passive: true });
+    window.addEventListener('click', loadFBPixel, { once: true });
+    window.addEventListener('mousemove', loadFBPixel, { once: true, passive: true });
+    setTimeout(loadFBPixel, 3000);
   </script>
   <noscript>
     <img height="1" width="1" style="display:none" 
@@ -93,12 +113,12 @@
   </noscript>
   <!-- End Meta Pixel Code -->
   
-  <!-- Fonts - Optimized Loading -->
+  <!-- Fonts - Optimized Loading (only 3 weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   </noscript>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -155,7 +175,7 @@
     .clients-text {
       color: #ff6413;
       font-size: 17px;
-      font-weight: 500;
+      font-weight: 600;
     }
     
     .clients-counter {
@@ -233,7 +253,7 @@
     .hero h1 {
       font-family: 'Inter', sans-serif;
       font-size: clamp(32px, 5vw, 54px);
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.1;
       margin-bottom: 20px;
       letter-spacing: -0.03em;
@@ -295,7 +315,7 @@
     h2 {
       font-family: 'Inter', sans-serif;
       font-size: clamp(26px, 4.5vw, 38px);
-      font-weight: 800;
+      font-weight: 700;
       margin-bottom: 20px;
       line-height: 1.25;
       color: #000000;
@@ -334,7 +354,7 @@
     .carousel-title {
       text-align: center;
       font-size: clamp(28px, 4vw, 36px);
-      font-weight: 800;
+      font-weight: 700;
       margin-bottom: 40px;
       color: #000;
     }
@@ -433,7 +453,7 @@
     .location-box p {
       margin-bottom: 10px;
       color: #000000;
-      font-weight: 500;
+      font-weight: 600;
     }
     
     .location-box strong {
@@ -559,7 +579,7 @@
     .pricing-card .price {
       font-family: 'Inter', sans-serif;
       font-size: 44px;
-      font-weight: 800;
+      font-weight: 700;
       color: #ff6413;
       line-height: 1;
       margin-bottom: 8px;
@@ -633,7 +653,7 @@
     .trial-note h3 {
       font-family: 'Inter', sans-serif;
       font-size: 24px;
-      font-weight: 800;
+      font-weight: 700;
       color: #000;
       margin-bottom: 15px;
       line-height: 1.2;
@@ -737,7 +757,7 @@
     .faq-toggle {
       color: #ff6413;
       font-size: 24px;
-      font-weight: 300;
+      font-weight: 400;
       transition: transform 0.3s ease;
       line-height: 1;
     }
@@ -949,7 +969,7 @@
     
     .cta-section h2 {
       font-size: clamp(32px, 5vw, 48px);
-      font-weight: 800;
+      font-weight: 700;
       margin-bottom: 20px;
       letter-spacing: -0.02em;
       color: #fff;
@@ -1694,7 +1714,7 @@
 <!-- Why Face-to-Face -->
 <section style="background: #000000; padding: 60px 20px; color: #fff;" id="whySection">
   <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="text-align: center; font-size: clamp(36px, 5vw, 56px); font-weight: 800; margin-bottom: 40px; color: #fff;">This is what changes when you stop doing it&nbsp;alone.</h2>
+    <h2 style="text-align: center; font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 40px; color: #fff;">This is what changes when you stop doing it&nbsp;alone.</h2>
     
     <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; font-size: 18px; color: #ccc; line-height: 1.6;">While I can't guarantee you'll drop 10kg in 12 weeks,<br>I CAN guarantee that at the end of every session, you'll know it was worth showing up.</p>
     
@@ -1712,7 +1732,7 @@
           <p style="font-size: 17px; color: #ccc; line-height: 1.6;">Your program is designed for YOUR goals, YOUR body, YOUR abilities. And it's a training you'll finally enjoy and want to&nbsp;do.</p>
         </div>
         <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
-          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">1</div>
+          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #fff; border: 6px solid #000;">1</div>
         </div>
         <div class="timeline-image" style="background: #1a1a1a; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;">
           <img src="01-IMAGES/stop_thinking.webp" alt="Personal training session" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
@@ -1725,7 +1745,7 @@
           <img src="01-IMAGES/progress_tracking.webp" alt="Progress tracking app" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
         </div>
         <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
-          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">2</div>
+          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #fff; border: 6px solid #000;">2</div>
         </div>
         <div class="timeline-text text-left" style="text-align: left;">
           <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You finally make progress that you can feel and&nbsp;see.</h3>
@@ -1740,7 +1760,7 @@
           <p style="font-size: 17px; color: #ccc; line-height: 1.6;">I'm available on WhatsApp between sessions. Struggling? Send me a message. Need advice? I'm there. This isn't just 3 sessions a week, it's ongoing support to keep you on track when it matters&nbsp;most.</p>
         </div>
         <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
-          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: #fff; border: 6px solid #000;">3</div>
+          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #fff; border: 6px solid #000;">3</div>
         </div>
         <div class="timeline-image" style="background: #1a1a1a; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;">
           <img src="01-IMAGES/support_continues2.webp" alt="Coaching support via mobile" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
