@@ -801,7 +801,9 @@
     .before-after-wrapper {
       display: flex;
       gap: 20px;
-      animation: scrollBeforeAfter 20s linear infinite;
+      width: 6740px;
+      animation: scrollBeforeAfter 30s linear infinite;
+      will-change: transform;
     }
     
     @keyframes scrollBeforeAfter {
@@ -813,8 +815,12 @@
       }
     }
     
-    .before-after-carousel:hover .before-after-wrapper {
+    .before-after-wrapper {
       animation-play-state: running;
+    }
+    
+    .before-after-carousel:hover .before-after-wrapper {
+      animation-play-state: paused;
     }
     
     .transformation-card {
@@ -825,9 +831,9 @@
       transition: all 0.4s ease;
       background: #fff;
       cursor: pointer;
-      flex: 0 0 300px;
-      min-width: 300px;
-      height: 245px;
+      flex: 0 0 240px;
+      min-width: 240px;
+      height: 240px;
     }
     
     .transformation-card:hover {
@@ -845,7 +851,8 @@
     .transformation-image-wrapper img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
+      object-position: center;
       transition: transform 0.4s ease;
       background: #f0f0f0;
     }
@@ -860,8 +867,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.70);
-      padding: 30px 20px;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 15px 10px;
       color: white;
       display: flex;
       flex-direction: column;
@@ -869,6 +876,8 @@
       align-items: center;
       opacity: 0;
       transition: opacity 0.4s ease;
+      overflow: hidden;
+      box-sizing: border-box;
     }
     
     .transformation-card:hover .transformation-overlay {
@@ -876,19 +885,20 @@
     }
     
     .transformation-text {
-      font-size: 15px;
-      line-height: 1.5;
-      margin-bottom: 20px;
+      font-size: 12px;
+      line-height: 1.4;
+      margin-bottom: 12px;
       font-weight: 400;
       text-align: center;
       color: #fff;
+      max-width: 100%;
     }
     
     .transformation-signature {
       font-family: 'Inter', sans-serif;
-      font-size: 32px;
+      font-size: 24px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #ff6413;
       letter-spacing: -0.02em;
       text-transform: capitalize;
@@ -1208,7 +1218,7 @@
       .transformation-card {
         flex: 0 0 100%;
         min-width: 100%;
-        height: 280px;
+        height: 350px;
       }
       
       .before-after-nav {
@@ -1226,11 +1236,11 @@
       }
       
       .transformation-signature {
-        font-size: 28px;
+        font-size: 20px;
       }
       
       .transformation-text {
-        font-size: 14px;
+        font-size: 12px;
         padding: 0 10px;
       }
       
@@ -1460,20 +1470,20 @@
           <!-- Transformation Cards - Original Set -->
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-1.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-1.webp" alt="Sarah Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Amazing transformation through consistency and hard&nbsp;work.</p>
-                <div class="transformation-signature">Client 1</div>
+                <div class="transformation-signature">Sarah</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-2.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-2.webp" alt="Michael Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Real results through dedication and proper&nbsp;coaching.</p>
-                <div class="transformation-signature">Client 2</div>
+                <div class="transformation-signature">Michael</div>
               </div>
             </div>
           </div>
@@ -1490,70 +1500,100 @@
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-4.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Anabelle.webp" alt="Anabelle Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">She's thrilled and it gave her back the confidence she&nbsp;needed.</p>
+                <div class="transformation-signature">Anabelle</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/before-4.webp" alt="Tashvee Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Incredible progress through the right training and&nbsp;nutrition.</p>
-                <div class="transformation-signature">Client 4</div>
+                <div class="transformation-signature">Tashvee</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-5.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-5.webp" alt="Richard Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Transformation achieved through consistency and expert&nbsp;guidance.</p>
-                <div class="transformation-signature">Client 5</div>
+                <div class="transformation-signature">Richard</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-6.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/merefille.webp" alt="Mother & Daughter Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">They love that they can train together with Antoine's&nbsp;guidance.</p>
+                <div class="transformation-signature">Mother & Daughter</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/before-6.webp" alt="Thomas Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Real change through commitment and personalized&nbsp;coaching.</p>
-                <div class="transformation-signature">Client 6</div>
+                <div class="transformation-signature">Thomas</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-7.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-7.webp" alt="Jonathan Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Proven results through proper form and dedicated&nbsp;effort.</p>
-                <div class="transformation-signature">Client 7</div>
+                <div class="transformation-signature">Jonathan</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-8.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-8.webp" alt="Andrew Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Life-changing transformation with focused training and&nbsp;support.</p>
-                <div class="transformation-signature">Client 8</div>
+                <div class="transformation-signature">Andrew</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-9.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Lydia.webp" alt="Lydia Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Thanks to Antoine's coaching, she got back to sports activities. He guided her recovery after&nbsp;surgery.</p>
+                <div class="transformation-signature">Lydia</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/before-9.webp" alt="Chloe Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Outstanding results through accountability and hard&nbsp;work.</p>
-                <div class="transformation-signature">Client 9</div>
+                <div class="transformation-signature">Chloe</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-10.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-10.webp" alt="Jeffrey Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Complete transformation through consistency and expert&nbsp;coaching.</p>
-                <div class="transformation-signature">Client 10</div>
+                <div class="transformation-signature">Jeffrey</div>
               </div>
             </div>
           </div>
@@ -1561,20 +1601,20 @@
           <!-- Duplicate Set for Infinite Loop -->
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-1.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-1.webp" alt="Sarah Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Amazing transformation through consistency and hard&nbsp;work.</p>
-                <div class="transformation-signature">Client 1</div>
+                <div class="transformation-signature">Sarah</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-2.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-2.webp" alt="Michael Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Real results through dedication and proper&nbsp;coaching.</p>
-                <div class="transformation-signature">Client 2</div>
+                <div class="transformation-signature">Michael</div>
               </div>
             </div>
           </div>
@@ -1591,70 +1631,100 @@
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-4.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Anabelle.webp" alt="Anabelle Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">She's thrilled and it gave her back the confidence she&nbsp;needed.</p>
+                <div class="transformation-signature">Anabelle</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/before-4.webp" alt="Tashvee Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Incredible progress through the right training and&nbsp;nutrition.</p>
-                <div class="transformation-signature">Client 4</div>
+                <div class="transformation-signature">Tashvee</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-5.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-5.webp" alt="Richard Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Transformation achieved through consistency and expert&nbsp;guidance.</p>
-                <div class="transformation-signature">Client 5</div>
+                <div class="transformation-signature">Richard</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-6.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/merefille.webp" alt="Mother & Daughter Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">They love that they can train together with Antoine's&nbsp;guidance.</p>
+                <div class="transformation-signature">Mother & Daughter</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/before-6.webp" alt="Thomas Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Real change through commitment and personalized&nbsp;coaching.</p>
-                <div class="transformation-signature">Client 6</div>
+                <div class="transformation-signature">Thomas</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-7.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-7.webp" alt="Jonathan Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Proven results through proper form and dedicated&nbsp;effort.</p>
-                <div class="transformation-signature">Client 7</div>
+                <div class="transformation-signature">Jonathan</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-8.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-8.webp" alt="Andrew Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Life-changing transformation with focused training and&nbsp;support.</p>
-                <div class="transformation-signature">Client 8</div>
+                <div class="transformation-signature">Andrew</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-9.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Lydia.webp" alt="Lydia Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Thanks to Antoine's coaching, she got back to sports activities. He guided her recovery after&nbsp;surgery.</p>
+                <div class="transformation-signature">Lydia</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/before-9.webp" alt="Chloe Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Outstanding results through accountability and hard&nbsp;work.</p>
-                <div class="transformation-signature">Client 9</div>
+                <div class="transformation-signature">Chloe</div>
               </div>
             </div>
           </div>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/before-10.webp" alt="Client Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/before-10.webp" alt="Jeffrey Transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Complete transformation through consistency and expert&nbsp;coaching.</p>
-                <div class="transformation-signature">Client 10</div>
+                <div class="transformation-signature">Jeffrey</div>
               </div>
             </div>
           </div>
@@ -1721,15 +1791,6 @@
         </div>
         <div class="carousel-slide">
           <img src="01-IMAGES/Carroussel_Linkedin/jamil.webp" alt="Jamil - Client Testimonial" loading="lazy">
-        </div>
-        <div class="carousel-slide">
-          <img src="01-IMAGES/Before_After/Anabelle.webp" alt="Anabelle - Client Testimonial" loading="lazy">
-        </div>
-        <div class="carousel-slide">
-          <img src="01-IMAGES/Before_After/merefille.webp" alt="Mère et fille - Client Testimonial" loading="lazy">
-        </div>
-        <div class="carousel-slide">
-          <img src="01-IMAGES/Before_After/Lydia.webp" alt="Lydia - Client Testimonial" loading="lazy">
         </div>
       </div>
     </div>
