@@ -38,6 +38,29 @@
   <link rel="preload" as="image" href="01-IMAGES/hero/COACH.webp">
   <link rel="preload" as="image" href="01-IMAGES/banniere.webp">
   
+  <!-- Google Tag Manager - Optimized Loading -->
+  <script>
+    // Charger GTM après interaction utilisateur pour ne pas bloquer le rendu
+    var gtmLoaded = false;
+    function loadGTM() {
+      if (gtmLoaded) return;
+      gtmLoaded = true;
+      
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MS5DPN2S');
+    }
+    
+    // Charger après interaction ou 2 secondes
+    window.addEventListener('scroll', loadGTM, { once: true, passive: true });
+    window.addEventListener('click', loadGTM, { once: true });
+    window.addEventListener('mousemove', loadGTM, { once: true, passive: true });
+    setTimeout(loadGTM, 2000);
+  </script>
+  <!-- End Google Tag Manager -->
+  
   <!-- Google Analytics 4 - Load on User Interaction -->
   <script>
     // Fonction pour tracker les clics (disponible immédiatement)
@@ -1416,6 +1439,11 @@
   
 </head>
 <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MS5DPN2S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- Header Banner avec Logo -->
 <header class="header-banner">
