@@ -1239,9 +1239,20 @@
       }
       
       .transformation-card {
-        flex: 0 0 100%;
-        min-width: 100%;
-        height: 350px;
+        flex: 0 0 calc(100vw - 40px);
+        min-width: calc(100vw - 40px);
+        max-width: 400px;
+        height: 400px;
+      }
+      
+      .before-after-wrapper {
+        width: auto !important;
+        animation: scrollBeforeAfter 40s linear infinite;
+      }
+      
+      .before-after-carousel {
+        max-width: calc(100vw - 40px);
+        margin: 0 auto;
       }
       
       .before-after-nav {
@@ -1259,16 +1270,17 @@
       }
       
       .transformation-signature {
-        font-size: 20px;
+        font-size: 22px;
       }
       
       .transformation-text {
-        font-size: 12px;
-        padding: 0 10px;
+        font-size: 13px;
+        padding: 0 15px;
+        line-height: 1.5;
       }
       
       .transformation-overlay {
-        padding: 25px 15px;
+        padding: 30px 20px;
       }
       
       .pricing-cards-container {
