@@ -805,7 +805,7 @@
     .before-after-wrapper {
       display: flex;
       gap: 20px;
-      width: calc(260px * 30);
+      width: calc((240px + 20px) * 30);
       animation: scrollBeforeAfter 40s linear infinite;
       will-change: transform;
     }
@@ -815,7 +815,7 @@
         transform: translateX(0);
       }
       100% {
-        transform: translateX(calc(-260px * 15));
+        transform: translateX(calc(-1 * (240px + 20px) * 15));
       }
     }
     
@@ -1248,8 +1248,17 @@
       }
       
       .before-after-wrapper {
-        width: 8980px !important;
-        animation: scrollBeforeAfter 40s linear infinite !important;
+        width: calc((280px + 20px) * 30) !important;
+        animation: scrollBeforeAfterMobile 40s linear infinite !important;
+      }
+      
+      @keyframes scrollBeforeAfterMobile {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-1 * (280px + 20px) * 15));
+        }
       }
       
       .before-after-carousel {
@@ -1284,7 +1293,17 @@
       }
       
       .transformation-overlay {
-        padding: 20px 15px;
+        padding: 25px 18px;
+        justify-content: space-around;
+      }
+      
+      .transformation-card {
+        /* Sur mobile, afficher l'overlay au tap */
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      .transformation-card:active .transformation-overlay {
+        opacity: 1;
       }
       
       .pricing-cards-container {
@@ -1503,7 +1522,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="clients-banner">
         <img src="01-IMAGES/banniere.webp" alt="Clients" loading="eager">
       </div>
-      <span class="clients-text">Join <span class="clients-counter" id="clientsCounter">0</span>+ clients who transformed their lives</span>
+      <span class="clients-text">Join <span class="clients-counter" id="clientsCounter">150</span>+ clients who transformed their lives</span>
     </div>
     
     <div class="hero-content">
