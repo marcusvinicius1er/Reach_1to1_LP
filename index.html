@@ -851,6 +851,15 @@
       animation-play-state: paused;
     }
     
+    .transformation-card:hover ~ * .before-after-wrapper,
+    .transformation-card:hover {
+      animation-play-state: paused;
+    }
+    
+    .before-after-carousel:has(.transformation-card:hover) .before-after-wrapper {
+      animation-play-state: paused !important;
+    }
+    
     .transformation-card {
       position: relative;
       border-radius: 12px;
@@ -1264,7 +1273,7 @@
       
       .before-after-wrapper {
         width: 8980px !important;
-        animation: scrollBeforeAfter 25s linear infinite !important;
+        animation: scrollBeforeAfter 40s linear infinite !important;
       }
       
       .before-after-carousel {
