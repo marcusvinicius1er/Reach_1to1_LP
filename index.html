@@ -180,7 +180,7 @@
       align-items: center;
       justify-content: center;
       gap: 15px;
-      margin-bottom: 35px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
     
@@ -188,6 +188,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-bottom: 8px;
     }
     
     .clients-banner img {
@@ -199,6 +200,7 @@
       color: #ff6413;
       font-size: 17px;
       font-weight: 600;
+      margin-top: 0;
     }
     
     .clients-counter {
@@ -250,12 +252,12 @@
       min-height: 400px;
     }
     
-    /* Photo Coach - Premier plan */
+    /* Photo Coach - Premier plan à GAUCHE */
     .hero-coach {
       width: 100%;
       max-width: 240px;
       position: relative;
-      z-index: 2;
+      z-index: 1;
       filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
       background: transparent;
       align-self: end;
@@ -269,8 +271,11 @@
     }
     
     .hero-text {
-      text-align: left;
+      text-align: center;
       align-self: center;
+      position: relative;
+      z-index: 2;
+      margin-left: -60px;
     }
     
     .hero h1 {
@@ -824,7 +829,7 @@
     .before-after-wrapper {
       display: flex;
       gap: 20px;
-      width: 6740px;
+      width: 7260px;
       animation: scrollBeforeAfter 30s linear infinite;
       will-change: transform;
     }
@@ -1091,22 +1096,23 @@
       }
       
       .hero-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        min-height: 400px;
+        padding: 30px 15px;
       }
       
       .hero-coach {
         max-width: 200px;
         margin: 0 auto;
-        align-self: center;
-      }
-      
-      .hero-content {
-        align-items: center;
+        order: 3;
       }
       
       .hero-text {
         text-align: center;
+        margin-left: 0;
+        order: 1;
       }
       
       .hero-mosaic {
@@ -1169,7 +1175,8 @@
       
       .clients-row {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
+        margin-bottom: 25px;
       }
       
       .clients-banner img {
@@ -1185,7 +1192,18 @@
       }
       
       .hero-content {
-        min-height: 300px;
+        min-height: 350px;
+        padding: 20px 10px;
+        gap: 25px;
+      }
+      
+      .hero-coach {
+        max-width: 180px;
+        order: 3;
+      }
+      
+      .hero-text {
+        order: 1;
       }
       
       section {
@@ -1490,9 +1508,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="01-IMAGES/hero/COACH.webp" alt="Antoine - Personal Coach at NOGS Dubai" loading="eager" width="640" height="1632">
       </div>
       
-      <!-- Accroche à DROITE -->
+      <!-- Accroche CENTRÉE -->
       <div class="hero-text">
-        <h1>What if you could drop up to 10kg+ training just 60 minutes, 3 times per&nbsp;week</h1>
+        <h1>What if you could drop up to 10kg+ training just 3 times per&nbsp;week</h1>
         <p>80% of your results will come from showing up consistently and doing the right exercises. This coaching program makes sure you do both.</p>
         <div style="margin-top: 30px;">
           <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="btn" onclick="trackEvent('cta_click', {button_location: 'hero_section', button_text: 'Contact me'}); fbq('track', 'Contact');">Contact me</a>
@@ -1642,6 +1660,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
           
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/before-11.webp" alt="Oliver Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Remarkable progress through dedication and personalized&nbsp;training.</p>
+                <div class="transformation-signature">Oliver</div>
+              </div>
+            </div>
+          </div>
+          
           <!-- Duplicate Set for Infinite Loop -->
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
@@ -1769,6 +1797,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="transformation-overlay">
                 <p class="transformation-text">Complete transformation through consistency and expert&nbsp;coaching.</p>
                 <div class="transformation-signature">Jeffrey</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/before-11.webp" alt="Oliver Transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Remarkable progress through dedication and personalized&nbsp;training.</p>
+                <div class="transformation-signature">Oliver</div>
               </div>
             </div>
           </div>
@@ -1948,9 +1986,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Why Face-to-Face -->
 <section style="background: #000000; padding: 60px 20px; color: #fff;" id="whySection">
   <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="text-align: center; font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 40px; color: #fff;">This is what changes when you stop doing it&nbsp;alone.</h2>
-    
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; font-size: 18px; color: #ccc; line-height: 1.6;">While I can't guarantee you'll drop 10kg in 12 weeks,<br>I CAN guarantee that at the end of every session, you'll know it was worth showing up.</p>
+    <!-- Accroche principale -->
+    <div style="text-align: center; margin-bottom: 80px;">
+      <h2 style="font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 30px; color: #fff;">This is what changes when you stop doing it&nbsp;alone.</h2>
+      
+      <p style="max-width: 800px; margin: 0 auto; font-size: 20px; color: #ccc; line-height: 1.6;">I promise that at the end of every session, you'll know it was worth showing up.</p>
+    </div>
     
     <div class="timeline-container" style="position: relative; padding-top: 60px; padding-bottom: 60px;">
       <!-- Ligne grise de base qui va du haut au bas -->
@@ -2050,13 +2091,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="price">2,400 AED</div>
         <div class="price-detail">(400 AED/session)</div>
         
-        <ul class="pricing-features">
-          <li>Progress tracking</li>
-          <li>Nutrition advice</li>
-          <li>Flexible scheduling</li>
-        </ul>
-        
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%206%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '6 Sessions Package', package_price: '2400', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 2400, currency: 'AED', content_name: '6 Sessions Package'});">Get Started</a>
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%206%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '6 Sessions Package', package_price: '2400', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 2400, currency: 'AED', content_name: '6 Sessions Package'});" style="margin-top: 15px;">Get Started</a>
       </div>
       
       <!-- 8 Sessions Package Card -->
@@ -2065,13 +2100,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="price">2,800 AED</div>
         <div class="price-detail">(350 AED/session)</div>
         
-        <ul class="pricing-features">
-          <li>Progress tracking</li>
-          <li>Nutrition advice</li>
-          <li>Flexible scheduling</li>
-        </ul>
-        
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%208%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '8 Sessions Package', package_price: '2800', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 2800, currency: 'AED', content_name: '8 Sessions Package'});">Get Started</a>
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%208%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '8 Sessions Package', package_price: '2800', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 2800, currency: 'AED', content_name: '8 Sessions Package'});" style="margin-top: 15px;">Get Started</a>
       </div>
       
       <!-- 12 Sessions Package Card - BEST VALUE -->
@@ -2081,13 +2110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="price">3,600 AED</div>
         <div class="price-detail">(300 AED/session)</div>
         
-        <ul class="pricing-features">
-          <li>Comprehensive program</li>
-          <li>Adapted intensity</li>
-          <li>Maximum support</li>
-        </ul>
-        
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%2012%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '12 Sessions Package', package_price: '3600', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 3600, currency: 'AED', content_name: '12 Sessions Package'});">Get Started</a>
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%2012%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '12 Sessions Package', package_price: '3600', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 3600, currency: 'AED', content_name: '12 Sessions Package'});" style="margin-top: 15px;">Get Started</a>
       </div>
     </div>
     
@@ -2199,7 +2222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="cta-section">
   <h2>Not sure which is right for you?</h2>
   <p>Book a free consultation and let's discuss your goals, schedule, and find the perfect coaching fit.</p>
-  <a href="#pricing" class="btn-secondary">Book Free Consultation</a>
+  <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20free%20consultation" class="btn-secondary" onclick="trackEvent('consultation_click', {button_location: 'bottom_cta', button_text: 'Book Free Consultation'}); fbq('track', 'Contact');">Book Free Consultation</a>
 </section>
 
 <!-- WhatsApp Floating Button -->
