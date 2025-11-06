@@ -192,7 +192,7 @@
       color: #fff;
       padding: 60px 20px 0;
       overflow: hidden;
-      background: #000000;
+      background: #141414;
     }
     
     /* Mosaïque Background */
@@ -1073,6 +1073,32 @@
       fill: white;
     }
     
+    .whatsapp-sticky-text {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #25d366;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+      z-index: 99;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .whatsapp-sticky-text:hover {
+      background-color: #20ba5a;
+      transform: translateY(-2px);
+      box-shadow: 2px 2px 30px rgba(37, 211, 102, 0.4);
+    }
+    
     /* Responsive */
     @media (max-width: 991px) {
       .testimonials-grid {
@@ -1225,11 +1251,18 @@
         bottom: 20px;
         right: 20px;
         font-size: 24px;
+        display: none;
       }
-      
+
       .whatsapp-float svg {
         width: 26px;
         height: 26px;
+      }
+
+      .whatsapp-sticky-text {
+        display: flex;
+        bottom: 20px;
+        right: 20px;
       }
       
       .benefits-grid {
@@ -1536,7 +1569,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1>What if you could drop up to 10kg+ training just 3 times per&nbsp;week</h1>
         <p>80% of your results will come from showing up consistently and doing the right exercises. This coaching program makes sure you do both.</p>
         <div style="margin-top: 30px;">
-          <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="btn" onclick="trackEvent('cta_click', {button_location: 'hero_section', button_text: 'Contact me'}); fbq('track', 'Contact');">Contact me</a>
+          <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="btn" onclick="trackEvent('cta_click', {button_location: 'hero_section', button_text: 'Message me on WhatsApp'}); fbq('track', 'Contact');">Message me on WhatsApp</a>
         </div>
       </div>
     </div>
@@ -2076,7 +2109,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   <p style="text-align: center; margin-top: 30px; font-size: 15px; color: #666; font-weight: 400;">Limited spots. Face-to-face coaching only.</p>
   <div style="text-align: center; margin-top: 25px;">
-    <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="btn" onclick="trackEvent('cta_click', {button_location: 'testimonials_section', button_text: 'Message Me Now'}); fbq('track', 'Contact');">Message Me Now</a>
+    <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="btn" onclick="trackEvent('cta_click', {button_location: 'testimonials_section', button_text: 'Message me on WhatsApp'}); fbq('track', 'Contact');">Message me on WhatsApp</a>
   </div>
   
   <script>
@@ -2307,7 +2340,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="price">2,400 AED</div>
         <div class="price-detail">(400 AED/session)</div>
         
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%206%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '6 Sessions Package', package_price: '2400', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 2400, currency: 'AED', content_name: '6 Sessions Package'});" style="margin-top: 15px;">Get Started</a>
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%206%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '6 Sessions Package', package_price: '2400', currency: 'AED', button_text: 'Book your free trial session'}); fbq('track', 'InitiateCheckout', {value: 2400, currency: 'AED', content_name: '6 Sessions Package'});" style="margin-top: 15px;">Book your free trial session</a>
       </div>
       
       <!-- 8 Sessions Package Card -->
@@ -2316,7 +2349,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="price">2,800 AED</div>
         <div class="price-detail">(350 AED/session)</div>
         
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%208%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '8 Sessions Package', package_price: '2800', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 2800, currency: 'AED', content_name: '8 Sessions Package'});" style="margin-top: 15px;">Get Started</a>
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%208%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '8 Sessions Package', package_price: '2800', currency: 'AED', button_text: 'Book your free trial session'}); fbq('track', 'InitiateCheckout', {value: 2800, currency: 'AED', content_name: '8 Sessions Package'});" style="margin-top: 15px;">Book your free trial session</a>
       </div>
       
       <!-- 12 Sessions Package Card - BEST VALUE -->
@@ -2326,7 +2359,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="price">3,600 AED</div>
         <div class="price-detail">(300 AED/session)</div>
         
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%2012%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '12 Sessions Package', package_price: '3600', currency: 'AED'}); fbq('track', 'InitiateCheckout', {value: 3600, currency: 'AED', content_name: '12 Sessions Package'});" style="margin-top: 15px;">Get Started</a>
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%2012%20Sessions%20Package" class="btn" onclick="trackEvent('package_click', {package_name: '12 Sessions Package', package_price: '3600', currency: 'AED', button_text: 'Book your free trial session'}); fbq('track', 'InitiateCheckout', {value: 3600, currency: 'AED', content_name: '12 Sessions Package'});" style="margin-top: 15px;">Book your free trial session</a>
       </div>
     </div>
     
@@ -2338,12 +2371,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="trial-note">
       <div class="trial-note-content">
         <h3>Not Sure Yet? Try Before You Commit.</h3>
-        <p>Book a free trial session to see the gym, meet me, and see if we're a good fit.</p>
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20free%20trial%20session" class="trial-cta-btn" onclick="trackEvent('trial_click', {button_text: 'Book a free session', value: '0', currency: 'AED'}); fbq('track', 'Lead', {value: 0, currency: 'AED', content_name: 'Free Trial Session'});">
+        <p>Come train, no strings attached. You'll know in 60 minutes if this is exactly what you've been missing.</p>
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20free%20trial%20session" class="trial-cta-btn" onclick="trackEvent('trial_click', {button_text: 'Book your free trial session', value: '0', currency: 'AED'}); fbq('track', 'Lead', {value: 0, currency: 'AED', content_name: 'Free Trial Session'});">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
-          Book a free session
+          Book your free trial session
         </a>
       </div>
     </div>
@@ -2360,7 +2393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p style="text-align: center; font-weight: 600; font-size: 20px; margin: 30px auto;">No fluff. No magic. Just work, done right.</p>
     <p style="text-align: center; max-width: 700px; margin: 0 auto 30px; font-size: 20px;">This time, we do it&nbsp;together.</p>
     <div style="text-align: center;">
-      <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="btn" onclick="trackEvent('cta_click', {button_location: 'final_cta', button_text: 'Message Me Now'}); fbq('track', 'Contact');">Message Me Now</a>
+      <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="btn" onclick="trackEvent('cta_click', {button_location: 'final_cta', button_text: 'Message me on WhatsApp'}); fbq('track', 'Contact');">Message me on WhatsApp</a>
     </div>
   </div>
 </section>
@@ -2438,8 +2471,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="cta-section">
   <h2>Not sure which is right for you?</h2>
   <p>Book a free consultation and let's discuss your goals, schedule, and find the perfect coaching fit.</p>
-  <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20free%20consultation" class="btn-secondary" onclick="trackEvent('consultation_click', {button_location: 'bottom_cta', button_text: 'Book Free Consultation'}); fbq('track', 'Contact');">Book Free Consultation</a>
+  <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20free%20consultation" class="btn-secondary" onclick="trackEvent('consultation_click', {button_location: 'bottom_cta', button_text: 'Book your free trial session'}); fbq('track', 'Contact');">Book your free trial session</a>
 </section>
+
+<!-- WhatsApp Sticky Text CTA (mobile) -->
+<a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="whatsapp-sticky-text" target="_blank" rel="noopener noreferrer" aria-label="Chat with Antoine on WhatsApp" onclick="trackEvent('whatsapp_click', {button_location: 'mobile_sticky_text', button_text: 'Chat with Antoine'}); fbq('track', 'Contact');">
+  Chat with Antoine 💬
+</a>
 
 <!-- WhatsApp Floating Button -->
 <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" onclick="trackEvent('whatsapp_click', {button_location: 'floating_button', button_text: 'WhatsApp Float'}); fbq('track', 'Contact');">
