@@ -805,9 +805,12 @@
     .before-after-wrapper {
       display: flex;
       gap: 20px;
-      width: calc((240px + 20px) * 30);
-      animation: scrollBeforeAfter 40s linear infinite;
       will-change: transform;
+    }
+    
+    .before-after-wrapper.is-loop-ready {
+      animation: scrollBeforeAfter var(--before-after-duration, 40s) linear infinite;
+      animation-play-state: running;
     }
     
     @keyframes scrollBeforeAfter {
@@ -815,24 +818,15 @@
         transform: translateX(0);
       }
       100% {
-        transform: translateX(calc(-1 * (240px + 20px) * 15));
+        transform: translateX(var(--before-after-translate, -100%));
       }
     }
     
-    .before-after-wrapper {
-      animation-play-state: running;
-    }
-    
-    .before-after-carousel:hover .before-after-wrapper {
+    .before-after-carousel:hover .before-after-wrapper.is-loop-ready {
       animation-play-state: paused;
     }
     
-    .transformation-card:hover ~ * .before-after-wrapper,
-    .transformation-card:hover {
-      animation-play-state: paused;
-    }
-    
-    .before-after-carousel:has(.transformation-card:hover) .before-after-wrapper {
+    .before-after-carousel:has(.transformation-card:hover) .before-after-wrapper.is-loop-ready {
       animation-play-state: paused !important;
     }
     
@@ -1280,20 +1274,6 @@
         height: 280px;
       }
       
-      .before-after-wrapper {
-        width: calc((280px + 20px) * 30) !important;
-        animation: scrollBeforeAfterMobile 40s linear infinite !important;
-      }
-      
-      @keyframes scrollBeforeAfterMobile {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(calc(-1 * (280px + 20px) * 15));
-        }
-      }
-      
       .before-after-carousel {
         max-width: 100%;
         margin: 0 auto;
@@ -1589,7 +1569,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <!-- Transformation Cards - 15 Real Clients -->
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Sarah.webp" alt="Sarah Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Sarah.webp" alt="Sarah before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">My latest goal was to do a photoshoot at the end of my fitness program. I could see him consistently show up for his clients with kindness and compassion. He cares so much about every single person he&nbsp;trains.</p>
                 <div class="transformation-signature">Sarah</div>
@@ -1599,7 +1579,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Alex.webp" alt="Alex Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Alex.webp" alt="Alex before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Been through 3 coaches before Antoine. Finally found someone who gets it. I've put on solid muscle, my lifts have gone through the roof, and I actually look forward to our sessions.&nbsp;Legend.</p>
                 <div class="transformation-signature">Alex</div>
@@ -1609,7 +1589,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Antoine.webp" alt="Antoine - Coach Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Antoine.webp" alt="Antoine coach before after results Dubai" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">My own transformation, as a coach I consider that I need to lead with true actions, no better way than knowing where my clients might be coming from and understanding the journey it&nbsp;requires.</p>
                 <div class="transformation-signature">Antoine</div>
@@ -1619,7 +1599,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/James.webp" alt="James Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/James.webp" alt="James before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Down 10kg and finally have abs at 38. Antoine's no bullsh*t approach is exactly what I needed. Feel stronger than I did in my&nbsp;20s.</p>
                 <div class="transformation-signature">James</div>
@@ -1629,7 +1609,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Marcus.webp" alt="Marcus Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Marcus.webp" alt="Marcus before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Never been consistent with anything fitness-related until I started with Antoine. Went from hating the gym to it being my therapy session. He's pushed me past limits I didn't know I had, mate's a game&nbsp;changer.</p>
                 <div class="transformation-signature">Marcus</div>
@@ -1639,7 +1619,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Tom.webp" alt="Tom Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Tom.webp" alt="Tom before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Honestly thought I was too far gone at 45. Antoine proved me wrong. Down 18kg, off my blood pressure meds, and my doctor is amazed. This man changed my life, no&nbsp;exaggeration.</p>
                 <div class="transformation-signature">Tom</div>
@@ -1649,7 +1629,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Aisha.webp" alt="Aisha Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Aisha.webp" alt="Aisha before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">I went from size 42 to a 36, I'm buzzing, had to change my entire wardrobe&nbsp;!</p>
                 <div class="transformation-signature">Aisha</div>
@@ -1659,7 +1639,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Chris.webp" alt="Chris Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Chris.webp" alt="Chris before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">The accountability and support is unreal. Bad day at work? Antoine's there. Struggling with diet? He's got solutions. I've transformed inside and out. Can't recommend enough, he genuinely&nbsp;cares.</p>
                 <div class="transformation-signature">Chris</div>
@@ -1669,7 +1649,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Daniel.webp" alt="Daniel Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Daniel.webp" alt="Daniel before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Best investment I've made in myself. The mental gains have been just as big as the physical ones. I'm more confident, focused, and actually enjoy training now. Cheers&nbsp;mate!</p>
                 <div class="transformation-signature">Daniel</div>
@@ -1679,7 +1659,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Holly.webp" alt="Holly Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Holly.webp" alt="Holly before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">I've had couple of coaches in the past. The support and care that Antoine provides is just next level, I loved this journey together. 100% recommend to anyone wanting to&nbsp;change!</p>
                 <div class="transformation-signature">Holly</div>
@@ -1689,7 +1669,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Leanne.webp" alt="Leanne Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Leanne.webp" alt="Leanne before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">I get to show my children healthy habits and workout with my eldest daughter there's no better feeling, 2 years with Antoine and not planning to stop this team journey, he IS the&nbsp;best.</p>
                 <div class="transformation-signature">Leanne</div>
@@ -1699,7 +1679,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Lisa.webp" alt="Lisa Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Lisa.webp" alt="Lisa before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Never felt this confident in my own skin. Antoine helped me find strength I didn't know I had. Game&nbsp;changer!</p>
                 <div class="transformation-signature">Lisa</div>
@@ -1709,7 +1689,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Marie.webp" alt="Marie Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Marie.webp" alt="Marie before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Never thought I'd say this but I actually love running now! Just smashed my first half marathon. My health and fitness journey are next level, I feel really good. Thank you&nbsp;Antoine!</p>
                 <div class="transformation-signature">Marie</div>
@@ -1719,7 +1699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Samer.webp" alt="Samer Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Samer.webp" alt="Samer before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">We have been training more than a year together, and what a journey I have had with Antoine. He is more than a coach, I have honestly changed physically & mentally for the better. Can't thank him&nbsp;enough.</p>
                 <div class="transformation-signature">Samer</div>
@@ -1729,7 +1709,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <div class="transformation-card">
             <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Sophie.webp" alt="Sophie Transformation" loading="lazy">
+              <img src="01-IMAGES/Before_After/Sophie.webp" alt="Sophie before after results Dubai transformation" loading="lazy">
               <div class="transformation-overlay">
                 <p class="transformation-text">Antoine's coaching has been life-changing. I've dropped 3 dress sizes and finally feel comfortable in my own skin. I'm so much stronger than I thought, both physically and mentally. The confidence boost is incredible - I'm a different&nbsp;person!</p>
                 <div class="transformation-signature">Sophie</div>
@@ -1737,312 +1717,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
           
-          <!-- Duplicate Set for Infinite Loop -->
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Sarah.webp" alt="Sarah Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">My latest goal was to do a photoshoot at the end of my fitness program. I could see him consistently show up for his clients with kindness and compassion. He cares so much about every single person he&nbsp;trains.</p>
-                <div class="transformation-signature">Sarah</div>
-              </div>
-            </div>
-          </div>
           
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Alex.webp" alt="Alex Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Been through 3 coaches before Antoine. Finally found someone who gets it. I've put on solid muscle, my lifts have gone through the roof, and I actually look forward to our sessions.&nbsp;Legend.</p>
-                <div class="transformation-signature">Alex</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Antoine.webp" alt="Antoine - Coach Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">My own transformation, as a coach I consider that I need to lead with true actions, no better way than knowing where my clients might be coming from and understanding the journey it&nbsp;requires.</p>
-                <div class="transformation-signature">Antoine</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/James.webp" alt="James Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Down 10kg and finally have abs at 38. Antoine's no bullsh*t approach is exactly what I needed. Feel stronger than I did in my&nbsp;20s.</p>
-                <div class="transformation-signature">James</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Marcus.webp" alt="Marcus Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Never been consistent with anything fitness-related until I started with Antoine. Went from hating the gym to it being my therapy session. He's pushed me past limits I didn't know I had, mate's a game&nbsp;changer.</p>
-                <div class="transformation-signature">Marcus</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Tom.webp" alt="Tom Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Honestly thought I was too far gone at 45. Antoine proved me wrong. Down 18kg, off my blood pressure meds, and my doctor is amazed. This man changed my life, no&nbsp;exaggeration.</p>
-                <div class="transformation-signature">Tom</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Aisha.webp" alt="Aisha Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">I went from size 42 to a 36, I'm buzzing, had to change my entire wardrobe&nbsp;!</p>
-                <div class="transformation-signature">Aisha</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Chris.webp" alt="Chris Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">The accountability and support is unreal. Bad day at work? Antoine's there. Struggling with diet? He's got solutions. I've transformed inside and out. Can't recommend enough, he genuinely&nbsp;cares.</p>
-                <div class="transformation-signature">Chris</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Daniel.webp" alt="Daniel Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Best investment I've made in myself. The mental gains have been just as big as the physical ones. I'm more confident, focused, and actually enjoy training now. Cheers&nbsp;mate!</p>
-                <div class="transformation-signature">Daniel</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Holly.webp" alt="Holly Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">I've had couple of coaches in the past. The support and care that Antoine provides is just next level, I loved this journey together. 100% recommend to anyone wanting to&nbsp;change!</p>
-                <div class="transformation-signature">Holly</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Leanne.webp" alt="Leanne Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">I get to show my children healthy habits and workout with my eldest daughter. There's no better feeling. 2 years with Antoine and not planning to stop this team journey, he IS the&nbsp;best.</p>
-                <div class="transformation-signature">Leanne</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Lisa.webp" alt="Lisa Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Never felt this confident in my own skin. Antoine helped me find strength I didn't know I had. Game&nbsp;changer!</p>
-                <div class="transformation-signature">Lisa</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Marie.webp" alt="Marie Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Never thought I'd say this but I actually love running now! Just smashed my first half marathon. My health and fitness journey are next level, I feel really good. Thank you&nbsp;Antoine!</p>
-                <div class="transformation-signature">Marie</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Samer.webp" alt="Samer Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">We have been training more than a year together, and what a journey I have had with Antoine. He is more than a coach, I have honestly changed physically & mentally for the better. Can't thank him&nbsp;enough.</p>
-                <div class="transformation-signature">Samer</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Sophie.webp" alt="Sophie Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Antoine's coaching has been life-changing. I've dropped 3 dress sizes and finally feel comfortable in my own skin. I'm so much stronger than I thought, both physically and mentally. The confidence boost is&nbsp;incredible!</p>
-                <div class="transformation-signature">Sophie</div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Duplicate Set for Infinite Loop -->
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Sarah.webp" alt="Sarah Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">My latest goal was to do a photoshoot at the end of my fitness program. I could see him consistently show up for his clients with kindness and compassion. He cares so much about every single person he&nbsp;trains.</p>
-                <div class="transformation-signature">Sarah</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Alex.webp" alt="Alex Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Been through 3 coaches before Antoine. Finally found someone who gets it. I've put on solid muscle, my lifts have gone through the roof, and I actually look forward to our sessions.&nbsp;Legend.</p>
-                <div class="transformation-signature">Alex</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Antoine.webp" alt="Antoine - Coach Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">My own transformation, as a coach I consider that I need to lead with true actions, no better way than knowing where my clients might be coming from and understanding the journey it&nbsp;requires.</p>
-                <div class="transformation-signature">Antoine</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/James.webp" alt="James Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Down 10kg and finally have abs at 38. Antoine's no bullsh*t approach is exactly what I needed. Feel stronger than I did in my&nbsp;20s.</p>
-                <div class="transformation-signature">James</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Marcus.webp" alt="Marcus Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Never been consistent with anything fitness-related until I started with Antoine. Went from hating the gym to it being my therapy session. He's pushed me past limits I didn't know I had, mate's a game&nbsp;changer.</p>
-                <div class="transformation-signature">Marcus</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Tom.webp" alt="Tom Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Honestly thought I was too far gone at 45. Antoine proved me wrong. Down 18kg, off my blood pressure meds, and my doctor is amazed. This man changed my life, no&nbsp;exaggeration.</p>
-                <div class="transformation-signature">Tom</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Aisha.webp" alt="Aisha Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">I went from size 42 to a 36, I'm buzzing, had to change my entire wardrobe&nbsp;!</p>
-                <div class="transformation-signature">Aisha</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Chris.webp" alt="Chris Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">The accountability and support is unreal. Bad day at work? Antoine's there. Struggling with diet? He's got solutions. I've transformed inside and out. Can't recommend enough, he genuinely&nbsp;cares.</p>
-                <div class="transformation-signature">Chris</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Daniel.webp" alt="Daniel Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Best investment I've made in myself. The mental gains have been just as big as the physical ones. I'm more confident, focused, and actually enjoy training now. Cheers&nbsp;mate!</p>
-                <div class="transformation-signature">Daniel</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Holly.webp" alt="Holly Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">I've had couple of coaches in the past. The support and care that Antoine provides is just next level, I loved this journey together. 100% recommend to anyone wanting to&nbsp;change!</p>
-                <div class="transformation-signature">Holly</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Leanne.webp" alt="Leanne Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">I get to show my children healthy habits and workout with my eldest daughter. There's no better feeling. 2 years with Antoine and not planning to stop this team journey, he IS the&nbsp;best.</p>
-                <div class="transformation-signature">Leanne</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Lisa.webp" alt="Lisa Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Never felt this confident in my own skin. Antoine helped me find strength I didn't know I had. Game&nbsp;changer!</p>
-                <div class="transformation-signature">Lisa</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Marie.webp" alt="Marie Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Never thought I'd say this but I actually love running now! Just smashed my first half marathon. My health and fitness journey are next level, I feel really good. Thank you&nbsp;Antoine!</p>
-                <div class="transformation-signature">Marie</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Samer.webp" alt="Samer Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">We have been training more than a year together, and what a journey I have had with Antoine. He is more than a coach, I have honestly changed physically & mentally for the better. Can't thank him&nbsp;enough.</p>
-                <div class="transformation-signature">Samer</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Sophie.webp" alt="Sophie Transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Antoine's coaching has been life-changing. I've dropped 3 dress sizes and finally feel comfortable in my own skin. I'm so much stronger than I thought, both physically and mentally. The confidence boost is&nbsp;incredible!</p>
-                <div class="transformation-signature">Sophie</div>
-              </div>
-            </div>
-          </div>
-
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const wrapper = document.getElementById('beforeAfterWrapper');
+    if (!wrapper || wrapper.dataset.loopInitialized === 'true') return;
+
+    const originalCards = Array.from(wrapper.querySelectorAll('.transformation-card'));
+    const originalCount = originalCards.length;
+    if (originalCount === 0) return;
+
+    const fragment = document.createDocumentFragment();
+    originalCards.forEach(card => fragment.appendChild(card.cloneNode(true)));
+    wrapper.appendChild(fragment);
+    wrapper.dataset.loopInitialized = 'true';
+    wrapper.classList.add('is-loop-ready');
+
+    const throttle = (func, delay = 200) => {
+      let timeoutId;
+      let lastExec = 0;
+      return function(...args) {
+        const now = Date.now();
+        const remaining = delay - (now - lastExec);
+        if (remaining <= 0) {
+          lastExec = now;
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+          }
+          func.apply(this, args);
+        } else if (!timeoutId) {
+          timeoutId = setTimeout(() => {
+            lastExec = Date.now();
+            timeoutId = null;
+            func.apply(this, args);
+          }, remaining);
+        }
+      };
+    };
+
+    const updateAnimationSettings = () => {
+      const firstCard = wrapper.querySelector('.transformation-card');
+      if (!firstCard) return;
+      const styles = window.getComputedStyle(wrapper);
+      const gap = parseFloat(styles.gap || styles.columnGap || '0') || 0;
+      const cardWidth = firstCard.getBoundingClientRect().width;
+      const translateDistance = -(originalCount * (cardWidth + gap));
+      wrapper.style.setProperty('--before-after-translate', `${translateDistance}px`);
+      const duration = window.innerWidth <= 768 ? 40 : 40;
+      wrapper.style.setProperty('--before-after-duration', `${duration}s`);
+    };
+
+    updateAnimationSettings();
+    window.addEventListener('resize', throttle(updateAnimationSettings, 200));
+    window.addEventListener('load', updateAnimationSettings);
+  });
+</script>
 
 <!-- Location Callout -->
 <div class="location-box">
@@ -2489,6 +2224,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <footer>
   &copy; 2025 REACH by Antoine | 1-on-1 Coaching at NOGS, Al Quoz | Your Shape Culture Specialist
+  <div style="margin-top: 12px;">
+    <a href="https://reach.fitness" rel="noopener" style="color: #888; text-decoration: none; font-size: 14px;">Visit REACH.Fitness &rarr;</a>
+  </div>
 </footer>
 
 <script>
