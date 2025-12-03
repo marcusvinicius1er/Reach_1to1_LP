@@ -42,9 +42,9 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; frame-src 'self' https:;">
   
   <!-- Preload Critical Images -->
-  <link rel="preload" as="image" href="01-IMAGES/logo_reach.webp">
-  <link rel="preload" as="image" href="01-IMAGES/hero/COACH.webp">
-  <link rel="preload" as="image" href="01-IMAGES/banniere.webp">
+  <link rel="preload" as="image" href="01-IMAGES/logo_reach.webp" fetchpriority="low">
+  <link rel="preload" as="image" href="01-IMAGES/hero/COACH.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="01-IMAGES/banniere.webp" fetchpriority="high">
   
   
   <!-- Google Tag Manager -->
@@ -55,13 +55,29 @@
   })(window,document,'script','dataLayer','GTM-MS5DPN2S');</script>
   <!-- End Google Tag Manager -->
   
-    <!-- ContentSquare Tracking -->
-    <script src="https://t.contentsquare.net/uxa/6f17786e21554.js"></script>
+  <!-- ContentSquare Tracking - Load on User Interaction -->
+  <script>
+    var csLoaded = false;
+    function loadContentSquare() {
+      if (csLoaded) return;
+      csLoaded = true;
+      var script = document.createElement('script');
+      script.src = 'https://t.contentsquare.net/uxa/6f17786e21554.js';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+    // Charger après interaction ou 3 secondes
+    window.addEventListener('scroll', loadContentSquare, { once: true, passive: true });
+    window.addEventListener('click', loadContentSquare, { once: true });
+    window.addEventListener('mousemove', loadContentSquare, { once: true, passive: true });
+    setTimeout(loadContentSquare, 3000);
+  </script>
 
   <!-- Fonts - Optimized Loading avec font-display -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
@@ -1494,19 +1510,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero">
   <!-- Mosaïque Background -->
   <div class="hero-mosaic">
-    <img src="01-IMAGES/hero/19.03.2023 (305 of 403).webp" alt="" loading="lazy">
-    <img src="01-IMAGES/hero/body-transformation-program.webp" alt="" loading="lazy">
-    <img src="01-IMAGES/hero/personal-fitness-training-services.webp" alt="" loading="lazy">
-    <img src="01-IMAGES/hero/body-transformation.webp" alt="" loading="lazy">
-    <img src="01-IMAGES/hero/Sarah-session.webp" alt="" loading="lazy">
-    <img src="01-IMAGES/hero/19.03.2023 (327 of 403).webp" alt="" loading="lazy">
+    <img src="01-IMAGES/hero/19.03.2023 (305 of 403).webp" alt="" loading="eager" fetchpriority="high" width="640" height="960">
+    <img src="01-IMAGES/hero/body-transformation-program.webp" alt="" loading="lazy" width="640" height="960">
+    <img src="01-IMAGES/hero/personal-fitness-training-services.webp" alt="" loading="lazy" width="640" height="960">
+    <img src="01-IMAGES/hero/body-transformation.webp" alt="" loading="lazy" width="640" height="960">
+    <img src="01-IMAGES/hero/Sarah-session.webp" alt="" loading="lazy" width="640" height="960">
+    <img src="01-IMAGES/hero/19.03.2023 (327 of 403).webp" alt="" loading="lazy" width="640" height="960">
   </div>
   
   <div class="container" style="max-width: 1200px; position: relative; z-index: 1;">
     <!-- Clients Row -->
     <div class="clients-row">
       <div class="clients-banner">
-        <img src="01-IMAGES/banniere.webp" alt="Clients" loading="eager">
+        <img src="01-IMAGES/banniere.webp" alt="Clients" loading="eager" fetchpriority="high" width="1920" height="280">
       </div>
       <span class="clients-text">Join <span class="clients-counter" id="clientsCounter">150</span>+ clients who transformed their lives</span>
     </div>
@@ -1514,7 +1530,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-content">
       <!-- Photo Coach - Premier plan à GAUCHE -->
       <div class="hero-coach">
-        <img src="01-IMAGES/hero/COACH.webp" alt="Antoine - Personal Coach at NOGS Dubai" loading="eager" width="640" height="1632">
+        <img src="01-IMAGES/hero/COACH.webp" alt="Antoine - Personal Coach at NOGS Dubai" loading="eager" fetchpriority="high" width="640" height="1632">
       </div>
       
       <!-- Accroche CENTRÉE -->
