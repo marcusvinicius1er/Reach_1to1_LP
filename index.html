@@ -41,18 +41,40 @@
   <!-- Content Security Policy - Basique et permissive -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; frame-src 'self' https:;">
   
-  <!-- Preload Critical Images -->
-  <link rel="preload" as="image" href="01-IMAGES/logo_reach.webp" fetchpriority="low">
+  <!-- Preload Critical Images (LCP uniquement) -->
   <link rel="preload" as="image" href="01-IMAGES/hero/COACH.webp" fetchpriority="high">
   <link rel="preload" as="image" href="01-IMAGES/banniere.webp" fetchpriority="high">
   
   
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-MS5DPN2S');</script>
+  <!-- Google Tag Manager - Optimized for Mobile LCP -->
+  <script>
+  (function(w,d,s,l,i){
+    w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+    
+    function loadGTM() {
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    }
+    
+    // Sur mobile, retarder GTM pour améliorer LCP
+    if (window.innerWidth <= 768) {
+      // Charger après interaction ou 1.5s
+      var loaded = false;
+      function initGTM() {
+        if (loaded) return;
+        loaded = true;
+        loadGTM();
+      }
+      setTimeout(initGTM, 1500);
+      window.addEventListener('scroll', initGTM, {once: true, passive: true});
+      window.addEventListener('click', initGTM, {once: true});
+    } else {
+      // Desktop: charger immédiatement
+      loadGTM();
+    }
+  })(window,document,'script','dataLayer','GTM-MS5DPN2S');
+  </script>
   <!-- End Google Tag Manager -->
   
   <!-- ContentSquare Tracking - Load on User Interaction -->
@@ -1110,8 +1132,7 @@
       }
       
       .hero-mosaic {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        display: none; /* Cacher sur mobile pour améliorer LCP */
       }
       
       /* Timeline responsive - passer en vertical avec ligne à gauche */
@@ -1482,25 +1503,6 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<!-- Preloader -->
-<div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center;">
-  <img src="01-IMAGES/logo_reach.webp" alt="Loading" style="width: 150px; height: auto; animation: pulse 1.5s ease-in-out infinite;">
-</div>
-<style>
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(0.95); }
-}
-</style>
-<script>
-  window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    preloader.style.opacity = '0';
-    preloader.style.transition = 'opacity 0.5s ease';
-    setTimeout(() => preloader.remove(), 500);
-  });
-</script>
-
 <!-- Header Banner avec Logo -->
 <header class="header-banner">
   <img src="01-IMAGES/logo_reach.webp" alt="REACH by Antony" class="header-logo" width="848" height="585">
@@ -1510,7 +1512,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero">
   <!-- Mosaïque Background -->
   <div class="hero-mosaic">
-    <img src="01-IMAGES/hero/19.03.2023 (305 of 403).webp" alt="" loading="eager" fetchpriority="high" width="640" height="960">
+    <img src="01-IMAGES/hero/19.03.2023 (305 of 403).webp" alt="" loading="lazy" width="640" height="960">
     <img src="01-IMAGES/hero/body-transformation-program.webp" alt="" loading="lazy" width="640" height="960">
     <img src="01-IMAGES/hero/personal-fitness-training-services.webp" alt="" loading="lazy" width="640" height="960">
     <img src="01-IMAGES/hero/body-transformation.webp" alt="" loading="lazy" width="640" height="960">
