@@ -1713,7 +1713,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  // Différer init carousel pour réduire TBT
+  function initBeforeAfterCarousel() {
     const wrapper = document.getElementById('beforeAfterWrapper');
     if (!wrapper || wrapper.dataset.loopInitialized === 'true') return;
 
@@ -1765,7 +1766,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     updateAnimationSettings();
     window.addEventListener('resize', throttle(updateAnimationSettings, 200));
     window.addEventListener('load', updateAnimationSettings);
-  });
+  }
+  
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initBeforeAfterCarousel, { timeout: 2000 });
+  } else {
+    document.addEventListener('DOMContentLoaded', initBeforeAfterCarousel);
+  }
 </script>
 
 <!-- Location Callout -->
@@ -1838,67 +1845,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   
   <script>
-    let currentIndex = 0;
-    const wrapper = document.getElementById('carouselWrapper');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const totalSlides = slides.length;
-    let slidesToShow = window.innerWidth <= 768 ? 1 : 3;
-    const maxIndex = Math.max(0, totalSlides - slidesToShow);
-    
-    // Create dots
-    const dotsContainer = document.getElementById('carouselDots');
-    for (let i = 0; i <= maxIndex; i++) {
-      const dot = document.createElement('button');
-      dot.classList.add('carousel-dot');
-      if (i === 0) dot.classList.add('active');
-      dot.onclick = () => goToSlide(i);
-      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      dotsContainer.appendChild(dot);
-    }
-    
-    function updateCarousel() {
-      const slideWidth = 100 / slidesToShow;
-      wrapper.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+    // Différer init carousel testimonials pour réduire TBT
+    function initTestimonialsCarousel() {
+      let currentIndex = 0;
+      const wrapper = document.getElementById('carouselWrapper');
+      const slides = document.querySelectorAll('.carousel-slide');
+      const totalSlides = slides.length;
+      let slidesToShow = window.innerWidth <= 768 ? 1 : 3;
+      const maxIndex = Math.max(0, totalSlides - slidesToShow);
       
-      // Update dots
-      document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
+      const dotsContainer = document.getElementById('carouselDots');
+      for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.onclick = () => goToSlide(i);
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dotsContainer.appendChild(dot);
+      }
+      
+      function updateCarousel() {
+        const slideWidth = 100 / slidesToShow;
+        wrapper.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+        document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIndex);
+        });
+      }
+      
+      window.moveCarousel = function(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = maxIndex;
+        if (currentIndex > maxIndex) currentIndex = 0;
+        updateCarousel();
+      }
+      
+      function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+      }
+      
+      let autoplay = setInterval(() => window.moveCarousel(1), 5000);
+      
+      document.querySelector('.carousel-container').addEventListener('mouseenter', () => {
+        clearInterval(autoplay);
+      });
+      
+      document.querySelector('.carousel-container').addEventListener('mouseleave', () => {
+        autoplay = setInterval(() => window.moveCarousel(1), 5000);
+      });
+      
+      window.addEventListener('resize', () => {
+        const newSlidesToShow = window.innerWidth <= 768 ? 1 : 3;
+        if (newSlidesToShow !== slidesToShow) {
+          slidesToShow = newSlidesToShow;
+          currentIndex = 0;
+          updateCarousel();
+        }
       });
     }
     
-    function moveCarousel(direction) {
-      currentIndex += direction;
-      if (currentIndex < 0) currentIndex = maxIndex;
-      if (currentIndex > maxIndex) currentIndex = 0;
-      updateCarousel();
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initTestimonialsCarousel, { timeout: 2000 });
+    } else {
+      setTimeout(initTestimonialsCarousel, 100);
     }
-    
-    function goToSlide(index) {
-      currentIndex = index;
-      updateCarousel();
-    }
-    
-    // Auto-play (optional)
-    let autoplay = setInterval(() => moveCarousel(1), 5000);
-    
-    // Pause on hover
-    document.querySelector('.carousel-container').addEventListener('mouseenter', () => {
-      clearInterval(autoplay);
-    });
-    
-    document.querySelector('.carousel-container').addEventListener('mouseleave', () => {
-      autoplay = setInterval(() => moveCarousel(1), 5000);
-    });
-    
-    // Update on resize
-    window.addEventListener('resize', () => {
-      const newSlidesToShow = window.innerWidth <= 768 ? 1 : 3;
-      if (newSlidesToShow !== slidesToShow) {
-        slidesToShow = newSlidesToShow;
-        currentIndex = 0;
-        updateCarousel();
-      }
-    });
   </script>
 </section>
 
@@ -2222,8 +2232,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <script>
-  // Counter Animation (defer)
-  document.addEventListener('DOMContentLoaded', function() {
+  // Différer les animations et interactions non-critiques pour réduire TBT
+  function initNonCriticalScripts() {
+    // Counter Animation
     function animateCounter() {
       const counter = document.getElementById('clientsCounter');
       if (!counter) return;
@@ -2244,43 +2255,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }, stepTime);
     }
     
-    setTimeout(animateCounter, 500);
-  });
-
-  // FAQ Accordion
-  document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-      const faqItem = question.parentElement;
-      const isActive = faqItem.classList.contains('active');
-      
-      // Close all other FAQ items
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.classList.remove('active');
+    setTimeout(animateCounter, 800);
+    
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        document.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        if (!isActive) {
+          faqItem.classList.add('active');
+        }
       });
-      
-      // Toggle current FAQ item
-      if (!isActive) {
-        faqItem.classList.add('active');
-      }
     });
-  });
-</script>
-
-<script>
-  // Lazy loading optimisé pour les images
-  if ('loading' in HTMLImageElement.prototype) {
-    // Le navigateur supporte loading="lazy" nativement
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    images.forEach(img => {
-      img.src = img.src; // Force le chargement si nécessaire
-    });
+  }
+  
+  // Utiliser requestIdleCallback si disponible, sinon setTimeout
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initNonCriticalScripts, { timeout: 2000 });
   } else {
-    // Fallback pour les navigateurs anciens
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-    document.body.appendChild(script);
+    setTimeout(initNonCriticalScripts, 1);
   }
 </script>
+
 
 </body>
 </html>
