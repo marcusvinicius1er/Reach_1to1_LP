@@ -2300,6 +2300,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // URL du Cloudflare Worker
     const CLOUDFLARE_WORKER_URL = 'https://reach-1to1-lp.webdev-939.workers.dev';
     
+    // Helper function to safely call trackEvent
+    function safeTrackEvent(eventName, eventParams) {
+      if (typeof window.trackEvent === 'function') {
+        window.trackEvent(eventName, eventParams);
+      } else if (window.dataLayer) {
+        // Fallback: push directly to dataLayer
+        window.dataLayer.push({
+          'event': eventName,
+          ...eventParams
+        });
+      } else {
+        console.warn('[Free Guide] trackEvent not available');
+      }
+    }
+    
     async function handleFreeGuideSubmit(event) {
       event.preventDefault();
       event.stopPropagation();
@@ -2317,15 +2332,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         email: formData.get('email')
       };
       
-      // Track event
-      trackEvent('free_guide_download', {
+      // Track event (with safety check)
+      safeTrackEvent('free_guide_download', {
         button_location: 'free_guide_form',
         full_name: data.fullName,
         email: data.email
       });
-      fbq('track', 'Lead', {
-        content_name: 'Free Guide - How to Master Diet Adherence'
-      });
+      
+      // Facebook Pixel tracking
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'Free Guide - How to Master Diet Adherence'
+        });
+      }
       
       // Show loading state
       const submitButton = form.querySelector('button[type="submit"]');
