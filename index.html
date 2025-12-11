@@ -2377,6 +2377,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         record.status = 'sending';
         record.lastAttemptAt = new Date().toISOString();
         
+        console.log('[Free Guide] Sending to Cloudflare Worker:', CLOUDFLARE_WORKER_URL);
+        console.log('[Free Guide] Payload:', { fullName: data.fullName, email: data.email });
+        
         const response = await fetch(CLOUDFLARE_WORKER_URL, {
           method: 'POST',
           headers: {
@@ -2388,15 +2391,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           })
         });
         
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.error || `Server error: ${response.status} ${response.statusText}`);
+        console.log('[Free Guide] Response status:', response.status);
+        
+        const responseText = await response.text();
+        console.log('[Free Guide] Response body:', responseText);
+        
+        let result;
+        try {
+          result = JSON.parse(responseText);
+        } catch (e) {
+          console.error('[Free Guide] Failed to parse response:', e);
+          throw new Error(`Invalid response from server: ${responseText.substring(0, 100)}`);
         }
         
-        const result = await response.json();
+        if (!response.ok) {
+          console.error('[Free Guide] Server error:', result);
+          throw new Error(result.error || result.message || `Server error: ${response.status}`);
+        }
+        
         if (!result.success) {
+          console.error('[Free Guide] Submission failed:', result);
           throw new Error(result.error || 'Submission failed');
         }
+        
+        console.log('[Free Guide] Success! Airtable ID:', result.id);
         
         // With no-cors, we can't check response, so assume success
         record.status = 'submitted';
