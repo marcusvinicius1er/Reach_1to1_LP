@@ -50,6 +50,15 @@ export default {
         );
       }
 
+      // Mapping des champs Airtable (configurable via variables d'environnement)
+      // Si les variables ne sont pas définies, utiliser les valeurs par défaut
+      const fieldMapping = {
+        fullName: env.AIRTABLE_FIELD_FULLNAME || 'Full Name',
+        email: env.AIRTABLE_FIELD_EMAIL || 'Email',
+        source: env.AIRTABLE_FIELD_SOURCE || 'Source',
+        submittedAt: env.AIRTABLE_FIELD_SUBMITTED_AT || 'Submitted At'
+      };
+
       // Parser le body de la requête
       const body = await request.json();
       const { fullName, email } = body;
@@ -62,13 +71,13 @@ export default {
         );
       }
 
-      // Préparer le record Airtable
+      // Préparer le record Airtable avec le mapping
       const airtableRecord = {
         fields: {
-          'Full Name': fullName,
-          'Email': email,
-          'Source': 'free_guide_landing_page',
-          'Submitted At': new Date().toISOString()
+          [fieldMapping.fullName]: fullName,
+          [fieldMapping.email]: email,
+          [fieldMapping.source]: 'free_guide_landing_page',
+          [fieldMapping.submittedAt]: new Date().toISOString()
         }
       };
 

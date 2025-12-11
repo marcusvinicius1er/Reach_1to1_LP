@@ -3,8 +3,16 @@ main = "cloudflare-worker.js"
 compatibility_date = "2024-01-01"
 
 [env.production.vars]
-# Les secrets seront configurés dans Cloudflare Dashboard
-# AIRTABLE_BASE_ID = "votre-base-id"
-# AIRTABLE_TABLE_ID = "votre-table-id"
-# AIRTABLE_API_TOKEN = "votre-token"
+# Les secrets seront configurés dans Cloudflare Dashboard > Variables > Secrets
+# OBLIGATOIRES (type Secret/Encrypted) :
+# - AIRTABLE_BASE_ID = "appXXXXXXXXXXXXXX"
+# - AIRTABLE_TABLE_ID = "tblXXXXXXXXXXXXXX" ou nom de la table
+# - AIRTABLE_API_TOKEN = "patXXXXXXXXXXXXXX"
+
+# OPTIONNELS - Mapping des champs Airtable (si vos champs ont des noms différents)
+# Si non définis, les valeurs par défaut sont utilisées :
+# - AIRTABLE_FIELD_FULLNAME = "Full Name" (par défaut)
+# - AIRTABLE_FIELD_EMAIL = "Email" (par défaut)
+# - AIRTABLE_FIELD_SOURCE = "Source" (par défaut)
+# - AIRTABLE_FIELD_SUBMITTED_AT = "Submitted At" (par défaut)
 
