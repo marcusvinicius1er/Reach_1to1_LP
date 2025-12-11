@@ -2243,7 +2243,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 style="font-size: 32px; font-weight: 700; color: #1a1a1a; margin-bottom: 15px; line-height: 1.2;">The problem isn't you. It's your method.</h2>
         <p style="font-size: 16px; color: #666; margin-bottom: 30px; line-height: 1.6;">Download my free resource, if you want to make nutrition and life easier</p>
         
-        <form id="freeGuideForm" style="display: flex; flex-direction: column; gap: 20px;" onsubmit="handleFreeGuideSubmit(event);">
+        <form id="freeGuideForm" style="display: flex; flex-direction: column; gap: 20px;">
           <input 
             type="text" 
             name="fullName" 
@@ -2423,6 +2423,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     // Expose function globally
     window.handleFreeGuideSubmit = handleFreeGuideSubmit;
+    
+    // Attach event listener to form
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('freeGuideForm');
+      if (form) {
+        form.addEventListener('submit', handleFreeGuideSubmit);
+      }
+    });
+    
+    // Also try immediately in case DOM is already loaded
+    const form = document.getElementById('freeGuideForm');
+    if (form) {
+      form.addEventListener('submit', handleFreeGuideSubmit);
+    }
   })();
 </script>
 
