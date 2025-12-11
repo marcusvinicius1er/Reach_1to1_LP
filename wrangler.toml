@@ -1,0 +1,10 @@
+name = "free-guide-api"
+main = "cloudflare-worker.js"
+compatibility_date = "2024-01-01"
+
+[env.production.vars]
+# Les secrets seront configurés dans Cloudflare Dashboard
+# AIRTABLE_BASE_ID = "votre-base-id"
+# AIRTABLE_TABLE_ID = "votre-table-id"
+# AIRTABLE_API_TOKEN = "votre-token"
+
