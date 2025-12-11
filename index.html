@@ -2284,7 +2284,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     async function handleFreeGuideSubmit(event) {
       event.preventDefault();
-      const form = event.target;
+      event.stopPropagation();
+      
+      // Get form - event.target might be the button, so we need to find the form
+      const form = event.target.closest('form') || document.getElementById('freeGuideForm');
+      if (!form) {
+        console.error('[Free Guide] Form not found');
+        return;
+      }
+      
       const formData = new FormData(form);
       const data = {
         fullName: formData.get('fullName'),
@@ -2424,18 +2432,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Expose function globally
     window.handleFreeGuideSubmit = handleFreeGuideSubmit;
     
-    // Attach event listener to form
-    document.addEventListener('DOMContentLoaded', function() {
+    // Attach event listener to form - multiple strategies to ensure it works
+    function attachFormListener() {
       const form = document.getElementById('freeGuideForm');
       if (form) {
-        form.addEventListener('submit', handleFreeGuideSubmit);
+        // Remove any existing listeners to avoid duplicates
+        const newForm = form.cloneNode(true);
+        form.parentNode.replaceChild(newForm, form);
+        
+        // Attach listener to the new form
+        newForm.addEventListener('submit', handleFreeGuideSubmit);
+        console.log('[Free Guide] Form listener attached');
+        return true;
       }
-    });
+      return false;
+    }
     
-    // Also try immediately in case DOM is already loaded
-    const form = document.getElementById('freeGuideForm');
-    if (form) {
-      form.addEventListener('submit', handleFreeGuideSubmit);
+    // Try immediately
+    if (!attachFormListener()) {
+      // Try on DOMContentLoaded
+      document.addEventListener('DOMContentLoaded', attachFormListener);
+      
+      // Try on load as fallback
+      window.addEventListener('load', attachFormListener);
     }
   })();
 </script>
