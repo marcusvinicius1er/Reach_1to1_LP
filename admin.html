@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MS5DPN2S');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; frame-src 'self' https:;">
+  <title>Free Guide Submissions | REACH by Antoine</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+    .admin-body { min-height: 100vh; }
+    .admin-access-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 10000; }
+    .admin-access-form { background: white; padding: 40px; border-radius: 8px; max-width: 400px; width: 90%; }
+    .admin-access-form h2 { margin-bottom: 10px; }
+    .admin-access-form p { margin-bottom: 20px; color: #666; }
+    .admin-access-form input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 4px; font-size: 16px; margin-bottom: 10px; }
+    .admin-access-error { color: #d32f2f; font-size: 14px; margin-top: 10px; }
+    .admin-access-submit { width: 100%; padding: 12px; background: #FF6B35; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: 600; cursor: pointer; }
+    .admin-access-submit:hover { background: #e55a2b; }
+    .admin-content { display: none; padding: 20px; max-width: 1400px; margin: 0 auto; }
+    .admin-header { background: white; padding: 30px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 20px; }
+    .admin-header h1 { margin-bottom: 10px; }
+    .admin-header p { color: #666; }
+    .admin-header-actions { display: flex; gap: 15px; flex-wrap: wrap; }
+    .admin-header-link { color: #FF6B35; text-decoration: none; font-weight: 600; }
+    .admin-header-link:hover { text-decoration: underline; }
+    .admin-card { background: white; padding: 30px; border-radius: 8px; margin-bottom: 20px; }
+    .admin-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+    .admin-card-title { font-size: 24px; }
+    .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px; }
+    .admin-stat-card { background: #f9f9f9; padding: 20px; border-radius: 8px; }
+    .admin-stat-label { display: block; font-size: 14px; color: #666; margin-bottom: 8px; }
+    .admin-stat-value { display: block; font-size: 32px; font-weight: 700; color: #FF6B35; }
+    .admin-note { color: #666; font-size: 14px; margin-top: 10px; }
+    .admin-button { padding: 10px 20px; background: #FF6B35; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; }
+    .admin-button:hover { background: #e55a2b; }
+    .admin-button.secondary { background: #666; }
+    .admin-button.secondary:hover { background: #555; }
+    .admin-table-wrapper { overflow-x: auto; }
+    .admin-table { width: 100%; border-collapse: collapse; }
+    .admin-table th { background: #f9f9f9; padding: 12px; text-align: left; font-weight: 600; border-bottom: 2px solid #ddd; }
+    .admin-table td { padding: 12px; border-bottom: 1px solid #eee; }
+    .admin-table tr:hover { background: #f9f9f9; }
+    .admin-empty { text-align: center; color: #999; }
+    .admin-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .admin-actions button { padding: 6px 12px; font-size: 13px; background: #666; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .admin-actions button:hover { background: #555; }
+    .status-badge { padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; display: inline-block; }
+    .status-badge.queued { background: #fff3cd; color: #856404; }
+    .status-badge.sending { background: #d1ecf1; color: #0c5460; }
+    .status-badge.submitted { background: #d4edda; color: #155724; }
+    .status-badge.submitted_manual { background: #d4edda; color: #155724; }
+    @media (max-width: 768px) {
+      .admin-header { flex-direction: column; }
+      .admin-card-header { flex-direction: column; align-items: flex-start; }
+      .admin-stats { grid-template-columns: 1fr; }
+      .admin-table { font-size: 14px; }
+      .admin-table th, .admin-table td { padding: 8px; }
+    }
+  </style>
+</head>
+<body class="admin-body">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MS5DPN2S"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="admin-access-overlay" id="accessGate" role="dialog" aria-modal="true">
+    <form class="admin-access-form" id="accessForm">
+      <h2>Restricted Area</h2>
+      <p>Enter the access password to view free guide submissions.</p>
+      <input type="password" id="accessInput" name="accessInput" placeholder="Password" autocomplete="current-password" required>
+      <p class="admin-access-error" id="accessError"></p>
+      <button type="submit" class="admin-access-submit">Unlock</button>
+    </form>
+  </div>
+  
+  <div id="adminContent" class="admin-content">
+    <header class="admin-header">
+      <div>
+        <h1>Free Guide Submissions</h1>
+        <p>Review locally stored free guide downloads whenever Airtable is unavailable. Resend entries, export them, or mark them as processed.</p>
+      </div>
+      <div class="admin-header-actions">
+        <a class="admin-header-link" href="index.html">← Back to site</a>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <section class="admin-card">
+        <p class="admin-note" id="adminError"></p>
+        <div class="admin-stats">
+          <div class="admin-stat-card">
+            <span class="admin-stat-label">Queued / Needs action</span>
+            <span class="admin-stat-value" id="statQueued">0</span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-label">Submitted</span>
+            <span class="admin-stat-value" id="statSubmitted">0</span>
+          </div>
+        </div>
+        <p class="admin-note">Only this browser can access the queue (stored via LocalStorage). Clearing browser storage will erase these entries.</p>
+      </section>
+
+      <section class="admin-card">
+        <div class="admin-card-header">
+          <h2 class="admin-card-title">Local submissions</h2>
+          <div class="admin-card-actions">
+            <button type="button" class="admin-button" id="refreshQueueBtn">Refresh</button>
+            <button type="button" class="admin-button secondary" id="resendQueueBtn">Retry all queued</button>
+            <button type="button" class="admin-button secondary" id="clearSubmittedBtn">Clear submitted</button>
+            <button type="button" class="admin-button secondary" id="exportQueueBtn">Export JSON</button>
+          </div>
+        </div>
+
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Timeline</th>
+                <th style="min-width:200px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="queueBody">
+              <tr class="admin-empty"><td colspan="5">No submissions stored locally.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const ACCESS_PASSWORD = 'AntoinE1968!';
+      const gateEl = document.getElementById('accessGate');
+      const gateForm = document.getElementById('accessForm');
+      const gateInput = document.getElementById('accessInput');
+      const gateError = document.getElementById('accessError');
+      const contentEl = document.getElementById('adminContent');
+
+      const showContent = () => {
+        if (contentEl) {
+          contentEl.style.display = 'block';
+        }
+      };
+
+      const initDashboard = () => {
+        const STORAGE_KEY = 'reachFreeGuideSubmissions';
+        // URL du Cloudflare Worker
+        const CLOUDFLARE_WORKER_URL = 'https://reach-1to1-lp.webdev-939.workers.dev';
+
+        const tableBody = document.getElementById('queueBody');
+        const statQueued = document.getElementById('statQueued');
+        const statSubmitted = document.getElementById('statSubmitted');
+        const adminError = document.getElementById('adminError');
+
+        const refreshBtn = document.getElementById('refreshQueueBtn');
+        const resendBtn = document.getElementById('resendQueueBtn');
+        const clearBtn = document.getElementById('clearSubmittedBtn');
+        const exportBtn = document.getElementById('exportQueueBtn');
+
+        const STATUS_LABELS = {
+          queued: 'Queued',
+          sending: 'Sending',
+          submitted: 'Submitted',
+          submitted_manual: 'Submitted manually'
+        };
+
+        let queue = [];
+        let locking = false;
+
+        function isLocalStorageAvailable() {
+          try {
+            const testKey = '__reach_admin_test__';
+            localStorage.setItem(testKey, '1');
+            localStorage.removeItem(testKey);
+            return true;
+          } catch (error) {
+            console.error('[Free Guide Admin] LocalStorage unavailable:', error);
+            return false;
+          }
+        }
+
+        const storageAvailable = isLocalStorageAvailable();
+        if (!storageAvailable) {
+          adminError.textContent = 'LocalStorage is not accessible in this browser. Offline submissions cannot be viewed from this page.';
+          return;
+        } else {
+          adminError.textContent = '';
+        }
+
+        function loadQueue() {
+          try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return [];
+            const parsed = JSON.parse(raw);
+            return Array.isArray(parsed) ? parsed : [];
+          } catch (error) {
+            console.error('[Free Guide Admin] Failed to load queue:', error);
+            return [];
+          }
+        }
+
+        function saveQueue() {
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(queue));
+          } catch (error) {
+            console.error('[Free Guide Admin] Failed to save queue:', error);
+          }
+        }
+
+        function syncQueue() {
+          queue = loadQueue();
+        }
+
+        function formatDate(isoString) {
+          if (!isoString) return '—';
+          const date = new Date(isoString);
+          if (Number.isNaN(date.getTime())) return '—';
+          return date.toLocaleString();
+        }
+
+        function escapeHtml(text) {
+          if (!text) return '';
+          return text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+        }
+
+        function updateStats() {
+          const queuedCount = queue.filter(item => item.status === 'queued' || item.status === 'sending').length;
+          const submittedCount = queue.filter(item => item.status === 'submitted' || item.status === 'submitted_manual').length;
+
+          statQueued.textContent = queuedCount;
+          statSubmitted.textContent = submittedCount;
+        }
+
+        function renderQueue() {
+          tableBody.innerHTML = '';
+          if (!queue.length) {
+            tableBody.innerHTML = '<tr class="admin-empty"><td colspan="5">No submissions stored locally.</td></tr>';
+            updateStats();
+            return;
+          }
+
+          const sorted = [...queue].sort((a, b) => {
+            const aTime = Date.parse(a.createdAt || '') || 0;
+            const bTime = Date.parse(b.createdAt || '') || 0;
+            return bTime - aTime;
+          });
+
+          sorted.forEach(record => {
+            const payload = record.payload || {};
+            const statusLabel = STATUS_LABELS[record.status] || record.status || 'Unknown';
+            const badgeClass = `status-badge ${record.status || 'queued'}`;
+            const timelineItems = [
+              record.createdAt ? `Created: ${formatDate(record.createdAt)}` : null,
+              record.submittedAt ? `Submitted: ${formatDate(record.submittedAt)}` : null,
+              record.lastAttemptAt ? `Last attempt: ${formatDate(record.lastAttemptAt)}` : null,
+              record.lastError ? `Error: ${escapeHtml(record.lastError)}` : null
+            ].filter(Boolean);
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td><strong>${escapeHtml(payload.fullName || '—')}</strong></td>
+              <td>${payload.email ? `<a href="mailto:${escapeHtml(payload.email)}">${escapeHtml(payload.email)}</a>` : '—'}</td>
+              <td><span class="${badgeClass}">${escapeHtml(statusLabel)}</span></td>
+              <td>${timelineItems.length ? timelineItems.map(item => `<div class="admin-note">${item}</div>`).join('') : '<span class="admin-note">No timeline data</span>'}</td>
+              <td class="admin-actions">
+                <button type="button" data-action="copy" data-id="${record.id}">Copy data</button>
+                ${(record.status === 'queued' || record.status === 'sending') ? `<button type="button" data-action="resend" data-id="${record.id}">Resend to Airtable</button>` : ''}
+                ${(record.status !== 'submitted' && record.status !== 'submitted_manual') ? `<button type="button" data-action="mark" data-id="${record.id}">Mark submitted</button>` : ''}
+              </td>
+            `;
+            tableBody.appendChild(row);
+          });
+
+          updateStats();
+        }
+
+        async function resendRecord(recordId) {
+          const record = queue.find(item => item.id === recordId);
+          if (!record || locking) return;
+          locking = true;
+          record.status = 'sending';
+          record.lastAttemptAt = new Date().toISOString();
+          saveQueue();
+          renderQueue();
+
+          try {
+            const response = await fetch(CLOUDFLARE_WORKER_URL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                fullName: record.payload.fullName || '',
+                email: record.payload.email || ''
+              })
+            });
+            
+            if (!response.ok) {
+              const errorData = await response.json().catch(() => ({}));
+              throw new Error(errorData.error || `Server error: ${response.status} ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            if (!result.success) {
+              throw new Error(result.error || 'Submission failed');
+            }
+            record.status = 'submitted';
+            record.submittedAt = new Date().toISOString();
+            record.lastError = null;
+          } catch (error) {
+            console.error('[Free Guide Admin] Manual resend failed:', error);
+            record.status = 'queued';
+            record.lastError = error?.message || 'Network error';
+          } finally {
+            locking = false;
+            saveQueue();
+            renderQueue();
+          }
+        }
+
+        function markSubmitted(recordId) {
+          const record = queue.find(item => item.id === recordId);
+          if (!record) return;
+          record.status = 'submitted_manual';
+          record.submittedAt = new Date().toISOString();
+          saveQueue();
+          renderQueue();
+        }
+
+        async function copyRecord(recordId) {
+          const record = queue.find(item => item.id === recordId);
+          if (!record) return;
+          try {
+            await navigator.clipboard.writeText(JSON.stringify(record, null, 2));
+            alert('Copied to clipboard!');
+          } catch (error) {
+            console.error('[Free Guide Admin] Unable to copy to clipboard:', error);
+            alert('Could not copy to clipboard. Please copy manually.');
+          }
+        }
+
+        async function resendAllQueued() {
+          if (locking) return;
+          const targets = queue.filter(item => item.status === 'queued' || item.status === 'sending');
+          for (const record of targets) {
+            await resendRecord(record.id);
+          }
+        }
+
+        function clearSubmitted() {
+          const keep = queue.filter(item => item.status !== 'submitted' && item.status !== 'submitted_manual');
+          if (keep.length === queue.length) return;
+          queue = keep;
+          saveQueue();
+          renderQueue();
+        }
+
+        function exportQueue() {
+          const blob = new Blob([JSON.stringify(queue, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `free-guide-submissions-${Date.now()}.json`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        }
+
+        tableBody.addEventListener('click', event => {
+          const button = event.target.closest('button[data-action]');
+          if (!button) return;
+          const action = button.dataset.action;
+          const recordId = button.dataset.id;
+
+          if (action === 'resend') {
+            resendRecord(recordId);
+          } else if (action === 'mark') {
+            markSubmitted(recordId);
+          } else if (action === 'copy') {
+            copyRecord(recordId);
+          }
+        });
+
+        refreshBtn.addEventListener('click', () => {
+          syncQueue();
+          renderQueue();
+        });
+
+        resendBtn.addEventListener('click', () => {
+          resendAllQueued();
+        });
+
+        clearBtn.addEventListener('click', () => {
+          const confirmClear = confirm('Remove all entries marked as submitted from this browser?');
+          if (confirmClear) {
+            clearSubmitted();
+          }
+        });
+
+        exportBtn.addEventListener('click', () => {
+          exportQueue();
+        });
+
+        window.addEventListener('storage', event => {
+          if (event.key === STORAGE_KEY) {
+            syncQueue();
+            renderQueue();
+          }
+        });
+
+        syncQueue();
+        renderQueue();
+      };
+
+      const passwordConfigured = ACCESS_PASSWORD && ACCESS_PASSWORD !== 'REPLACE_WITH_PASSWORD';
+
+      if (!passwordConfigured) {
+        showContent();
+        if (gateEl) {
+          gateEl.remove();
+        }
+        initDashboard();
+        return;
+      }
+
+      if (!gateEl || !gateForm || !gateInput || !gateError) {
+        console.error('[Free Guide Admin] Access gate elements missing.');
+        return;
+      }
+
+      contentEl.style.display = 'none';
+      gateEl.style.display = 'flex';
+      gateForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if ((gateInput.value || '').trim() === ACCESS_PASSWORD) {
+          gateError.textContent = '';
+          gateInput.value = '';
+          gateEl.style.display = 'none';
+          gateEl.remove();
+          showContent();
+          initDashboard();
+        } else {
+          gateError.textContent = 'Incorrect password. Try again.';
+          gateInput.value = '';
+          gateInput.focus();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+

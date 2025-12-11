@@ -103,6 +103,8 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
+    html { scroll-behavior: smooth; }
+    
     body { 
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #ffffff;
@@ -149,7 +151,7 @@
     }
     
     .clients-banner img {
-      height: 130px;
+      height: 90px;
       width: auto;
     }
     
@@ -201,7 +203,7 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 200px 1fr;
+      grid-template-columns: 250px 1fr;
       gap: 40px;
       align-items: center;
       max-width: 1200px;
@@ -212,7 +214,7 @@
     /* Photo Coach - Premier plan à GAUCHE */
     .hero-coach {
       width: 100%;
-      max-width: 200px;
+      max-width: 250px;
       position: relative;
       z-index: 1;
       filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
@@ -824,6 +826,11 @@
       animation-play-state: running;
     }
     
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
     @keyframes scrollBeforeAfter {
       0% {
         transform: translateX(0);
@@ -1120,7 +1127,7 @@
       }
       
       .hero-coach {
-        max-width: 200px;
+        max-width: 250px;
         margin: 0 auto;
         order: 3;
       }
@@ -1194,7 +1201,7 @@
       }
       
       .clients-banner img {
-        height: 60px;
+        height: 45px;
       }
       
       .clients-text {
@@ -1212,7 +1219,7 @@
       }
       
       .hero-coach {
-        max-width: 180px;
+        max-width: 225px;
         order: 3;
       }
       
@@ -1540,9 +1547,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1>What if you could drop up to 10kg+ training just 3 times per&nbsp;week</h1>
         <p>80% of your results will come from showing up consistently and doing the right exercises. This coaching program makes sure you do both.</p>
         <div style="margin-top: 30px;">
-          <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20interested%20in%20your%20coaching%20program%20at%20NOGS" class="btn" target="_blank" rel="noopener noreferrer" onclick="trackEvent('cta_click', {button_location: 'hero_section', button_text: 'Book a free trial'}); fbq('track', 'Contact');">Message me on WhatsApp</a>
+          <a href="#free-guide" class="btn" onclick="trackEvent('cta_click', {button_location: 'hero_section', button_text: 'Start Losing Fat Today – Free Guide'}); fbq('track', 'Lead');">Start Losing Fat Today – Free Guide</a>
         </div>
-        <p style="margin-top: 15px; font-size: 16px; color: rgba(255, 255, 255, 0.82);">No pressure. Just a quick chat to see if we're a fit.</p>
       </div>
     </div>
   </div>
@@ -2222,6 +2228,237 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 </a>
+
+<!-- Free Guide Lead Capture Section -->
+<section id="free-guide" style="padding: 80px 20px; background: #ffffff; scroll-margin-top: 100px;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <!-- Left: Book Image -->
+      <div style="position: relative;">
+        <img src="01-IMAGES/stopfat.webp" alt="How to Master Diet Adherence - Free Guide" style="width: 100%; max-width: 250px; height: auto; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+      </div>
+      
+      <!-- Right: Form -->
+      <div>
+        <h2 style="font-size: 32px; font-weight: 700; color: #1a1a1a; margin-bottom: 15px; line-height: 1.2;">The problem isn't you. It's your method.</h2>
+        <p style="font-size: 16px; color: #666; margin-bottom: 30px; line-height: 1.6;">Download my free resource, if you want to make nutrition and life easier</p>
+        
+        <form id="freeGuideForm" style="display: flex; flex-direction: column; gap: 20px;" onsubmit="handleFreeGuideSubmit(event);">
+          <input 
+            type="text" 
+            name="fullName" 
+            placeholder="Full Name*" 
+            required
+            style="padding: 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; font-family: 'Inter', sans-serif; transition: border-color 0.3s;"
+            onfocus="this.style.borderColor='#4CAF50';"
+            onblur="this.style.borderColor='#e0e0e0';"
+          >
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email*" 
+            required
+            style="padding: 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; font-family: 'Inter', sans-serif; transition: border-color 0.3s;"
+            onfocus="this.style.borderColor='#4CAF50';"
+            onblur="this.style.borderColor='#e0e0e0';"
+          >
+          <button 
+            type="submit" 
+            style="padding: 16px 32px; background: #FF6B35; color: #ffffff; border: none; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; transition: background 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;"
+            onmouseover="this.style.background='#e55a2b';"
+            onmouseout="this.style.background='#FF6B35';"
+          >
+            Download Now! It's Free. →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const STORAGE_KEY = 'reachFreeGuideSubmissions';
+    // URL du Cloudflare Worker
+    const CLOUDFLARE_WORKER_URL = 'https://reach-1to1-lp.webdev-939.workers.dev';
+    
+    async function handleFreeGuideSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+      const data = {
+        fullName: formData.get('fullName'),
+        email: formData.get('email')
+      };
+      
+      // Track event
+      trackEvent('free_guide_download', {
+        button_location: 'free_guide_form',
+        full_name: data.fullName,
+        email: data.email
+      });
+      fbq('track', 'Lead', {
+        content_name: 'Free Guide - How to Master Diet Adherence'
+      });
+      
+      // Show loading state
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalText = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Sending...';
+      
+      // Create submission record
+      const record = {
+        id: 'fg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+        payload: data,
+        status: 'queued',
+        createdAt: new Date().toISOString(),
+        lastAttemptAt: null,
+        submittedAt: null,
+        lastError: null
+      };
+      
+      // Save to LocalStorage
+      try {
+        const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        existing.push(record);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+      } catch (error) {
+        console.error('[Free Guide] Failed to save locally:', error);
+      }
+      
+      // Try to send to Airtable via Cloudflare Worker
+      try {
+        record.status = 'sending';
+        record.lastAttemptAt = new Date().toISOString();
+        
+        const response = await fetch(CLOUDFLARE_WORKER_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            fullName: data.fullName || '',
+            email: data.email || ''
+          })
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `Server error: ${response.status} ${response.statusText}`);
+        }
+        
+        const result = await response.json();
+        if (!result.success) {
+          throw new Error(result.error || 'Submission failed');
+        }
+        
+        // With no-cors, we can't check response, so assume success
+        record.status = 'submitted';
+        record.submittedAt = new Date().toISOString();
+        record.lastError = null;
+        
+        // Update LocalStorage
+        try {
+          const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+          const index = existing.findIndex(r => r.id === record.id);
+          if (index !== -1) {
+            existing[index] = record;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+          }
+        } catch (e) {
+          console.error('[Free Guide] Failed to update storage:', e);
+        }
+        
+        // Show success
+        showSuccessMessage(data.email);
+        form.reset();
+        
+      } catch (error) {
+        console.error('[Free Guide] Submission failed:', error);
+        record.status = 'queued';
+        record.lastError = error?.message || 'Network error';
+        
+        // Update LocalStorage with error
+        try {
+          const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+          const index = existing.findIndex(r => r.id === record.id);
+          if (index !== -1) {
+            existing[index] = record;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+          }
+        } catch (e) {
+          console.error('[Free Guide] Failed to update storage:', e);
+        }
+        
+        // Show success anyway (optimistic UI)
+        showSuccessMessage(data.email);
+        form.reset();
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+      }
+    }
+    
+    function showSuccessMessage(email) {
+      const form = document.getElementById('freeGuideForm');
+      const existingMsg = form.parentNode.querySelector('.success-message');
+      if (existingMsg) existingMsg.remove();
+      
+      const successDiv = document.createElement('div');
+      successDiv.className = 'success-message';
+      successDiv.style.cssText = 'padding: 20px; background: #4CAF50; color: white; border-radius: 8px; margin-top: 20px; text-align: center; animation: fadeIn 0.3s;';
+      successDiv.innerHTML = `
+        <p style="margin: 0 0 10px 0; font-weight: 600; font-size: 18px;">✅ Success!</p>
+        <p style="margin: 0; font-size: 14px;">Check your email (${email}) - Your free guide download link has been sent!</p>
+      `;
+      form.parentNode.insertBefore(successDiv, form.nextSibling);
+      
+      setTimeout(() => {
+        successDiv.style.opacity = '0';
+        successDiv.style.transition = 'opacity 0.3s';
+        setTimeout(() => successDiv.remove(), 300);
+      }, 5000);
+    }
+    
+    // Expose function globally
+    window.handleFreeGuideSubmit = handleFreeGuideSubmit;
+  })();
+</script>
+
+<style>
+  @media (max-width: 768px) {
+    #free-guide {
+      padding: 50px 20px !important;
+    }
+    #free-guide > div > div {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+    #free-guide h2 {
+      font-size: 24px !important;
+      text-align: center;
+    }
+    #free-guide p {
+      text-align: center;
+      font-size: 15px !important;
+    }
+    #free-guide > div > div > div:first-child {
+      display: flex;
+      justify-content: center;
+    }
+    #free-guide > div > div > div:first-child img {
+      max-width: 200px !important;
+    }
+    #free-guide form {
+      max-width: 100%;
+    }
+    #free-guide button {
+      font-size: 16px !important;
+      padding: 14px 24px !important;
+    }
+  }
+</style>
 
 <footer>
   &copy; 2025 REACH by Antoine | 1-on-1 Coaching at NOGS, Al Quoz | Your Shape Culture Specialist
