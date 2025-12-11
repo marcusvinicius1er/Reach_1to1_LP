@@ -72,14 +72,21 @@ export default {
       }
 
       // Préparer le record Airtable avec le mapping
+      // Note: Si "Submitted At" est un champ Date/Time automatique dans Airtable,
+      // vous pouvez le retirer ou le configurer pour accepter les strings ISO
       const airtableRecord = {
         fields: {
           [fieldMapping.fullName]: fullName,
           [fieldMapping.email]: email,
-          [fieldMapping.source]: 'free_guide_landing_page',
-          [fieldMapping.submittedAt]: new Date().toISOString()
+          [fieldMapping.source]: 'free_guide_landing_page'
         }
       };
+      
+      // Ajouter "Submitted At" seulement si le champ existe et accepte les strings
+      // Si c'est un champ Date/Time automatique, commentez cette ligne
+      if (fieldMapping.submittedAt) {
+        airtableRecord.fields[fieldMapping.submittedAt] = new Date().toISOString();
+      }
 
       // Appel à l'API Airtable
       const airtableUrl = `https://api.airtable.com/v0/${baseId}/${tableId}`;
