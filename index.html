@@ -1452,6 +1452,134 @@
         font-size: 16px;
       }
     }
+    
+    /* Client Stories Section Styles */
+    .client-scroll-container {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    .client-scroll-track {
+      display: flex;
+      gap: 30px;
+      animation: clientScroll 30s linear infinite;
+      width: fit-content;
+      align-items: flex-start;
+    }
+
+    .client-scroll-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes clientScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .client-story-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    .client-story-image {
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      min-height: 280px;
+    }
+
+    .client-story-image img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 75%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+      margin: 0 auto;
+    }
+
+    .client-story-content {
+      padding: 16px 20px;
+    }
+
+    .client-story-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    .client-story-badges {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .client-badge {
+      background: #ff6413;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .client-story-quote {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+      margin: 0;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .client-scroll-container {
+        padding: 0 10px;
+      }
+      
+      .client-story-card {
+        width: 260px;
+      }
+
+      .client-story-image {
+        min-height: 260px;
+      }
+
+      .client-scroll-track {
+        gap: 20px;
+      }
+      
+      .client-stories-section {
+        padding: 40px 15px !important;
+      }
+      
+      .client-story-content {
+        padding: 14px 16px;
+      }
+      
+      .client-story-name {
+        font-size: 18px;
+      }
+      
+      .client-story-quote {
+        font-size: 12px;
+      }
+    }
   </style>
   
   <!-- Structured Data (JSON-LD) for SEO -->
@@ -1572,234 +1700,199 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- Before/After Transformations Carousel -->
-<section class="before-after-section">
-  <div class="container">
-    <h2 style="text-align: center; margin-bottom: 20px;">Real Clients. Real Results.</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 18px; color: #666;">These transformations didn't happen by accident. They happened through consistency, accountability, and&nbsp;work.</p>
-    
-    <div class="before-after-carousel">
-      <div style="overflow: hidden;">
-        <div class="before-after-wrapper" id="beforeAfterWrapper">
-          <!-- Transformation Cards - 15 Real Clients -->
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Sarah.webp" alt="Sarah before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">My latest goal was to do a photoshoot at the end of my fitness program. I could see him consistently show up for his clients with kindness and compassion. He cares so much about every single person he&nbsp;trains.</p>
-                <div class="transformation-signature">Sarah</div>
-              </div>
-            </div>
+<!-- Client Stories Section -->
+<section class="client-stories-section" style="background: #fff; padding: 60px 20px;">
+  <div style="max-width: 1080px; margin: 0 auto;">
+    <h2 style="text-align: center; margin-bottom: 20px; font-size: clamp(32px, 5vw, 48px); font-weight: 800;">Client Stories</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; font-size: 18px; color: #666;">Real people. Real transformations. Real results.</p>
+
+    <div class="client-scroll-container">
+      <div class="client-scroll-track" id="clientStoriesTrack">
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/aisha.webp" alt="Aisha avant/après" loading="lazy">
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Alex.webp" alt="Alex before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Been through 3 coaches before Antoine. Finally found someone who gets it. I've put on solid muscle, my lifts have gone through the roof, and I actually look forward to our sessions.&nbsp;Legend.</p>
-                <div class="transformation-signature">Alex</div>
-              </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Aisha</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-7kg</div>
+              <div class="client-badge">5 months</div>
+              <div class="client-badge">Melbourne</div>
             </div>
+            <p class="client-story-quote">"I went from size 42 to a 36, I'm buzzing, had to change my entire wardrobe!"</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Antoine.webp" alt="Antoine coach before after results Dubai" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">My own transformation, as a coach I consider that I need to lead with true actions, no better way than knowing where my clients might be coming from and understanding the journey it&nbsp;requires.</p>
-                <div class="transformation-signature">Antoine</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/daniel.webp" alt="Daniel avant/après" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Daniel</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-11kg</div>
+              <div class="client-badge">4 months</div>
+              <div class="client-badge">Perth</div>
             </div>
+            <p class="client-story-quote">"Been through 3 coaches before Antoine. Finally found someone who gets it. I've put on solid muscle, my lifts have gone through the roof, and I actually look forward to our sessions. Legend."</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/James.webp" alt="James before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Down 10kg and finally have abs at 38. Antoine's no bullsh*t approach is exactly what I needed. Feel stronger than I did in my&nbsp;20s.</p>
-                <div class="transformation-signature">James</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/antoine.webp" alt="Antoine transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Antoine</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-26kg</div>
+              <div class="client-badge">11 months</div>
+              <div class="client-badge">Dubai</div>
             </div>
+            <p class="client-story-quote">"Your one &amp; only coach. I couldn't help you properly if I hadn't gone through a transformation myself and understood what it requires. This is my latest transformation for a photoshoot."</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Marcus.webp" alt="Marcus before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Never been consistent with anything fitness-related until I started with Antoine. Went from hating the gym to it being my therapy session. He's pushed me past limits I didn't know I had, mate's a game&nbsp;changer.</p>
-                <div class="transformation-signature">Marcus</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/liam.webp" alt="Liam transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Liam</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-6kg</div>
+              <div class="client-badge">3 months</div>
+              <div class="client-badge">Sydney</div>
             </div>
+            <p class="client-story-quote">"Training with Antoine for 3 months now and it's been unreal. Leaner, stronger, more focused than ever. Excited to see where this journey takes me!"</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Tom.webp" alt="Tom before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Honestly thought I was too far gone at 45. Antoine proved me wrong. Down 18kg, off my blood pressure meds, and my doctor is amazed. This man changed my life, no&nbsp;exaggeration.</p>
-                <div class="transformation-signature">Tom</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/sarah.webp" alt="Sarah transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Sarah</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">+3kg</div>
+              <div class="client-badge">6 months</div>
+              <div class="client-badge">Dubai</div>
             </div>
+            <p class="client-story-quote">"Had a goal to do a photoshoot forever but I'd always pushed it out, not feeling ready physically. Antoine showed up with kindness and compassion every step of the way. He cares so much."</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Aisha.webp" alt="Aisha before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">I went from size 42 to a 36, I'm buzzing, had to change my entire wardrobe&nbsp;!</p>
-                <div class="transformation-signature">Aisha</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/samer.webp" alt="Samer transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Samer</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-14kg</div>
+              <div class="client-badge">12 months</div>
+              <div class="client-badge">Dubai</div>
             </div>
+            <p class="client-story-quote">"We've been training more than a year together and what a journey it's been. Antoine is more than a coach. He becomes your best supporter. I've changed physically and mentally for the better."</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Chris.webp" alt="Chris before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">The accountability and support is unreal. Bad day at work? Antoine's there. Struggling with diet? He's got solutions. I've transformed inside and out. Can't recommend enough, he genuinely&nbsp;cares.</p>
-                <div class="transformation-signature">Chris</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/david.webp" alt="David transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">David</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-13kg</div>
+              <div class="client-badge">7 months</div>
+              <div class="client-badge">London</div>
             </div>
+            <p class="client-story-quote">"Finally got rid of the beer belly I'd been carrying for years. Feel younger, stronger, and so much better mentally. Life-changing honestly."</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Daniel.webp" alt="Daniel before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Best investment I've made in myself. The mental gains have been just as big as the physical ones. I'm more confident, focused, and actually enjoy training now. Cheers&nbsp;mate!</p>
-                <div class="transformation-signature">Daniel</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/hakim.webp" alt="Hakim transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Hakim</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">+4kg muscle</div>
+              <div class="client-badge">13 months</div>
+              <div class="client-badge">France</div>
             </div>
+            <p class="client-story-quote">"13 months together, gained 4kg of solid muscle. Never thought my back could look like this! Merci! We keep working."</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Holly.webp" alt="Holly before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">I've had couple of coaches in the past. The support and care that Antoine provides is just next level, I loved this journey together. 100% recommend to anyone wanting to&nbsp;change!</p>
-                <div class="transformation-signature">Holly</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/jess.webp" alt="Jess transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Jess</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-8kg</div>
+              <div class="client-badge">6 months</div>
+              <div class="client-badge">South Africa</div>
             </div>
+            <p class="client-story-quote">"Down 8kg and honestly feel like myself again. I'm stronger, happier, and finally have the energy I was missing. Thank you Antoine!"</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Leanne.webp" alt="Leanne before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">I get to show my children healthy habits and workout with my eldest daughter there's no better feeling, 2 years with Antoine and not planning to stop this team journey, he IS the&nbsp;best.</p>
-                <div class="transformation-signature">Leanne</div>
-              </div>
+        </div>
+
+        <!-- Duplicates for seamless loop -->
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/aisha.webp" alt="Aisha avant/après" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Aisha</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-7kg</div>
+              <div class="client-badge">5 months</div>
+              <div class="client-badge">Melbourne</div>
             </div>
+            <p class="client-story-quote">"I went from size 42 to a 36, I'm buzzing, had to change my entire wardrobe!"</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Lisa.webp" alt="Lisa before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Never felt this confident in my own skin. Antoine helped me find strength I didn't know I had. Game&nbsp;changer!</p>
-                <div class="transformation-signature">Lisa</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/daniel.webp" alt="Daniel avant/après" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Daniel</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-11kg</div>
+              <div class="client-badge">4 months</div>
+              <div class="client-badge">Perth</div>
             </div>
+            <p class="client-story-quote">"Been through 3 coaches before Antoine. Finally found someone who gets it. I've put on solid muscle, my lifts have gone through the roof, and I actually look forward to our sessions. Legend."</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Marie.webp" alt="Marie before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Never thought I'd say this but I actually love running now! Just smashed my first half marathon. My health and fitness journey are next level, I feel really good. Thank you&nbsp;Antoine!</p>
-                <div class="transformation-signature">Marie</div>
-              </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/antoine.webp" alt="Antoine transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Antoine</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-26kg</div>
+              <div class="client-badge">11 months</div>
+              <div class="client-badge">Dubai</div>
             </div>
+            <p class="client-story-quote">"Your one &amp; only coach. I couldn't help you properly if I hadn't gone through a transformation myself and understood what it requires. This is my latest transformation for a photoshoot."</p>
           </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Samer.webp" alt="Samer before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">We have been training more than a year together, and what a journey I have had with Antoine. He is more than a coach, I have honestly changed physically & mentally for the better. Can't thank him&nbsp;enough.</p>
-                <div class="transformation-signature">Samer</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="transformation-card">
-            <div class="transformation-image-wrapper">
-              <img src="01-IMAGES/Before_After/Sophie.webp" alt="Sophie before after results Dubai transformation" loading="lazy">
-              <div class="transformation-overlay">
-                <p class="transformation-text">Antoine's coaching has been life-changing. I've dropped 3 dress sizes and finally feel comfortable in my own skin. I'm so much stronger than I thought, both physically and mentally. The confidence boost is incredible - I'm a different&nbsp;person!</p>
-                <div class="transformation-signature">Sophie</div>
-              </div>
-            </div>
-          </div>
-          
-          
+        </div>
       </div>
     </div>
   </div>
 </section>
-
-<script>
-  // Différer init carousel pour réduire TBT
-  function initBeforeAfterCarousel() {
-    const wrapper = document.getElementById('beforeAfterWrapper');
-    if (!wrapper || wrapper.dataset.loopInitialized === 'true') return;
-
-    const originalCards = Array.from(wrapper.querySelectorAll('.transformation-card'));
-    const originalCount = originalCards.length;
-    if (originalCount === 0) return;
-
-    const fragment = document.createDocumentFragment();
-    originalCards.forEach(card => fragment.appendChild(card.cloneNode(true)));
-    wrapper.appendChild(fragment);
-    wrapper.dataset.loopInitialized = 'true';
-    wrapper.classList.add('is-loop-ready');
-
-    const throttle = (func, delay = 200) => {
-      let timeoutId;
-      let lastExec = 0;
-      return function(...args) {
-        const now = Date.now();
-        const remaining = delay - (now - lastExec);
-        if (remaining <= 0) {
-          lastExec = now;
-          if (timeoutId) {
-            clearTimeout(timeoutId);
-            timeoutId = null;
-          }
-          func.apply(this, args);
-        } else if (!timeoutId) {
-          timeoutId = setTimeout(() => {
-            lastExec = Date.now();
-            timeoutId = null;
-            func.apply(this, args);
-          }, remaining);
-        }
-      };
-    };
-
-    const updateAnimationSettings = () => {
-      const firstCard = wrapper.querySelector('.transformation-card');
-      if (!firstCard) return;
-      const styles = window.getComputedStyle(wrapper);
-      const gap = parseFloat(styles.gap || styles.columnGap || '0') || 0;
-      const cardWidth = firstCard.getBoundingClientRect().width;
-      const translateDistance = -(originalCount * (cardWidth + gap));
-      wrapper.style.setProperty('--before-after-translate', `${translateDistance}px`);
-      const duration = window.innerWidth <= 768 ? 40 : 40;
-      wrapper.style.setProperty('--before-after-duration', `${duration}s`);
-    };
-
-    updateAnimationSettings();
-    window.addEventListener('resize', throttle(updateAnimationSettings, 200));
-    window.addEventListener('load', updateAnimationSettings);
-  }
-  
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(initBeforeAfterCarousel, { timeout: 2000 });
-  } else {
-    document.addEventListener('DOMContentLoaded', initBeforeAfterCarousel);
-  }
-</script>
 
 <!-- Testimonials Carousel Section -->
 <section class="testimonials-carousel-section">
@@ -2143,6 +2236,235 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<!-- Before/After Transformations Carousel -->
+<section class="before-after-section">
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 20px;">Real Clients. Real Results.</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 18px; color: #666;">These transformations didn't happen by accident. They happened through consistency, accountability, and&nbsp;work.</p>
+    
+    <div class="before-after-carousel">
+      <div style="overflow: hidden;">
+        <div class="before-after-wrapper" id="beforeAfterWrapper">
+          <!-- Transformation Cards - 15 Real Clients -->
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Sarah.webp" alt="Sarah before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">My latest goal was to do a photoshoot at the end of my fitness program. I could see him consistently show up for his clients with kindness and compassion. He cares so much about every single person he&nbsp;trains.</p>
+                <div class="transformation-signature">Sarah</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Alex.webp" alt="Alex before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Been through 3 coaches before Antoine. Finally found someone who gets it. I've put on solid muscle, my lifts have gone through the roof, and I actually look forward to our sessions.&nbsp;Legend.</p>
+                <div class="transformation-signature">Alex</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Antoine.webp" alt="Antoine coach before after results Dubai" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">My own transformation, as a coach I consider that I need to lead with true actions, no better way than knowing where my clients might be coming from and understanding the journey it&nbsp;requires.</p>
+                <div class="transformation-signature">Antoine</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/James.webp" alt="James before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Down 10kg and finally have abs at 38. Antoine's no bullsh*t approach is exactly what I needed. Feel stronger than I did in my&nbsp;20s.</p>
+                <div class="transformation-signature">James</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Marcus.webp" alt="Marcus before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Never been consistent with anything fitness-related until I started with Antoine. Went from hating the gym to it being my therapy session. He's pushed me past limits I didn't know I had, mate's a game&nbsp;changer.</p>
+                <div class="transformation-signature">Marcus</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Tom.webp" alt="Tom before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Honestly thought I was too far gone at 45. Antoine proved me wrong. Down 18kg, off my blood pressure meds, and my doctor is amazed. This man changed my life, no&nbsp;exaggeration.</p>
+                <div class="transformation-signature">Tom</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Aisha.webp" alt="Aisha before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">I went from size 42 to a 36, I'm buzzing, had to change my entire wardrobe&nbsp;!</p>
+                <div class="transformation-signature">Aisha</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Chris.webp" alt="Chris before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">The accountability and support is unreal. Bad day at work? Antoine's there. Struggling with diet? He's got solutions. I've transformed inside and out. Can't recommend enough, he genuinely&nbsp;cares.</p>
+                <div class="transformation-signature">Chris</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Daniel.webp" alt="Daniel before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Best investment I've made in myself. The mental gains have been just as big as the physical ones. I'm more confident, focused, and actually enjoy training now. Cheers&nbsp;mate!</p>
+                <div class="transformation-signature">Daniel</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Holly.webp" alt="Holly before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">I've had couple of coaches in the past. The support and care that Antoine provides is just next level, I loved this journey together. 100% recommend to anyone wanting to&nbsp;change!</p>
+                <div class="transformation-signature">Holly</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Leanne.webp" alt="Leanne before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">I get to show my children healthy habits and workout with my eldest daughter there's no better feeling, 2 years with Antoine and not planning to stop this team journey, he IS the&nbsp;best.</p>
+                <div class="transformation-signature">Leanne</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Lisa.webp" alt="Lisa before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Never felt this confident in my own skin. Antoine helped me find strength I didn't know I had. Game&nbsp;changer!</p>
+                <div class="transformation-signature">Lisa</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Marie.webp" alt="Marie before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Never thought I'd say this but I actually love running now! Just smashed my first half marathon. My health and fitness journey are next level, I feel really good. Thank you&nbsp;Antoine!</p>
+                <div class="transformation-signature">Marie</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Samer.webp" alt="Samer before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">We have been training more than a year together, and what a journey I have had with Antoine. He is more than a coach, I have honestly changed physically & mentally for the better. Can't thank him&nbsp;enough.</p>
+                <div class="transformation-signature">Samer</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-card">
+            <div class="transformation-image-wrapper">
+              <img src="01-IMAGES/Before_After/Sophie.webp" alt="Sophie before after results Dubai transformation" loading="lazy">
+              <div class="transformation-overlay">
+                <p class="transformation-text">Antoine's coaching has been life-changing. I've dropped 3 dress sizes and finally feel comfortable in my own skin. I'm so much stronger than I thought, both physically and mentally. The confidence boost is incredible - I'm a different&nbsp;person!</p>
+                <div class="transformation-signature">Sophie</div>
+              </div>
+            </div>
+          </div>
+          
+          
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Différer init carousel pour réduire TBT
+  function initBeforeAfterCarousel() {
+    const wrapper = document.getElementById('beforeAfterWrapper');
+    if (!wrapper || wrapper.dataset.loopInitialized === 'true') return;
+
+    const originalCards = Array.from(wrapper.querySelectorAll('.transformation-card'));
+    const originalCount = originalCards.length;
+    if (originalCount === 0) return;
+
+    const fragment = document.createDocumentFragment();
+    originalCards.forEach(card => fragment.appendChild(card.cloneNode(true)));
+    wrapper.appendChild(fragment);
+    wrapper.dataset.loopInitialized = 'true';
+    wrapper.classList.add('is-loop-ready');
+
+    const throttle = (func, delay = 200) => {
+      let timeoutId;
+      let lastExec = 0;
+      return function(...args) {
+        const now = Date.now();
+        const remaining = delay - (now - lastExec);
+        if (remaining <= 0) {
+          lastExec = now;
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+          }
+          func.apply(this, args);
+        } else if (!timeoutId) {
+          timeoutId = setTimeout(() => {
+            lastExec = Date.now();
+            timeoutId = null;
+            func.apply(this, args);
+          }, remaining);
+        }
+      };
+    };
+
+    const updateAnimationSettings = () => {
+      const firstCard = wrapper.querySelector('.transformation-card');
+      if (!firstCard) return;
+      const styles = window.getComputedStyle(wrapper);
+      const gap = parseFloat(styles.gap || styles.columnGap || '0') || 0;
+      const cardWidth = firstCard.getBoundingClientRect().width;
+      const translateDistance = -(originalCount * (cardWidth + gap));
+      wrapper.style.setProperty('--before-after-translate', `${translateDistance}px`);
+      const duration = window.innerWidth <= 768 ? 40 : 40;
+      wrapper.style.setProperty('--before-after-duration', `${duration}s`);
+    };
+
+    updateAnimationSettings();
+    window.addEventListener('resize', throttle(updateAnimationSettings, 200));
+    window.addEventListener('load', updateAnimationSettings);
+  }
+  
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initBeforeAfterCarousel, { timeout: 2000 });
+  } else {
+    document.addEventListener('DOMContentLoaded', initBeforeAfterCarousel);
+  }
+</script>
 
 <!-- Final CTA -->
 <section>
