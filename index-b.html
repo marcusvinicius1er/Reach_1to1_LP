@@ -86,17 +86,17 @@
     posthog.init('YOUR_POSTHOG_PROJECT_API_KEY', {
       api_host: 'https://app.posthog.com',
       loaded: function(posthog) {
-        // Identifier la variante A
-        posthog.identify('variant_a');
+        // Identifier la variante B
+        posthog.identify('variant_b');
         posthog.register({
-          ab_test_variant: 'A',
-          page_variant: 'A',
-          hero_headline: 'One-on-one expert coaching, tailored to your goals'
+          ab_test_variant: 'B',
+          page_variant: 'B',
+          hero_headline: 'Lose up to 10kg in 12 weeks.'
         });
         // Capturer l'événement de vue de la variante
         posthog.capture('ab_test_view', {
-          variant: 'A',
-          page: 'index.html'
+          variant: 'B',
+          page: 'index-b.html'
         });
       }
     });
@@ -124,8 +124,8 @@
       if (window.posthog) {
         window.posthog.capture(eventName, {
           ...properties,
-          ab_test_variant: 'A',
-          page_variant: 'A'
+          ab_test_variant: 'B',
+          page_variant: 'B'
         });
       }
     }
@@ -1786,8 +1786,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       <!-- Accroche CENTRÉE -->
       <div class="hero-text">
-        <h1>One-on-one expert coaching, tailored to your goals</h1>
-        <p>If you’re done wasting time and ready to train with purpose, you’re in the right place.</p>
+        <h1>Lose up to 10kg in 12 weeks.</h1>
+        <p>Build a strong, natural V-shape, even with a busy schedule.</p>
         <div style="margin-top: 30px;">
           <a href="#free-guide" class="btn" onclick="trackEvent('cta_click', {button_location: 'hero_section', button_text: 'Start Losing Fat Today – Free Guide'}); fbq('track', 'Lead');">Fat loss Free Guide</a>
         </div>
