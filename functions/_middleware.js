@@ -3,7 +3,7 @@
  * Route le trafic entre index.html (Variante A) et index-b.html (Variante B)
  */
 
-export function onRequest(context) {
+export async function onRequest(context) {
   const request = context.request;
   const url = new URL(request.url);
   
@@ -20,7 +20,7 @@ export function onRequest(context) {
   // Si pas de cookie, assigner une variante selon le split (50/50)
   if (!variant) {
     // Utiliser un hash de l'IP + User-Agent pour la cohérence
-    const identifier = request.headers.get('CF-Connecting-IP') + 
+    const identifier = (request.headers.get('CF-Connecting-IP') || '') + 
                       (request.headers.get('User-Agent') || '');
     const hash = simpleHash(identifier);
     
@@ -29,27 +29,37 @@ export function onRequest(context) {
   }
   
   // Déterminer quel fichier servir
-  const fileToServe = variant === 'A' ? '/index.html' : '/index-b.html';
+  const fileToServe = variant === 'A' ? 'index.html' : 'index-b.html';
   
-  // Créer une nouvelle requête pour le fichier approprié
+  // Créer une nouvelle URL pour le fichier approprié
   const newUrl = new URL(request.url);
-  newUrl.pathname = fileToServe;
-  const newRequest = new Request(newUrl, request);
+  newUrl.pathname = '/' + fileToServe;
+  
+  // Créer une nouvelle requête
+  const newRequest = new Request(newUrl.toString(), {
+    method: request.method,
+    headers: request.headers,
+    body: request.body
+  });
   
   // Récupérer la réponse depuis les assets
-  return context.next(newRequest).then(response => {
-    // Cloner la réponse pour pouvoir modifier les headers
-    const newResponse = new Response(response.body, response);
-    
-    // Définir le cookie pour maintenir la cohérence (30 jours)
-    const cookieValue = `ab_variant=${variant}; Path=/; Max-Age=2592000; SameSite=Lax`;
-    newResponse.headers.set('Set-Cookie', cookieValue);
-    
-    // Ajouter un header pour le debugging (optionnel)
-    newResponse.headers.set('X-AB-Variant', variant);
-    
-    return newResponse;
+  const response = await context.next(newRequest);
+  
+  // Cloner la réponse pour pouvoir modifier les headers
+  const newResponse = new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers
   });
+  
+  // Définir le cookie pour maintenir la cohérence (30 jours)
+  const cookieValue = `ab_variant=${variant}; Path=/; Max-Age=2592000; SameSite=Lax`;
+  newResponse.headers.set('Set-Cookie', cookieValue);
+  
+  // Ajouter un header pour le debugging (optionnel)
+  newResponse.headers.set('X-AB-Variant', variant);
+  
+  return newResponse;
 }
 
 /**
