@@ -29,35 +29,37 @@ export async function onRequest(context) {
   }
   
   // Déterminer quel fichier servir
-  const fileToServe = variant === 'A' ? 'index.html' : 'index-b.html';
+  const fileToServe = variant === 'A' ? '/index.html' : '/index-b.html';
   
-  // Créer une nouvelle URL pour le fichier approprié
+  // Utiliser rewrite pour changer le pathname
   const newUrl = new URL(request.url);
-  newUrl.pathname = '/' + fileToServe;
+  newUrl.pathname = fileToServe;
   
-  // Créer une nouvelle requête
+  // Créer une nouvelle requête sans body pour éviter les problèmes
   const newRequest = new Request(newUrl.toString(), {
     method: request.method,
-    headers: request.headers,
-    body: request.body
+    headers: request.headers
   });
   
   // Récupérer la réponse depuis les assets
   const response = await context.next(newRequest);
   
-  // Cloner la réponse pour pouvoir modifier les headers
-  const newResponse = new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: response.headers
-  });
+  // Créer une nouvelle réponse avec les headers modifiés
+  const headers = new Headers(response.headers);
   
   // Définir le cookie pour maintenir la cohérence (30 jours)
   const cookieValue = `ab_variant=${variant}; Path=/; Max-Age=2592000; SameSite=Lax`;
-  newResponse.headers.set('Set-Cookie', cookieValue);
+  headers.set('Set-Cookie', cookieValue);
   
   // Ajouter un header pour le debugging (optionnel)
-  newResponse.headers.set('X-AB-Variant', variant);
+  headers.set('X-AB-Variant', variant);
+  
+  // Créer une nouvelle réponse avec les headers modifiés
+  const newResponse = new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: headers
+  });
   
   return newResponse;
 }
