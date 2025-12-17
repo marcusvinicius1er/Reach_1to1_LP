@@ -837,6 +837,7 @@
       display: flex;
       gap: 20px;
       will-change: transform;
+      touch-action: pan-y;
     }
     
     .before-after-wrapper.is-loop-ready {
@@ -877,6 +878,10 @@
       flex: 0 0 240px;
       min-width: 240px;
       height: 240px;
+      touch-action: pan-y;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
     }
     
     .transformation-card:hover {
@@ -898,6 +903,7 @@
       object-position: center;
       transition: transform 0.4s ease;
       background: #f0f0f0;
+      touch-action: pan-y;
     }
     
     .transformation-card:hover .transformation-image-wrapper img {
@@ -1307,6 +1313,20 @@
         min-width: 280px;
         max-width: 280px;
         height: 280px;
+        cursor: default;
+      }
+      
+      .transformation-card:hover {
+        transform: none;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      }
+      
+      .transformation-card:hover .transformation-image-wrapper img {
+        transform: none;
+      }
+      
+      .transformation-card:hover .transformation-overlay {
+        opacity: 0;
       }
       
       .before-after-carousel {
@@ -1314,6 +1334,15 @@
         margin: 0 auto;
         padding: 0 10px;
         overflow: hidden;
+        touch-action: pan-y;
+      }
+      
+      .before-after-carousel:hover .before-after-wrapper.is-loop-ready {
+        animation-play-state: running !important;
+      }
+      
+      .before-after-carousel:has(.transformation-card:hover) .before-after-wrapper.is-loop-ready {
+        animation-play-state: running !important;
       }
       
       .before-after-nav {
@@ -1455,21 +1484,43 @@
     
     /* Client Stories Section Styles */
     .client-scroll-container {
-      overflow: hidden;
+      overflow-x: scroll;
+      overflow-y: hidden;
       width: 100%;
       position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: #ff6413 #f0f0f0;
+      padding-bottom: 10px;
+      /* Force la barre à toujours être visible */
+      scrollbar-gutter: stable;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+    }
+
+    .client-scroll-container::-webkit-scrollbar {
+      height: 8px;
+      display: block;
+    }
+
+    .client-scroll-container::-webkit-scrollbar-track {
+      background: #f0f0f0;
+      border-radius: 10px;
+    }
+
+    .client-scroll-container::-webkit-scrollbar-thumb {
+      background: #ff6413;
+      border-radius: 10px;
+    }
+
+    .client-scroll-container::-webkit-scrollbar-thumb:hover {
+      background: #e55510;
     }
 
     .client-scroll-track {
       display: flex;
       gap: 30px;
-      animation: clientScroll 30s linear infinite;
       width: fit-content;
       align-items: flex-start;
-    }
-
-    .client-scroll-track:hover {
-      animation-play-state: paused;
     }
 
     @keyframes clientScroll {
@@ -1550,10 +1601,18 @@
     @media (max-width: 768px) {
       .client-scroll-container {
         padding: 0 10px;
+        padding-bottom: 15px;
+        /* Barre de défilement plus visible sur mobile */
+        scrollbar-width: auto;
+      }
+      
+      .client-scroll-container::-webkit-scrollbar {
+        height: 6px;
       }
       
       .client-story-card {
         width: 260px;
+        touch-action: pan-x;
       }
 
       .client-story-image {
@@ -1844,6 +1903,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/Marcus.webp" alt="Marcus transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Marcus</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-14kg</div>
+              <div class="client-badge">8 months</div>
+              <div class="client-badge">Perth</div>
+            </div>
+            <p class="client-story-quote">"Never been consistent with anything fitness-related until I started with Antoine. Went from hating the gym to it being my therapy session. He's pushed me past limits I didn't know I had, mate's a game changer."</p>
+          </div>
+        </div>
+
         <!-- Duplicates for seamless loop -->
         <div class="client-story-card">
           <div class="client-story-image">
@@ -1889,10 +1963,244 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="client-story-quote">"Your one &amp; only coach. I couldn't help you properly if I hadn't gone through a transformation myself and understood what it requires. This is my latest transformation for a photoshoot."</p>
           </div>
         </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/liam.webp" alt="Liam transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Liam</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-6kg</div>
+              <div class="client-badge">3 months</div>
+              <div class="client-badge">Sydney</div>
+            </div>
+            <p class="client-story-quote">"Training with Antoine for 3 months now and it's been unreal. Leaner, stronger, more focused than ever. Excited to see where this journey takes me!"</p>
+          </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/sarah.webp" alt="Sarah transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Sarah</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">+3kg</div>
+              <div class="client-badge">6 months</div>
+              <div class="client-badge">Dubai</div>
+            </div>
+            <p class="client-story-quote">"Had a goal to do a photoshoot forever but I'd always pushed it out, not feeling ready physically. Antoine showed up with kindness and compassion every step of the way. He cares so much."</p>
+          </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/samer.webp" alt="Samer transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Samer</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-14kg</div>
+              <div class="client-badge">12 months</div>
+              <div class="client-badge">Dubai</div>
+            </div>
+            <p class="client-story-quote">"We've been training more than a year together and what a journey it's been. Antoine is more than a coach. He becomes your best supporter. I've changed physically and mentally for the better."</p>
+          </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/david.webp" alt="David transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">David</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-13kg</div>
+              <div class="client-badge">7 months</div>
+              <div class="client-badge">London</div>
+            </div>
+            <p class="client-story-quote">"Finally got rid of the beer belly I'd been carrying for years. Feel younger, stronger, and so much better mentally. Life-changing honestly."</p>
+          </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/hakim.webp" alt="Hakim transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Hakim</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">+4kg muscle</div>
+              <div class="client-badge">13 months</div>
+              <div class="client-badge">France</div>
+            </div>
+            <p class="client-story-quote">"13 months together, gained 4kg of solid muscle. Never thought my back could look like this! Merci! We keep working."</p>
+          </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/jess.webp" alt="Jess transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Jess</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-8kg</div>
+              <div class="client-badge">6 months</div>
+              <div class="client-badge">South Africa</div>
+            </div>
+            <p class="client-story-quote">"Down 8kg and honestly feel like myself again. I'm stronger, happier, and finally have the energy I was missing. Thank you Antoine!"</p>
+          </div>
+        </div>
+
+        <div class="client-story-card">
+          <div class="client-story-image">
+            <img src="01-IMAGES/Client_Stories/Marcus.webp" alt="Marcus transformation" loading="lazy">
+          </div>
+          <div class="client-story-content">
+            <h3 class="client-story-name">Marcus</h3>
+            <div class="client-story-badges">
+              <div class="client-badge">-14kg</div>
+              <div class="client-badge">8 months</div>
+              <div class="client-badge">Perth</div>
+            </div>
+            <p class="client-story-quote">"Never been consistent with anything fitness-related until I started with Antoine. Went from hating the gym to it being my therapy session. He's pushed me past limits I didn't know I had, mate's a game changer."</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Gérer le scroll automatique et manuel avec la barre de défilement
+  (function() {
+    const container = document.querySelector('.client-scroll-container');
+    const track = document.getElementById('clientStoriesTrack');
+    if (!container || !track) return;
+
+    let scrollTimeout;
+    let isManuallyScrolling = false;
+    let animationId = null;
+    let isPaused = false;
+    let scrollSpeed = 0.5; // pixels par frame
+    let maxScroll = 0;
+
+    // Calculer la largeur totale du contenu
+    function initScroll() {
+      maxScroll = track.scrollWidth - container.clientWidth;
+      
+      // Si le contenu est plus large que le container, démarrer l'animation
+      if (maxScroll > 0 && !isManuallyScrolling && !isPaused) {
+        startAutoScroll();
+      }
+    }
+
+    // Animation automatique du scroll
+    function startAutoScroll() {
+      if (animationId) return;
+      
+      function animate() {
+        if (isManuallyScrolling || isPaused) {
+          animationId = null;
+          return;
+        }
+
+        const currentScroll = container.scrollLeft;
+        
+        // Si on arrive à la fin, revenir au début
+        if (currentScroll >= maxScroll) {
+          container.scrollLeft = 0;
+        } else {
+          container.scrollLeft += scrollSpeed;
+        }
+        
+        animationId = requestAnimationFrame(animate);
+      }
+      
+      animate();
+    }
+
+    // Détecter le scroll manuel
+    let lastScrollLeft = 0;
+    container.addEventListener('scroll', function() {
+      const currentScrollLeft = container.scrollLeft;
+      
+      // Si le scroll a vraiment changé et n'est pas dû à l'animation
+      if (Math.abs(currentScrollLeft - lastScrollLeft) > scrollSpeed * 2) {
+        if (!isManuallyScrolling) {
+          isManuallyScrolling = true;
+          isPaused = true;
+          if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+          }
+        }
+        
+        // Réinitialiser le timeout à chaque scroll
+        clearTimeout(scrollTimeout);
+        
+        // Reprendre l'animation après 3 secondes d'inactivité
+        scrollTimeout = setTimeout(function() {
+          isManuallyScrolling = false;
+          isPaused = false;
+          // Remettre le scroll à 0 pour reprendre l'animation depuis le début
+          container.scrollLeft = 0;
+          lastScrollLeft = 0;
+          // Redémarrer l'animation
+          startAutoScroll();
+        }, 3000);
+      }
+      
+      lastScrollLeft = currentScrollLeft;
+    });
+
+    // Pause au survol (desktop)
+    container.addEventListener('mouseenter', function() {
+      isPaused = true;
+    });
+    
+    container.addEventListener('mouseleave', function() {
+      if (!isManuallyScrolling) {
+        isPaused = false;
+        startAutoScroll();
+      }
+    });
+
+    // Gestion tactile pour mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    container.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      isPaused = true;
+    }, { passive: true });
+    
+    container.addEventListener('touchend', function(e) {
+      if (!isManuallyScrolling) {
+        // Petit délai pour permettre le scroll naturel
+        setTimeout(function() {
+          isPaused = false;
+          startAutoScroll();
+        }, 500);
+      }
+    }, { passive: true });
+
+    // Initialiser après le chargement
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initScroll);
+    } else {
+      initScroll();
+    }
+    
+    // Réinitialiser si la taille change
+    window.addEventListener('resize', function() {
+      initScroll();
+    });
+  })();
+</script>
 
 <!-- Testimonials Carousel Section -->
 <section class="testimonials-carousel-section">
