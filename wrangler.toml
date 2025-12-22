@@ -2,6 +2,13 @@ name = "free-guide-api"
 main = "cloudflare-worker.js"
 compatibility_date = "2024-01-01"
 
+[observability]
+[observability.logs]
+enabled = true
+head_sampling_rate = 1.0
+invocation_logs = true
+persist = true
+
 [env.production.vars]
 # Les secrets seront configurés dans Cloudflare Dashboard > Variables > Secrets
 # OBLIGATOIRES (type Secret/Encrypted) :
