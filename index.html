@@ -2987,6 +2987,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // URL du Cloudflare Worker
     const CLOUDFLARE_WORKER_URL = 'https://reach-1to1-lp.webdev-939.workers.dev';
     
+    // ⚡ Protection contre les double-clics
+    let isSubmitting = false;
+    const SUBMISSION_COOLDOWN = 5000; // 5 secondes entre les soumissions
+    let lastSubmissionTime = 0;
+    
     // Helper function to safely call trackEvent
     function safeTrackEvent(eventName, eventParams) {
       if (typeof window.trackEvent === 'function') {
@@ -3006,6 +3011,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       event.preventDefault();
       event.stopPropagation();
       
+      // ⚡ Protection contre les soumissions multiples
+      const now = Date.now();
+      if (isSubmitting) {
+        console.log('[Free Guide] Submission already in progress, ignoring');
+        return;
+      }
+      if (now - lastSubmissionTime < SUBMISSION_COOLDOWN) {
+        console.log('[Free Guide] Too soon after last submission, ignoring');
+        return;
+      }
+      
       // Get form - event.target might be the button, so we need to find the form
       const form = event.target.closest('form') || document.getElementById('freeGuideForm');
       if (!form) {
@@ -3013,7 +3029,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         return;
       }
       
+      // Vérifier si cet email a déjà été soumis récemment (dans LocalStorage)
       const formData = new FormData(form);
+      const email = (formData.get('email') || '').toLowerCase().trim();
+      try {
+        const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        const recentSubmission = existing.find(r => {
+          const existingEmail = (r.payload?.email || '').toLowerCase().trim();
+          if (existingEmail === email && r.status === 'submitted') {
+            const submittedAt = r.submittedAt ? new Date(r.submittedAt).getTime() : 0;
+            const hoursAgo = (now - submittedAt) / (1000 * 60 * 60);
+            return hoursAgo < 24; // Dans les dernières 24h
+          }
+          return false;
+        });
+        if (recentSubmission) {
+          console.log('[Free Guide] Email already submitted recently, showing success without API call');
+          showSuccessMessage(email);
+          form.reset();
+          return;
+        }
+      } catch (e) {
+        console.error('[Free Guide] Error checking duplicates:', e);
+      }
+      
+      // Marquer comme en cours de soumission
+      isSubmitting = true;
+      lastSubmissionTime = now;
+      
+      // Réutiliser formData déjà créé plus haut
       const data = {
         fullName: formData.get('fullName'),
         email: formData.get('email')
@@ -3145,6 +3189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         showSuccessMessage(data.email);
         form.reset();
       } finally {
+        isSubmitting = false;
         submitButton.disabled = false;
         submitButton.innerHTML = originalText;
       }

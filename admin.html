@@ -144,12 +144,22 @@
 
   <script>
     (function () {
-      const ACCESS_PASSWORD = 'AntoinE1968!';
+      // Hash SHA-256 du mot de passe (pas le mot de passe en clair)
+      const ACCESS_PASSWORD_HASH = 'd34216ce03e21a6ddaa260450684241b36331d368a3af1527e82bf8149b86673';
       const gateEl = document.getElementById('accessGate');
       const gateForm = document.getElementById('accessForm');
       const gateInput = document.getElementById('accessInput');
       const gateError = document.getElementById('accessError');
       const contentEl = document.getElementById('adminContent');
+
+      // Fonction pour hasher un mot de passe avec SHA-256
+      async function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      }
 
       const showContent = () => {
         if (contentEl) {
@@ -433,7 +443,7 @@
         renderQueue();
       };
 
-      const passwordConfigured = ACCESS_PASSWORD && ACCESS_PASSWORD !== 'REPLACE_WITH_PASSWORD';
+      const passwordConfigured = ACCESS_PASSWORD_HASH && ACCESS_PASSWORD_HASH !== 'REPLACE_WITH_PASSWORD_HASH';
 
       if (!passwordConfigured) {
         showContent();
@@ -451,17 +461,32 @@
 
       contentEl.style.display = 'none';
       gateEl.style.display = 'flex';
-      gateForm.addEventListener('submit', function (event) {
+      gateForm.addEventListener('submit', async function (event) {
         event.preventDefault();
-        if ((gateInput.value || '').trim() === ACCESS_PASSWORD) {
-          gateError.textContent = '';
-          gateInput.value = '';
-          gateEl.style.display = 'none';
-          gateEl.remove();
-          showContent();
-          initDashboard();
-        } else {
-          gateError.textContent = 'Incorrect password. Try again.';
+        const inputPassword = (gateInput.value || '').trim();
+        if (!inputPassword) {
+          gateError.textContent = 'Please enter a password.';
+          gateInput.focus();
+          return;
+        }
+        
+        try {
+          const inputHash = await hashPassword(inputPassword);
+          if (inputHash === ACCESS_PASSWORD_HASH) {
+            gateError.textContent = '';
+            gateInput.value = '';
+            gateEl.style.display = 'none';
+            gateEl.remove();
+            showContent();
+            initDashboard();
+          } else {
+            gateError.textContent = 'Incorrect password. Try again.';
+            gateInput.value = '';
+            gateInput.focus();
+          }
+        } catch (error) {
+          console.error('[Free Guide Admin] Password hashing error:', error);
+          gateError.textContent = 'Authentication error. Please try again.';
           gateInput.value = '';
           gateInput.focus();
         }

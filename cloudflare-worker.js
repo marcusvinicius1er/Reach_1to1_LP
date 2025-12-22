@@ -1,5 +1,10 @@
 /**
- * Cloudflare Worker pour proxy Airtable API
+ * Cloudflare Worker pour proxy Airtable API - OPTIMISÉ
+ * 
+ * Optimisations pour réduire les appels API :
+ * - Déduplication des emails (évite les doublons)
+ * - Rate limiting (max 1 soumission par email toutes les 24h)
+ * - Normalisation des emails (lowercase, trim)
  * 
  * Déployer ce worker sur Cloudflare :
  * 1. Allez dans Cloudflare Dashboard > Workers & Pages
@@ -9,8 +14,83 @@
  *    - AIRTABLE_BASE_ID
  *    - AIRTABLE_TABLE_ID
  *    - AIRTABLE_API_TOKEN
- * 5. Déployez et notez l'URL du worker (ex: https://your-worker.your-subdomain.workers.dev)
+ * 5. (Optionnel) Créez un KV Namespace pour la déduplication persistante :
+ *    - Workers & Pages > KV > Create a namespace
+ *    - Nommez-le "airtable-dedup" (ou autre)
+ *    - Dans votre Worker, allez dans Settings > Variables > KV Namespace Bindings
+ *    - Ajoutez le binding avec la variable "DEDUP_KV" (ou laissez vide pour utiliser le cache mémoire)
+ * 6. Déployez et notez l'URL du worker
  */
+
+// Cache en mémoire pour la déduplication (fallback si pas de KV)
+// ⚠️ Ce cache est perdu à chaque redémarrage du Worker
+const memoryCache = new Map();
+
+// Normaliser l'email (lowercase, trim)
+function normalizeEmail(email) {
+  return email.toLowerCase().trim();
+}
+
+// Vérifier si l'email a déjà été soumis récemment
+async function checkDuplicate(email, env) {
+  const normalizedEmail = normalizeEmail(email);
+  const cacheKey = `submitted:${normalizedEmail}`;
+  const DEDUP_TTL = 86400; // 24 heures en secondes
+  
+  // Si KV est disponible, l'utiliser (persistant)
+  if (env.DEDUP_KV) {
+    try {
+      const existing = await env.DEDUP_KV.get(cacheKey);
+      if (existing) {
+        return { isDuplicate: true, timestamp: parseInt(existing) };
+      }
+    } catch (error) {
+      console.error('KV error:', error);
+      // Fallback sur le cache mémoire
+    }
+  }
+  
+  // Fallback : cache mémoire (perdu au redémarrage)
+  const cached = memoryCache.get(cacheKey);
+  if (cached) {
+    const age = Date.now() - cached;
+    if (age < DEDUP_TTL * 1000) {
+      return { isDuplicate: true, timestamp: cached };
+    }
+    // Expiré, supprimer du cache
+    memoryCache.delete(cacheKey);
+  }
+  
+  return { isDuplicate: false };
+}
+
+// Marquer l'email comme soumis
+async function markAsSubmitted(email, env) {
+  const normalizedEmail = normalizeEmail(email);
+  const cacheKey = `submitted:${normalizedEmail}`;
+  const timestamp = Date.now();
+  const DEDUP_TTL = 86400; // 24 heures
+  
+  // Si KV est disponible, l'utiliser
+  if (env.DEDUP_KV) {
+    try {
+      await env.DEDUP_KV.put(cacheKey, timestamp.toString(), { expirationTtl: DEDUP_TTL });
+    } catch (error) {
+      console.error('KV put error:', error);
+    }
+  }
+  
+  // Toujours mettre à jour le cache mémoire (fallback)
+  memoryCache.set(cacheKey, timestamp);
+  
+  // Nettoyer le cache mémoire périodiquement (garder seulement les 1000 dernières entrées)
+  if (memoryCache.size > 1000) {
+    const entries = Array.from(memoryCache.entries());
+    entries.sort((a, b) => b[1] - a[1]); // Trier par timestamp décroissant
+    memoryCache.clear();
+    entries.slice(0, 500).forEach(([key, value]) => memoryCache.set(key, value));
+  }
+}
 
 export default {
   async fetch(request, env) {
@@ -36,6 +116,12 @@ export default {
     }
 
     try {
+      // 📊 LOGGING : Identifier la source des appels
+      const userAgent = request.headers.get('User-Agent') || 'unknown';
+      const origin = request.headers.get('Origin') || request.headers.get('Referer') || 'unknown';
+      const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+      const timestamp = new Date().toISOString();
+      
       // Récupérer les variables d'environnement
       const baseId = env.AIRTABLE_BASE_ID;
       const tableId = env.AIRTABLE_TABLE_ID;
@@ -43,7 +129,7 @@ export default {
 
       // Vérifier que les variables sont configurées
       if (!baseId || !tableId || !apiToken) {
-        console.error('Missing Airtable configuration');
+        console.error('[API_CALL] Missing Airtable configuration', { timestamp, ip, origin, userAgent });
         return new Response(
           JSON.stringify({ error: 'Server configuration error' }),
           { status: 500, headers: corsHeaders }
@@ -61,15 +147,56 @@ export default {
 
       // Parser le body de la requête
       const body = await request.json();
-      const { fullName, email } = body;
+      let { fullName, email } = body;
 
       // Validation basique
       if (!email || !fullName) {
+        console.log('[API_CALL] Missing fields', { timestamp, ip, origin, userAgent, email: email ? 'provided' : 'missing', fullName: fullName ? 'provided' : 'missing' });
         return new Response(
           JSON.stringify({ error: 'Missing required fields: fullName and email' }),
           { status: 400, headers: corsHeaders }
         );
       }
+
+      // Normaliser l'email
+      email = normalizeEmail(email);
+      fullName = fullName.trim();
+
+      // ⚡ OPTIMISATION : Vérifier les doublons AVANT d'appeler Airtable
+      const duplicateCheck = await checkDuplicate(email, env);
+      if (duplicateCheck.isDuplicate) {
+        const hoursAgo = Math.floor((Date.now() - duplicateCheck.timestamp) / (1000 * 60 * 60));
+        console.log(`[API_CALL] [DEDUP] Email ${email} already submitted ${hoursAgo}h ago, skipping API call`, { 
+          timestamp, 
+          ip, 
+          origin, 
+          userAgent,
+          email,
+          fullName 
+        });
+        return new Response(
+          JSON.stringify({ 
+            success: true,
+            id: 'duplicate',
+            message: 'Already submitted recently',
+            skipped: true
+          }),
+          { 
+            status: 200,
+            headers: corsHeaders 
+          }
+        );
+      }
+      
+      // 📊 LOGGING : Nouvel appel API (pas un doublon)
+      console.log(`[API_CALL] New submission attempt`, { 
+        timestamp, 
+        ip, 
+        origin, 
+        userAgent,
+        email,
+        fullName: fullName.substring(0, 20) + '...' // Masquer le nom complet pour la privacy
+      });
 
       // Préparer le record Airtable avec le mapping
       // Note: Si "Submitted At" est un champ Date/Time automatique dans Airtable,
@@ -77,7 +204,7 @@ export default {
       const airtableRecord = {
         fields: {
           [fieldMapping.fullName]: fullName,
-          [fieldMapping.email]: email,
+          [fieldMapping.email]: email, // Email déjà normalisé
           [fieldMapping.source]: 'free_guide_landing_page'
         }
       };
@@ -88,7 +215,8 @@ export default {
         airtableRecord.fields[fieldMapping.submittedAt] = new Date().toISOString();
       }
 
-      // Appel à l'API Airtable
+      // ⚡ Appel à l'API Airtable (seulement si pas de doublon)
+      // ⚠️ IMPORTANT : Chaque appel compte comme 1 appel API, même en cas d'erreur
       const airtableUrl = `https://api.airtable.com/v0/${baseId}/${tableId}`;
       const airtableResponse = await fetch(airtableUrl, {
         method: 'POST',
@@ -98,26 +226,81 @@ export default {
         },
         body: JSON.stringify(airtableRecord)
       });
+      
+      // 📊 LOGGING : Tous les appels API (succès ou échec)
+      console.log(`[API_CALL] Airtable response: ${airtableResponse.status}`, { 
+        timestamp, 
+        email,
+        status: airtableResponse.status,
+        ok: airtableResponse.ok
+      });
 
       // Vérifier la réponse Airtable
       if (!airtableResponse.ok) {
         const errorText = await airtableResponse.text();
-        console.error('Airtable API error:', airtableResponse.status, errorText);
+        const status = airtableResponse.status;
         
+        console.error(`[API_CALL] ❌ Airtable API error ${status}`, { 
+          timestamp, 
+          ip, 
+          origin, 
+          userAgent,
+          email,
+          error: errorText.substring(0, 200)
+        });
+        
+        // Si erreur 422 (duplicate), marquer quand même comme soumis pour éviter les retries
+        if (status === 422) {
+          try {
+            const errorData = JSON.parse(errorText || '{}');
+            if (errorData.error?.message?.includes('duplicate') || errorData.error?.message?.includes('already exists')) {
+              await markAsSubmitted(email, env);
+              return new Response(
+                JSON.stringify({ 
+                  success: true,
+                  id: 'duplicate',
+                  message: 'Record already exists in Airtable',
+                  skipped: true
+                }),
+                { 
+                  status: 200,
+                  headers: corsHeaders 
+                }
+              );
+            }
+          } catch (e) {
+            // Ignore parse error
+          }
+        }
+        
+        // Pour les autres erreurs (401, 404, etc.), on retourne l'erreur
+        // MAIS on ne fait PAS de retry automatique côté Worker
         return new Response(
           JSON.stringify({ 
             error: 'Failed to submit to Airtable',
-            details: errorText
+            status: status,
+            details: errorText.substring(0, 500)
           }),
           { 
-            status: airtableResponse.status,
+            status: status,
             headers: corsHeaders 
           }
         );
       }
 
-      // Succès
+      // ✅ Succès : marquer l'email comme soumis pour éviter les doublons futurs
+      await markAsSubmitted(email, env);
+      
       const airtableData = await airtableResponse.json();
+      console.log(`[API_CALL] ✅ Successfully submitted to Airtable`, { 
+        timestamp, 
+        ip, 
+        origin, 
+        userAgent,
+        email,
+        airtableId: airtableData.id 
+      });
+      
       return new Response(
         JSON.stringify({ 
           success: true,
@@ -130,7 +313,17 @@ export default {
       );
 
     } catch (error) {
-      console.error('Worker error:', error);
+      const userAgent = request.headers.get('User-Agent') || 'unknown';
+      const origin = request.headers.get('Origin') || request.headers.get('Referer') || 'unknown';
+      const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+      console.error('[API_CALL] ❌ Worker error:', { 
+        timestamp: new Date().toISOString(),
+        ip,
+        origin,
+        userAgent,
+        error: error.message,
+        stack: error.stack 
+      });
       return new Response(
         JSON.stringify({ 
           error: 'Internal server error',
