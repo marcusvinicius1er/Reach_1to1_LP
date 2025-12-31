@@ -96,3 +96,7 @@ Dans PostHog, vous pouvez :
 - Vérifiez les headers de réponse dans les DevTools
 - Testez en supprimant les cookies
 
+
+
+
+

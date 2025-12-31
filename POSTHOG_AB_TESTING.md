@@ -65,3 +65,7 @@ Dans PostHog, vous pouvez :
 - Les événements sont automatiquement tagués avec la variante (A ou B)
 - Le tracking fonctionne même si PostHog n'est pas encore chargé (les événements sont mis en queue)
 
+
+
+
+

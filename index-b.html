@@ -99,8 +99,8 @@
       if (window.posthog) {
         window.posthog.capture(eventName, {
           ...properties,
-          ab_test_variant: 'B',
-          page_variant: 'B'
+          ab_test_variant: 'C',
+          page_variant: 'C'
         });
       }
     }
@@ -118,17 +118,18 @@
           defaults: '2025-11-30',
           person_profiles: 'identified_only',
           loaded: function(posthog) {
-            // Identifier la variante B
-            posthog.identify('variant_b');
+            // Identifier la variante C
+            posthog.identify('variant_c');
             posthog.register({
-              ab_test_variant: 'B',
-              page_variant: 'B',
-              hero_headline: 'Lose up to 10kg in 12 weeks.'
+              ab_test_variant: 'C',
+              page_variant: 'C',
+              hero_headline: 'Lose up to 10kg in 12 weeks.',
+              design_style: 'apple_minimal'
             });
             // Capturer l'événement de vue de la variante
             posthog.capture('ab_test_view', {
-              variant: 'B',
-              page: 'index-b.html'
+              variant: 'C',
+              page: 'index-c.html'
             });
           }
         });
@@ -231,7 +232,7 @@
     }
     
     .clients-text {
-      color: #ff6413;
+      color: #0071E3;
       font-size: 17px;
       font-weight: 600;
       white-space: nowrap;
@@ -241,37 +242,19 @@
       display: inline-block;
       font-weight: 700;
       font-size: 20px;
-      color: #ff6413;
+      color: #0071E3;
     }
     
     /* Hero Section */
     .hero {
       position: relative;
-      color: #fff;
+      color: #1d1d1f;
       padding: 60px 20px 0;
       overflow: hidden;
-      background: #141414;
+      background: #ffffff;
     }
     
-    /* Mosaïque Background */
-    .hero-mosaic {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      opacity: 0.20;
-      z-index: 0;
-    }
-    
-    .hero-mosaic img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    /* Mosaïque Background - Supprimée */
     
     /* Hero Content */
     .hero-content {
@@ -313,13 +296,13 @@
     }
     
     .hero h1 {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(32px, 5vw, 54px);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      letter-spacing: -0.03em;
-      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -0.04em;
+      color: #1d1d1f;
     }
     
     .hero h1 br {
@@ -338,24 +321,23 @@
     
     .btn {
       display: inline-block;
-      background: #ff6413;
-      color: #fff;
-      padding: 18px 40px;
-      font-size: 18px;
-      font-weight: 700;
+      background: #0071E3;
+      color: #ffffff;
+      padding: 14px 28px;
+      font-size: 17px;
+      font-weight: 400;
       text-decoration: none;
-      border-radius: 4px;
-      transition: all 0.3s;
+      border-radius: 980px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       border: none;
       cursor: pointer;
-      letter-spacing: 0.5px;
-      font-family: 'Inter', sans-serif;
+      letter-spacing: -0.01em;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
     }
     
     .btn:hover {
-      background: #e55510;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 100, 19, 0.3);
+      background: #0051B8;
+      transform: scale(1.05);
     }
     
     /* Container */
@@ -389,7 +371,7 @@
       font-size: clamp(21px, 3vw, 28px);
       font-weight: 700;
       margin-bottom: 15px;
-      color: #ff6413;
+      color: #0071E3;
     }
     
     p {
@@ -435,14 +417,14 @@
     .carousel-slide img {
       width: 100%;
       height: auto;
-      border-radius: 12px;
+      border-radius: 24px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     
     .carousel-slide img:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(255, 100, 19, 0.2);
+      box-shadow: 0 8px 30px rgba(0, 113, 227, 0.15);
     }
     
     /* Navigation Buttons */
@@ -450,7 +432,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: #ff6413;
+      background: #0071E3;
       color: white;
       border: none;
       width: 50px;
@@ -466,7 +448,7 @@
     }
     
     .carousel-nav:hover {
-      background: #e55510;
+      background: #0051B8;
       transform: translateY(-50%) scale(1.1);
     }
     
@@ -497,24 +479,24 @@
     }
     
     .carousel-dot.active {
-      background: #ff6413;
+      background: #0071E3;
       width: 30px;
       border-radius: 6px;
     }
     
     /* Location Callout */
     .location-box {
-      background: linear-gradient(135deg, #0d0d0d 0%, #161616 100%);
-      border-radius: 20px;
-      margin: 70px auto;
+      background: #f5f5f7;
+      border-radius: 24px;
+      margin: 100px auto;
       max-width: 760px;
       text-align: center;
-      padding: 40px 48px;
+      padding: 60px 48px;
       position: relative;
       overflow: hidden;
       isolation: isolate;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 100, 19, 0.45);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 113, 227, 0.1);
     }
     
     .location-box::before {
@@ -522,7 +504,7 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background: linear-gradient(135deg, rgba(255, 100, 19, 0.5), rgba(255, 100, 19, 0));
+      background: linear-gradient(135deg, rgba(0, 113, 227, 0.1), rgba(255, 100, 19, 0));
       opacity: 0.2;
       z-index: -2;
     }
@@ -534,24 +516,25 @@
       right: -80px;
       width: 280px;
       height: 280px;
-      background: radial-gradient(circle, rgba(255, 100, 19, 0.4), transparent 70%);
+      background: radial-gradient(circle, rgba(0, 113, 227, 0.2), transparent 70%);
       opacity: 0.7;
       z-index: -1;
     }
     
     .location-box p {
       margin-bottom: 12px;
-      color: rgba(255, 255, 255, 0.86);
-      font-weight: 500;
-      letter-spacing: 0.2px;
+      color: #6e6e73;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      font-size: 17px;
     }
     
     .location-box strong {
-      font-size: 22px;
-      color: #ffffff;
-      font-weight: 700;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
+      font-size: 28px;
+      color: #1d1d1f;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      text-transform: none;
     }
     
     /* Pain Points List */
@@ -574,7 +557,7 @@
       content: "✓";
       position: absolute;
       left: 0;
-      color: #ff6413;
+      color: #0071E3;
       font-weight: bold;
       font-size: 24px;
     }
@@ -591,7 +574,7 @@
     .benefit-card {
       background: #fff;
       padding: 20px;
-      border-left: 4px solid #ff6413;
+      border-left: 4px solid #0071E3;
       box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     }
     
@@ -629,17 +612,18 @@
     
     .pricing-card {
       background: #fff;
-      border: 3px solid #ff6413;
-      border-radius: 12px;
-      padding: 25px 20px;
+      border: 1px solid #d2d2d7;
+      border-radius: 24px;
+      padding: 40px 32px;
       text-align: center;
       position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .pricing-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(255, 100, 19, 0.2);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 113, 227, 0.15);
+      border-color: #0071E3;
     }
     
     .pricing-card.best-value {
@@ -648,16 +632,16 @@
     
     .best-value-badge {
       position: absolute;
-      top: -15px;
+      top: -12px;
       right: 20px;
-      background: #ff6413;
-      color: #fff;
-      padding: 8px 20px;
-      border-radius: 25px;
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      background: #0071E3;
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 980px;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: -0.01em;
     }
     
     .pricing-card h3 {
@@ -669,17 +653,18 @@
     }
     
     .pricing-card .price {
-      font-family: 'Inter', sans-serif;
-      font-size: 44px;
-      font-weight: 700;
-      color: #ff6413;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      color: #1d1d1f;
       line-height: 1;
       margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
     
     .pricing-card .price-detail {
       font-size: 15px;
-      color: #999;
+      color: #6e6e73;
       margin-bottom: 20px;
     }
     
@@ -702,7 +687,7 @@
       content: "✓";
       position: absolute;
       left: 0;
-      color: #ff6413;
+      color: #0071E3;
       font-weight: bold;
       font-size: 18px;
     }
@@ -715,13 +700,13 @@
     
     .trial-note {
       background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
-      border: 3px solid #ff6413;
-      border-radius: 16px;
+      border: 3px solid #0071E3;
+      border-radius: 24px;
       padding: 25px 30px;
       max-width: 700px;
       margin: 0 auto;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(255, 100, 19, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 113, 227, 0.1);
       position: relative;
       overflow: hidden;
     }
@@ -733,7 +718,7 @@
       right: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255, 100, 19, 0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0, 113, 227, 0.05) 0%, transparent 70%);
       pointer-events: none;
     }
     
@@ -759,7 +744,7 @@
     }
     
     .trial-note .trial-price {
-      background: linear-gradient(180deg, transparent 50%, rgba(255, 100, 19, 0.3) 50%);
+      background: linear-gradient(180deg, transparent 50%, rgba(0, 113, 227, 0.15) 50%);
       font-weight: 700;
       color: #000;
       padding: 0 4px;
@@ -767,8 +752,8 @@
     
     .trial-cta-btn {
       display: inline-block;
-      background: #ff6413;
-      color: #fff;
+      background: #0071E3;
+      color: #1d1d1f;
       padding: 14px 35px;
       font-size: 16px;
       font-weight: 600;
@@ -779,13 +764,13 @@
       cursor: pointer;
       letter-spacing: 0.3px;
       font-family: 'Inter', sans-serif;
-      box-shadow: 0 4px 15px rgba(255, 100, 19, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 113, 227, 0.15);
     }
     
     .trial-cta-btn:hover {
-      background: #e55510;
+      background: #0051B8;
       transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(255, 100, 19, 0.4);
+      box-shadow: 0 6px 25px rgba(0, 113, 227, 0.2);
     }
     
     .trial-cta-btn svg {
@@ -817,11 +802,12 @@
     }
     
     .faq-item {
-      background: #1a1a1a;
+      background: #ffffff;
       margin-bottom: 12px;
-      border-radius: 8px;
+      border-radius: 20px;
       overflow: hidden;
-      transition: all 0.3s ease;
+      border: 1px solid #d2d2d7;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .faq-question {
@@ -835,19 +821,19 @@
     }
     
     .faq-question:hover {
-      background: #252525;
+      background: #f5f5f7;
     }
     
     .faq-question h3 {
       margin: 0;
       font-size: 16px;
-      color: #fff;
+      color: #1d1d1f;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
     }
     
     .faq-toggle {
-      color: #ff6413;
+      color: #0071E3;
       font-size: 24px;
       font-weight: 400;
       transition: transform 0.3s ease;
@@ -870,7 +856,7 @@
     }
     
     .faq-answer p {
-      color: #ccc;
+      color: #6e6e73;
       font-size: 15px;
       line-height: 1.5;
       margin: 0;
@@ -926,7 +912,7 @@
     
     .transformation-card {
       position: relative;
-      border-radius: 12px;
+      border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       transition: all 0.4s ease;
@@ -943,7 +929,7 @@
     
     .transformation-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(255, 100, 19, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 113, 227, 0.15);
     }
     
     .transformation-image-wrapper {
@@ -996,7 +982,7 @@
       margin-bottom: 12px;
       font-weight: 400;
       text-align: center;
-      color: #fff;
+      color: #1d1d1f;
       max-width: 100%;
     }
     
@@ -1005,7 +991,7 @@
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 6px;
-      color: #ff6413;
+      color: #0071E3;
       letter-spacing: -0.02em;
       text-transform: capitalize;
     }
@@ -1023,7 +1009,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: #ff6413;
+      background: #0071E3;
       color: white;
       border: none;
       width: 50px;
@@ -1039,7 +1025,7 @@
     }
     
     .before-after-nav:hover {
-      background: #e55510;
+      background: #0051B8;
       transform: translateY(-50%) scale(1.1);
     }
     
@@ -1070,39 +1056,39 @@
     }
     
     .before-after-dot.active {
-      background: #ff6413;
+      background: #0071E3;
       width: 30px;
       border-radius: 6px;
     }
     
     /* CTA Section */
     .cta-section {
-      padding: 50px 20px;
-      background: #0a0a0a;
+      padding: 100px 20px;
+      background: #ffffff;
       text-align: center;
-      border-top: 1px solid #1a1a1a;
     }
     
     .cta-section h2 {
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 700;
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 600;
       margin-bottom: 20px;
-      letter-spacing: -0.02em;
-      color: #fff;
+      letter-spacing: -0.03em;
+      color: #1d1d1f;
     }
     
     .cta-section p {
-      font-size: 20px;
-      color: #999;
+      font-size: 21px;
+      color: #6e6e73;
       margin-bottom: 40px;
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      font-weight: 400;
     }
     
     .btn-secondary {
-      background: #ff6413;
-      color: #fff;
+      background: #0071E3;
+      color: #1d1d1f;
       padding: 18px 45px;
       font-size: 16px;
       font-weight: 700;
@@ -1112,24 +1098,24 @@
       transition: all 0.3s;
       text-transform: uppercase;
       letter-spacing: 1px;
-      border: 2px solid #ff6413;
+      border: 2px solid #0071E3;
       cursor: pointer;
     }
     
     .btn-secondary:hover {
-      background: #e55510;
-      color: #fff;
-      border-color: #e55510;
+      background: #0051B8;
+      color: #1d1d1f;
+      border-color: #0051B8;
       transform: translateY(-2px);
     }
     
     /* Footer */
     footer {
-      background: #000000;
-      color: #fff;
+      background: #f5f5f7;
+      color: #6e6e73;
       text-align: center;
-      padding: 30px 20px;
-      font-size: 14px;
+      padding: 40px 20px;
+      font-size: 12px;
       font-weight: 400;
     }
     
@@ -1171,7 +1157,7 @@
       bottom: 30px;
       right: 30px;
       background-color: #25d366;
-      color: #fff;
+      color: #1d1d1f;
       padding: 12px 18px;
       border-radius: 999px;
       font-size: 16px;
@@ -1219,9 +1205,6 @@
         order: 1;
       }
       
-      .hero-mosaic {
-        display: none; /* Cacher sur mobile pour améliorer LCP */
-      }
       
       /* Timeline responsive - passer en vertical avec ligne à gauche */
       .timeline-container {
@@ -1240,8 +1223,12 @@
         display: block !important;
         grid-template-columns: none !important;
         gap: 0 !important;
-        margin-bottom: 60px !important;
+        margin-bottom: 50px !important;
         padding-left: 0 !important;
+      }
+      
+      .timeline-item:last-child {
+        margin-bottom: 0 !important;
       }
       
       .timeline-badge {
@@ -1537,6 +1524,27 @@
       .cta-section p {
         font-size: 16px;
       }
+      
+      /* Sections avec padding fixe - réduire sur mobile */
+      section[style*="padding: 100px"] {
+        padding: 60px 20px !important;
+      }
+      
+      #whySection {
+        padding: 60px 15px !important;
+      }
+      
+      #whySection > div > div:first-child {
+        margin-bottom: 50px !important;
+      }
+      
+      #free-guide {
+        padding: 60px 15px !important;
+      }
+      
+      .hero {
+        padding: 80px 15px 40px !important;
+      }
     }
     
     /* Client Stories Section Styles */
@@ -1546,7 +1554,7 @@
       width: 100%;
       position: relative;
       scrollbar-width: thin;
-      scrollbar-color: #ff6413 #f0f0f0;
+      scrollbar-color: #0071E3 #f0f0f0;
       padding-bottom: 10px;
       /* Force la barre à toujours être visible */
       scrollbar-gutter: stable;
@@ -1565,12 +1573,12 @@
     }
 
     .client-scroll-container::-webkit-scrollbar-thumb {
-      background: #ff6413;
+      background: #0071E3;
       border-radius: 10px;
     }
 
     .client-scroll-container::-webkit-scrollbar-thumb:hover {
-      background: #e55510;
+      background: #0051B8;
     }
 
     .client-scroll-track {
@@ -1591,7 +1599,7 @@
 
     .client-story-card {
       background: #fff;
-      border-radius: 16px;
+      border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 2px 10px rgba(0,0,0,0.06);
       width: 280px;
@@ -1639,8 +1647,8 @@
     }
 
     .client-badge {
-      background: #ff6413;
-      color: #fff;
+      background: #0071E3;
+      color: #1d1d1f;
       padding: 4px 10px;
       border-radius: 20px;
       font-size: 11px;
@@ -1779,16 +1787,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Hero Section -->
 <section class="hero">
-  <!-- Mosaïque Background -->
-  <div class="hero-mosaic">
-    <img src="01-IMAGES/hero/19.03.2023 (305 of 403).webp" alt="" loading="lazy" width="640" height="960">
-    <img src="01-IMAGES/hero/body-transformation-program.webp" alt="" loading="lazy" width="640" height="960">
-    <img src="01-IMAGES/hero/personal-fitness-training-services.webp" alt="" loading="lazy" width="640" height="960">
-    <img src="01-IMAGES/hero/body-transformation.webp" alt="" loading="lazy" width="640" height="960">
-    <img src="01-IMAGES/hero/Sarah-session.webp" alt="" loading="lazy" width="640" height="960">
-    <img src="01-IMAGES/hero/19.03.2023 (327 of 403).webp" alt="" loading="lazy" width="640" height="960">
-  </div>
-  
   <div class="container" style="max-width: 1200px; position: relative; z-index: 1;">
     <!-- Clients Row -->
     <div class="clients-row">
@@ -1807,18 +1805,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Accroche CENTRÉE -->
       <div class="hero-text">
         <!-- AJOUT ICI : Le badge de localisation pour le Quality Score -->
-        <div style="display: block; background: rgba(255, 100, 19, 0.2); border: 1px solid #ff6413; padding: 5px 12px; border-radius: 4px; color: #ff6413; font-weight: 700; font-size: 13px; margin: 0 auto 15px auto; text-transform: uppercase; letter-spacing: 1px; text-align: center; width: fit-content;">
+        <div style="display: block; background: rgba(0, 113, 227, 0.15); border: 1px solid #0071E3; padding: 5px 12px; border-radius: 20px; color: #0071E3; font-weight: 700; font-size: 13px; margin: 0 auto 15px auto; text-transform: uppercase; letter-spacing: 1px; text-align: center; width: fit-content;">
           📍 Based at NOGS, Al Quoz
         </div>
         <!-- FIN AJOUT -->
         <h1>Lose up to 10kg in 12 weeks.</h1>
         <p>Build a strong, natural V-shape, even with a busy schedule.</p>
         <div style="margin-top: 30px;">
-          <a href="#free-guide" class="btn" onclick="trackEvent('cta_click', {button_location: 'hero_section', button_text: 'Start Losing Fat Today – Free Guide'}); fbq('track', 'Lead');">Fat loss Free Guide</a>
+          <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20free%20trial%20session" class="btn" target="_blank" rel="noopener noreferrer" onclick="trackEvent('cta_click', {button_location: 'hero_section', button_text: 'Book a free trial session'}); fbq('track', 'Contact');">Book a free trial session</a>
         </div>
         <!-- French Keywords Integration for SEO/Ads Score -->
-        <div style="text-align: center; padding: 10px; margin-top: 12px; max-width: 70%; margin-left: auto; margin-right: auto; background: rgba(255,255,255,0.1); border-radius: 8px;">
-          <p style="font-size: 14px; margin-bottom: 0; color: #ccc;">
+        <div style="text-align: center; padding: 10px; margin-top: 12px; max-width: 70%; margin-left: auto; margin-right: auto; background: rgba(255,255,255,0.1); border-radius: 20px;">
+          <p style="font-size: 14px; margin-bottom: 0; color: #6e6e73;">
             🇫🇷 <strong>Coach Sportif Français à Dubai (Al Quoz)</strong> : 
             Coaching personnalisé 1-to-1, perte de poids et prise de muscle. 
             Séances en français disponibles à Team Nogueira.
@@ -2385,11 +2383,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Location Callout -->
 <!-- Location Callout Optimized -->
 <div class="location-box" id="location">
-  <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #ff6413;">📍 High Performance Facility</p>
-  <h2 style="color: #fff; margin-top: 10px; font-size: 28px;">Based at Team Nogueira (NOGS), Al Quoz</h2>
+  <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #0071E3;">📍 High Performance Facility</p>
+  <h2 style="color: #1d1d1f; margin-top: 10px; font-size: 28px;">Based at Team Nogueira (NOGS), Al Quoz</h2>
   <p style="margin-top: 15px;">Located in the heart of Al Quoz Industrial Area 3.</p>
   <p>Premium equipment, focused environment, real training atmosphere.</p>
-  <p style="margin-bottom: 0; font-style: italic; color: #999; font-size: 15px;">(Accessible from Sheikh Zayed Rd & Al Khail Rd)</p>
+  <p style="margin-bottom: 0; font-style: italic; color: #6e6e73; font-size: 15px;">(Accessible from Sheikh Zayed Rd & Al Khail Rd)</p>
 </div>
 
 <!-- Pricing Section -->
@@ -2502,13 +2500,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- Why Face-to-Face -->
-<section style="background: #000000; padding: 60px 20px; color: #fff;" id="whySection">
+<section style="background: #ffffff; padding: 100px 20px; color: #1d1d1f;" id="whySection">
   <div style="max-width: 1200px; margin: 0 auto;">
     <!-- Accroche principale -->
     <div style="text-align: center; margin-bottom: 80px;">
-      <h2 style="font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 30px; color: #fff;">This is what changes when you stop doing it&nbsp;alone.</h2>
+      <h2 style="font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 30px; color: #1d1d1f;">This is what changes when you stop doing it&nbsp;alone.</h2>
       
-      <p style="max-width: 800px; margin: 0 auto; font-size: 20px; color: #ccc; line-height: 1.6;">I promise that at the end of every session, you'll know it was worth showing up.</p>
+      <p style="max-width: 800px; margin: 0 auto; font-size: 20px; color: #6e6e73; line-height: 1.6;">I promise that at the end of every session, you'll know it was worth showing up.</p>
     </div>
     
     <div class="timeline-container" style="position: relative; padding-top: 60px; padding-bottom: 60px;">
@@ -2516,18 +2514,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="timeline-line-base" style="position: absolute; left: 50%; transform: translateX(-50%); width: 4px; top: 0; bottom: 0; background: #333; z-index: 0;"></div>
       
       <!-- Ligne orange qui s'anime -->
-      <div id="progressLine" class="timeline-line-progress" style="position: absolute; left: 50%; transform: translateX(-50%); width: 4px; top: 0; height: 0%; background: #ff6413; z-index: 1; transition: height 0.1s linear;"></div>
+      <div id="progressLine" class="timeline-line-progress" style="position: absolute; left: 50%; transform: translateX(-50%); width: 4px; top: 0; height: 0%; background: #0071E3; z-index: 1; transition: height 0.1s linear;"></div>
       
       <!-- Item 1 -->
       <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 80px 1fr; gap: 60px; align-items: center; margin-bottom: 120px; position: relative;">
         <div class="timeline-text text-right" style="text-align: right;">
-          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You finally stop thinking. You just show up and it gets&nbsp;done.</h3>
-          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">Your program is designed for YOUR goals, YOUR body, YOUR abilities. And it's a training you'll finally enjoy and want to&nbsp;do.</p>
+          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #1d1d1f;">You finally stop thinking. You just show up and it gets&nbsp;done.</h3>
+          <p style="font-size: 17px; color: #6e6e73; line-height: 1.6;">Your program is designed for YOUR goals, YOUR body, YOUR abilities. And it's a training you'll finally enjoy and want to&nbsp;do.</p>
         </div>
         <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
-          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #fff; border: 6px solid #000;">1</div>
+          <div style="width: 70px; height: 70px; background: #0071E3; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #ffffff; border: 4px solid #ffffff;">1</div>
         </div>
-        <div class="timeline-image" style="background: #1a1a1a; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;">
+        <div class="timeline-image" style="background: #f5f5f7; aspect-ratio: 16/10; border-radius: 24px; overflow: hidden;">
           <img src="01-IMAGES/stop_thinking.webp" alt="Personal training session" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
         </div>
       </div>
@@ -2535,13 +2533,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Item 2 -->
       <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 80px 1fr; gap: 60px; align-items: center; margin-bottom: 120px; position: relative;">
         <div class="timeline-text text-right" style="text-align: right;">
-          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">You finally make progress that you can feel and&nbsp;see.</h3>
-          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">We track everything. Strength gains. Body composition. Energy levels. You see the results week after&nbsp;week.</p>
+          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #1d1d1f;">You finally make progress that you can feel and&nbsp;see.</h3>
+          <p style="font-size: 17px; color: #6e6e73; line-height: 1.6;">We track everything. Strength gains. Body composition. Energy levels. You see the results week after&nbsp;week.</p>
         </div>
         <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
-          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #fff; border: 6px solid #000;">2</div>
+          <div style="width: 70px; height: 70px; background: #0071E3; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #ffffff; border: 4px solid #ffffff;">2</div>
         </div>
-        <div class="timeline-image" style="background: #1a1a1a; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;">
+        <div class="timeline-image" style="background: #f5f5f7; aspect-ratio: 16/10; border-radius: 24px; overflow: hidden;">
           <img src="01-IMAGES/progress_tracking.webp" alt="Progress tracking app" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
         </div>
       </div>
@@ -2549,19 +2547,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Item 3 -->
       <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 80px 1fr; gap: 50px; align-items: center; position: relative;">
         <div class="timeline-text text-right" style="text-align: right;">
-          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #fff;">The support doesn't stop when you leave the&nbsp;gym.</h3>
-          <p style="font-size: 17px; color: #ccc; line-height: 1.6;">I'm available on WhatsApp between sessions. Struggling? Send me a message. Need advice? I'm there. This isn't just 3 sessions a week, it's ongoing support to keep you on track when it matters&nbsp;most.</p>
+          <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 15px; color: #1d1d1f;">The support doesn't stop when you leave the&nbsp;gym.</h3>
+          <p style="font-size: 17px; color: #6e6e73; line-height: 1.6;">I'm available on WhatsApp between sessions. Struggling? Send me a message. Need advice? I'm there. This isn't just 3 sessions a week, it's ongoing support to keep you on track when it matters&nbsp;most.</p>
         </div>
         <div class="timeline-badge" style="display: flex; justify-content: center; z-index: 2;">
-          <div style="width: 70px; height: 70px; background: #ff6413; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #fff; border: 6px solid #000;">3</div>
+          <div style="width: 70px; height: 70px; background: #0071E3; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #ffffff; border: 4px solid #ffffff;">3</div>
         </div>
-        <div class="timeline-image" style="background: #1a1a1a; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;">
+        <div class="timeline-image" style="background: #f5f5f7; aspect-ratio: 16/10; border-radius: 24px; overflow: hidden;">
           <img src="01-IMAGES/support_continues2.webp" alt="Coaching support via mobile" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
         </div>
       </div>
     </div>
     
-    <p style="text-align: center; font-weight: 600; font-size: 20px; margin-top: 50px; color: #fff; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.5;">It's not more knowledge you need. It's someone to make sure you use it. And that's exactly what we do, together, every week.</p>
+    <p style="text-align: center; font-weight: 600; font-size: 20px; margin-top: 50px; color: #1d1d1f; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.5;">It's not more knowledge you need. It's someone to make sure you use it. And that's exactly what we do, together, every week.</p>
   </div>
   
   <script>
@@ -2863,9 +2861,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- FAQ -->
-<section style="background: #2a2a2a; padding: 60px 20px;">
+<section style="background: #ffffff; padding: 100px 20px;">
   <div class="container">
-    <h2 style="text-align: center; color: #fff;">Have any questions?</h2>
+    <h2 style="text-align: center; color: #1d1d1f;">Have any questions?</h2>
     
     <div class="faq-container">
       <div class="faq-item">
@@ -2956,7 +2954,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
       <!-- Left: Book Image -->
       <div style="position: relative;">
-        <img src="01-IMAGES/stopfat.webp" alt="How to Master Diet Adherence - Free Guide" style="width: 100%; max-width: 250px; height: auto; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+        <img src="01-IMAGES/stopfat.webp" alt="How to Master Diet Adherence - Free Guide" style="width: 100%; max-width: 250px; height: auto; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
       </div>
       
       <!-- Right: Form -->
@@ -2970,7 +2968,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             name="fullName" 
             placeholder="Full Name*" 
             required
-            style="padding: 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; font-family: 'Inter', sans-serif; transition: border-color 0.3s;"
+            style="padding: 16px; border: 2px solid #e0e0e0; border-radius: 20px; font-size: 16px; font-family: 'Inter', sans-serif; transition: border-color 0.3s;"
             onfocus="this.style.borderColor='#4CAF50';"
             onblur="this.style.borderColor='#e0e0e0';"
           >
@@ -2979,15 +2977,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             name="email" 
             placeholder="Email*" 
             required
-            style="padding: 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; font-family: 'Inter', sans-serif; transition: border-color 0.3s;"
+            style="padding: 16px; border: 2px solid #e0e0e0; border-radius: 20px; font-size: 16px; font-family: 'Inter', sans-serif; transition: border-color 0.3s;"
             onfocus="this.style.borderColor='#4CAF50';"
             onblur="this.style.borderColor='#e0e0e0';"
           >
           <button 
             type="submit" 
-            style="padding: 16px 32px; background: #FF6B35; color: #ffffff; border: none; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; transition: background 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;"
+            style="padding: 16px 32px; background: #0071E3; color: #1d1d1f; border: none; border-radius: 20px; font-size: 18px; font-weight: 600; cursor: pointer; transition: background 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;"
             onmouseover="this.style.background='#e55a2b';"
-            onmouseout="this.style.background='#FF6B35';"
+            onmouseout="this.style.background='#0071E3';"
           >
             Download Now! It's Free. →
           </button>
@@ -3218,7 +3216,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       const successDiv = document.createElement('div');
       successDiv.className = 'success-message';
-      successDiv.style.cssText = 'padding: 20px; background: #4CAF50; color: white; border-radius: 8px; margin-top: 20px; text-align: center; animation: fadeIn 0.3s;';
+      successDiv.style.cssText = 'padding: 20px; background: #4CAF50; color: white; border-radius: 20px; margin-top: 20px; text-align: center; animation: fadeIn 0.3s;';
       successDiv.innerHTML = `
         <p style="margin: 0 0 10px 0; font-weight: 600; font-size: 18px;">✅ Success!</p>
         <p style="margin: 0; font-size: 14px;">Check your email (${email}) - Your free guide download link has been sent!</p>
@@ -3302,7 +3300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    
 </footer>
 
-<div style="text-align: center; padding: 20px; background-color: #1a1a1a; color: #ffffff; font-size: 14px;">
+<div style="text-align: center; padding: 20px; background-color: #f5f5f7; color: #6e6e73; font-size: 14px;">
   Coaching disponible en français pour les expatriés francophones à Dubai.
 </div>
 

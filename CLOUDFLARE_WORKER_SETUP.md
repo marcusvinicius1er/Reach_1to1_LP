@@ -83,3 +83,13 @@ curl -X POST https://free-guide-api.your-subdomain.workers.dev \
 - Latence typique : < 50ms
 - Pas de limite de bande passante
 
+
+
+
+
+
+
+
+
+
+
