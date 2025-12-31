@@ -147,7 +147,7 @@ export default {
 
       // Parser le body de la requête
       const body = await request.json();
-      let { fullName, email } = body;
+      let { fullName, email, source } = body;
 
       // Validation basique
       if (!email || !fullName) {
@@ -161,8 +161,13 @@ export default {
       // Normaliser l'email
       email = normalizeEmail(email);
       fullName = fullName.trim();
+      
+      // Déterminer la source (newsletter ou free_guide)
+      // Si source n'est pas fourni, utiliser 'free_guide_landing_page' par défaut (rétrocompatibilité)
+      const submissionSource = source || 'free_guide_landing_page';
 
       // ⚡ OPTIMISATION : Vérifier les doublons AVANT d'appeler Airtable
+      // Note: On vérifie les doublons par email, peu importe la source
       const duplicateCheck = await checkDuplicate(email, env);
       if (duplicateCheck.isDuplicate) {
         const hoursAgo = Math.floor((Date.now() - duplicateCheck.timestamp) / (1000 * 60 * 60));
@@ -172,7 +177,8 @@ export default {
           origin, 
           userAgent,
           email,
-          fullName 
+          fullName,
+          source: submissionSource
         });
         return new Response(
           JSON.stringify({ 
@@ -195,7 +201,8 @@ export default {
         origin, 
         userAgent,
         email,
-        fullName: fullName.substring(0, 20) + '...' // Masquer le nom complet pour la privacy
+        fullName: fullName.substring(0, 20) + '...', // Masquer le nom complet pour la privacy
+        source: submissionSource
       });
 
       // Préparer le record Airtable avec le mapping
@@ -205,7 +212,7 @@ export default {
         fields: {
           [fieldMapping.fullName]: fullName,
           [fieldMapping.email]: email, // Email déjà normalisé
-          [fieldMapping.source]: 'free_guide_landing_page'
+          [fieldMapping.source]: submissionSource
         }
       };
       
