@@ -49,6 +49,22 @@ export default {
     // Ajouter un header pour le debugging (optionnel)
     newResponse.headers.set('X-AB-Variant', variant);
     
+    // 📊 LOGGING : Workers Analytics Engine (si configuré)
+    // Pour activer : Cloudflare Dashboard > Workers & Pages > Settings > Functions > Add binding > Analytics Engine
+    if (env.ANALYTICS) {
+      try {
+        env.ANALYTICS.writeDataPoint({
+          blobs: ['ab_test', variant],
+          doubles: [Date.now()],
+          indexes: [`variant_${variant}`]
+        });
+      } catch (error) {
+        // Silently fail if Analytics Engine is not configured
+        // This allows the worker to work even without Analytics Engine
+        console.error('Analytics Engine error:', error);
+      }
+    }
+    
     return newResponse;
   }
 };
@@ -79,4 +95,11 @@ function simpleHash(str) {
   }
   return Math.abs(hash);
 }
+
+
+
+
+
+
+
 

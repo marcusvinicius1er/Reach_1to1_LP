@@ -54,6 +54,22 @@ export async function onRequest(context) {
   // Ajouter un header pour le debugging (optionnel)
   headers.set('X-AB-Variant', variant);
   
+  // 📊 LOGGING : Workers Analytics Engine (si configuré)
+  // Pour activer : Cloudflare Dashboard > Workers & Pages > Settings > Functions > Add binding > Analytics Engine
+  if (context.env && context.env.ANALYTICS) {
+    try {
+      context.env.ANALYTICS.writeDataPoint({
+        blobs: ['ab_test', variant],
+        doubles: [Date.now()],
+        indexes: [`variant_${variant}`]
+      });
+    } catch (error) {
+      // Silently fail if Analytics Engine is not configured
+      // This allows the worker to work even without Analytics Engine
+      console.error('Analytics Engine error:', error);
+    }
+  }
+  
   // Créer une nouvelle réponse avec les headers modifiés
   const newResponse = new Response(response.body, {
     status: response.status,
