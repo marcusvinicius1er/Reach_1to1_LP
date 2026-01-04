@@ -42,7 +42,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob:; worker-src 'self' blob: https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; frame-src 'self' https:;">
   
   <!-- Preload Critical Images (LCP uniquement) -->
-  <link rel="preload" as="image" href="01-IMAGES/hero/COACH.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="01-IMAGES/hero/coach-2.webp?v=20260104" fetchpriority="high">
   <link rel="preload" as="image" href="01-IMAGES/banniere.webp" fetchpriority="high">
   
   
@@ -276,7 +276,8 @@
       position: relative;
       z-index: 1;
       filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
-      background: transparent;
+      background: transparent !important;
+      background-color: transparent !important;
       align-self: end;
       margin-bottom: 0;
     }
@@ -285,6 +286,8 @@
       width: 100%;
       height: auto;
       display: block;
+      background: transparent;
+      background-color: transparent;
     }
     
     .hero-text {
@@ -1779,7 +1782,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-content">
       <!-- Photo Coach - Premier plan à GAUCHE -->
       <div class="hero-coach">
-        <img src="01-IMAGES/hero/COACH.webp" alt="Antoine - Personal Coach at NOGS Dubai" loading="eager" fetchpriority="high" width="640" height="1632">
+        <img src="01-IMAGES/hero/coach-2.webp?v=20260104" alt="Antoine - Personal Coach at NOGS Dubai" loading="eager" fetchpriority="high" width="640" height="1632" style="background: transparent; background-color: transparent;">
       </div>
       
       <!-- Accroche CENTRÉE -->
