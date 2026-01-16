@@ -561,15 +561,45 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     }
     
+    .benefit-card.icon-card {
+      border-left: none;
+      border-top: 4px solid #0071E3;
+      padding: 30px 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+
+    .benefit-card.icon-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 113, 227, 0.1);
+    }
+    
+    .card-icon {
+      margin-bottom: 20px;
+    }
+    
     .benefit-card:last-child {
       grid-column: 1 / -1;
       max-width: 450px;
       margin: 0 auto;
     }
     
+    .benefit-card.icon-card:last-child {
+      grid-column: auto;
+      max-width: 100%;
+      margin: 0;
+    }
+    
     .benefit-card h3 {
       margin-bottom: 10px;
       font-size: 20px;
+    }
+    
+    .benefit-card.icon-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
     }
     
     .benefit-card p {
@@ -965,7 +995,7 @@
       margin-bottom: 12px;
       font-weight: 400;
       text-align: center;
-      color: #1d1d1f;
+      color: #ffffff;
       max-width: 100%;
     }
     
@@ -974,7 +1004,7 @@
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 6px;
-      color: #0071E3;
+      color: #ffffff;
       letter-spacing: -0.02em;
       text-transform: capitalize;
     }
@@ -1334,6 +1364,14 @@
       .benefit-card:last-child {
         max-width: 100%;
       }
+
+      .benefit-card.icon-card {
+        padding: 25px 20px;
+      }
+
+      .card-icon {
+        margin-bottom: 15px;
+      }
       
       .transformation-card {
         flex: 0 0 280px;
@@ -1685,6 +1723,167 @@
       
       .client-story-quote {
         font-size: 12px;
+      }
+    }
+
+    /* Investment Section Styles */
+    .investment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .value-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .value-list li {
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 25px;
+      font-size: 18px;
+      color: #1d1d1f;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .value-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .value-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.15em;
+      color: #0071E3;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .value-list li span {
+      display: block;
+      font-size: 15px;
+      color: #6e6e73;
+      font-weight: 400;
+      margin-top: 4px;
+    }
+
+    .value-list li strong {
+      font-weight: 700;
+    }
+
+    @media (max-width: 991px) {
+      .investment-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .investment-pitch {
+        text-align: center;
+      }
+      .investment-value-stack {
+        padding: 30px 25px !important;
+      }
+    }
+
+    /* Comparison Section Styles */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid #d2d2d7;
+    }
+
+    .comparison-card {
+      padding: 50px 40px;
+    }
+
+    .old-way {
+      background: #f5f5f7;
+      color: #6e6e73;
+    }
+
+    .new-way {
+      background: #ffffff;
+      color: #1d1d1f;
+      position: relative;
+    }
+    
+    /* Une petite bordure bleue subtile sur le côté "New Way" */
+    .new-way::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 4px;
+      background: #0071E3;
+    }
+
+    .comp-title {
+      font-size: 22px;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    
+    .new-way .comp-title {
+      color: #0071E3;
+    }
+
+    .comp-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .comp-list li {
+      margin-bottom: 18px;
+      font-size: 17px;
+      position: relative;
+      padding-left: 30px;
+      line-height: 1.5;
+    }
+
+    .comp-list.old li::before {
+      content: "×";
+      position: absolute;
+      left: 0;
+      color: #999;
+      font-size: 18px;
+      font-weight: bold;
+      top: 0.15em;
+      line-height: 1;
+    }
+
+    .comp-list.new li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #0071E3;
+      font-size: 18px;
+      font-weight: bold;
+      top: 0.15em;
+      line-height: 1;
+    }
+
+    @media (max-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+        border-radius: 24px;
+      }
+      .new-way::before {
+        width: 100%;
+        height: 4px;
+        bottom: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+      .comparison-card {
+        padding: 30px 25px;
       }
     }
   </style>
@@ -2373,110 +2572,130 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p style="margin-bottom: 0; font-style: italic; color: #6e6e73; font-size: 15px;">(Accessible from Sheikh Zayed Rd & Al Khail Rd)</p>
 </div>
 
-<!-- Pricing Section -->
-<section class="pricing-section" id="pricing">
-  <div class="container" style="max-width: 1200px;">
-    <h2 style="text-align: center;">Right. Let's Talk Pricing.</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px; color: #333;">I'm not going to make you "book a call" to find out prices. That's sales BS. Here's how it works:</p>
-    
-    <div class="pricing-cards-container">
-      <!-- 6 Sessions Package Card -->
-      <div class="pricing-card">
-        <h3>6 Sessions Package</h3>
-        <div class="price">2,400 AED</div>
-        <div class="price-detail">(400 AED/session)</div>
-        
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%206%20Sessions%20Package" class="btn" target="_blank" rel="noopener noreferrer" onclick="trackEvent('package_click', {package_name: '6 Sessions Package', package_price: '2400', currency: 'AED', button_text: 'Book your free trial session'}); fbq('track', 'InitiateCheckout', {value: 2400, currency: 'AED', content_name: '6 Sessions Package'});" style="margin-top: 15px;">Book your free trial session</a>
-      </div>
-      
-      <!-- 8 Sessions Package Card -->
-      <div class="pricing-card">
-        <h3>8 Sessions Package</h3>
-        <div class="price">2,800 AED</div>
-        <div class="price-detail">(350 AED/session)</div>
-        
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%208%20Sessions%20Package" class="btn" target="_blank" rel="noopener noreferrer" onclick="trackEvent('package_click', {package_name: '8 Sessions Package', package_price: '2800', currency: 'AED', button_text: 'Book your free trial session'}); fbq('track', 'InitiateCheckout', {value: 2800, currency: 'AED', content_name: '8 Sessions Package'});" style="margin-top: 15px;">Book your free trial session</a>
-      </div>
-      
-      <!-- 12 Sessions Package Card - BEST VALUE -->
-      <div class="pricing-card best-value">
-        <div class="best-value-badge">BEST VALUE</div>
-        <h3>12 Sessions Package</h3>
-        <div class="price">3,600 AED</div>
-        <div class="price-detail">(300 AED/session)</div>
-        
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20the%2012%20Sessions%20Package" class="btn" target="_blank" rel="noopener noreferrer" onclick="trackEvent('package_click', {package_name: '12 Sessions Package', package_price: '3600', currency: 'AED', button_text: 'Book your free trial session'}); fbq('track', 'InitiateCheckout', {value: 3600, currency: 'AED', content_name: '12 Sessions Package'});" style="margin-top: 15px;">Book your free trial session</a>
-      </div>
-    </div>
-    
-    <div class="pricing-disclaimer">
-      <p>* Does not include NOGS gym membership</p>
-      <p>* Sessions are 60 minutes, fully personalized</p>
-    </div>
-    
-    <div class="trial-note">
-      <div class="trial-note-content">
-        <h3>Not Sure Yet? Try Before You Commit.</h3>
-        <p>Come train, no strings attached. You'll know in 60 minutes if this is exactly what you've been missing.</p>
-        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20free%20trial%20session" class="trial-cta-btn" target="_blank" rel="noopener noreferrer" onclick="trackEvent('TrialBooked', {button_text: 'Book your free trial session', value: '0', currency: 'AED'}); fbq('track', 'Lead', {content_name: 'Trial Session', value: 0, currency: 'AED'}); fbq('trackCustom', 'TrialBooked', {content_name: 'Trial Session', value: 0, currency: 'AED'});">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Book your free trial session
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Pain Points Section -->
-<section>
-  <div class="container">
-    <h2 style="text-align: center;">Let Me Guess... You've Tried the Apps, the Programs, the Generic Gym Plans. And You're Still&nbsp;Stuck.</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">Here's the problem: apps can't watch your form. Programs don't adjust when life gets messy. And generic plans don't know YOU.</p>
-    <p style="text-align: center; font-weight: 600; font-size: 20px;">This is different. This is face-to-face coaching.</p>
-    <p style="text-align: center; margin-bottom: 30px;">You show up. I handle everything else.</p>
-    
-    <h3 style="text-align: center; margin-top: 40px;">This is for you if:</h3>
-    <ul class="pain-list">
-      <li>You're carrying 10kg+ you want gone</li>
-      <li>You're tired of yo-yo dieting and BS advice</li>
-      <li>You want energy back, not just weight loss</li>
-      <li>You can train at NOGS, Al Quoz (this is non-negotiable)</li>
-      <li>You're ready to invest in yourself properly</li>
-      <li>You want a coach who actually shows up, not a PDF</li>
-    </ul>
-  </div>
-</section>
-
 <!-- What You Get -->
 <section class="section-dark">
   <div class="container" style="max-width: 900px;">
     <h2 style="text-align: center;">Here's What Face-to-Face Coaching Actually Looks&nbsp;Like</h2>
     <div class="benefits-grid">
-      <div class="benefit-card">
-        <h3>1-on-1 Sessions at NOGS</h3>
-        <p>60-minute sessions, 2-3x per week. Fully personalized to your goals, fitness level, and schedule. I'm there. You're there. No distractions.</p>
+      
+      <div class="benefit-card icon-card">
+        <div class="card-icon">
+          <!-- Icon: Person / Coaching -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0071E3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
+        <h3>Elite 1-on-1 Sessions</h3>
+        <p>60-minute sessions at NOGS, engineered for your goals. Full presence. Zero distractions. Every session counts.</p>
       </div>
       
-      <div class="benefit-card">
-        <h3>Custom Training Built For You</h3>
-        <p>Not a template. Not a program. A plan designed specifically for your body, your goals, your life. Adjusted as you progress.</p>
+      <div class="benefit-card icon-card">
+        <div class="card-icon">
+          <!-- Icon: Ruler / Precision -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0071E3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+        </div>
+        <h3>Tailored Strength Architecture</h3>
+        <p>Your program is built around your physiology. No generic sets. Every rep has a purpose. Precision over guesswork.</p>
       </div>
       
-      <div class="benefit-card">
-        <h3>Nutrition Guidance That Works</h3>
-        <p>Simple, practical strategies. No meal prep slavery. No restriction. Just: here's what to eat, here's why, now go live your life.</p>
+      <div class="benefit-card icon-card">
+        <div class="card-icon">
+          <!-- Icon: Apple/Fork / Nutrition -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0071E3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 7.427v11.906c0 1.105.895 2.012 2 2.012h.281c1.105 0 2-.907 2-2.012V5.777c0-1.105-.895-2.012-2-2.012h-.281c-.847 0-1.571.534-1.877 1.286l-.664 1.592a.684.684 0 0 1-.65.408.684.684 0 0 1-.649-.408l-.665-1.593c-.307-.751-1.03-1.285-1.878-1.285h-.28c-1.105 0-2 .907-2 2.012v13.542c0 1.105.895 2.012 2 2.012h.281c1.105 0 2-.907 2-2.012V7.427"/></svg>
+        </div>
+        <h3>Lifestyle-Fit Nutrition</h3>
+        <p>Business dinners, travel—your nutrition adapts to your reality. Strategic fueling, not deprivation.</p>
       </div>
       
-      <div class="benefit-card">
-        <h3>WhatsApp Support Between Sessions</h3>
-        <p>Questions? Stuck on something? Message me. I reply. Usually within a few hours.</p>
+      <div class="benefit-card icon-card">
+        <div class="card-icon">
+          <!-- Icon: Chat bubble / Support -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0071E3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+        <h3>WhatsApp Priority Access</h3>
+        <p>Questions? Stuck on something? Message me directly. You get rapid support when you need it.</p>
       </div>
       
-      <div class="benefit-card">
-        <h3>Progress Tracking</h3>
-        <p>We track what matters: strength, energy, how you feel, how you look. Not just scale weight (because that lies half the time).</p>
+      <div class="benefit-card icon-card">
+        <div class="card-icon">
+          <!-- Icon: Chart / Progress -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0071E3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+        </div>
+        <h3>Data-Driven Tracking</h3>
+        <p>We track what matters: strength metrics, body composition, and energy levels. Real progress is measurable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOUVELLE SECTION PRICING/INVESTISSEMENT -->
+<section class="pricing-section" id="pricing" style="background: #f5f5f7; padding: 80px 20px;">
+  <div class="container" style="max-width: 1100px; margin: 0 auto;">
+    
+    <div class="investment-grid">
+      <!-- Colonne Gauche : Le Pitch et le Prix -->
+      <div class="investment-pitch">
+        <h2 style="font-size: clamp(32px, 4vw, 48px); font-weight: 700; line-height: 1.1; margin-bottom: 20px;">
+          The Ultimate Investment in Your Future Self.
+        </h2>
+        <p style="font-size: 18px; color: #6e6e73; margin-bottom: 30px;">
+          This is not a gym membership cost. This is the price of guaranteed transformation, precision architecture for your body, and unwavering accountability.
+        </p>
+        
+        <div class="price-block" style="margin-bottom: 30px;">
+          <p style="font-size: 16px; font-weight: 600; color: #6e6e73; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Transformation Programs</p>
+          <div>
+            <span style="font-size: clamp(32px, 4vw, 48px); font-weight: 800; color: #1d1d1f; letter-spacing: -1px;">From 3,600 AED</span>
+            <p style="font-size: 16px; color: #6e6e73; font-weight: 500; margin-top: 8px; margin-bottom: 0;">(Full commitment package)</p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I'm%20ready%20to%20discuss%20the%20investment" class="btn" style="padding: 18px 35px; font-size: 18px;" target="_blank" rel="noopener noreferrer" onclick="trackEvent('package_click', {package_name: 'Investment Consultation', button_text: 'Book Your Consultation'}); fbq('track', 'Contact');">Book Your Consultation</a>
+        <p style="font-size: 14px; color: #999; margin-top: 15px; font-style: italic;">Serious inquiries only. Full commitment required.</p>
+      </div>
+      
+      <!-- Colonne Droite : La Valeur Incluse (The Stack) -->
+      <div class="investment-value-stack" style="background: #fff; padding: 40px; border-radius: 24px; box-shadow: 0 4px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,113,227,0.1);">
+        <h3 style="font-size: 24px; margin-bottom: 25px;">What This Investment Commands:</h3>
+        <ul class="value-list">
+          <li><strong>Elite 1-on-1 Coaching at NOGS</strong> <br><span>Private sessions in Dubai's premier performance facility.</span></li>
+          <li><strong>Bespoke Training Architecture</strong> <br><span>Engineered specifically for your physiology and goals. No templates.</span></li>
+          <li><strong>Executive Lifestyle Nutrition</strong> <br><span>Strategies that adapt to business dinners, travel, and real life.</span></li>
+          <li><strong>Direct WhatsApp Access to Antoine</strong> <br><span>Priority support between sessions. You're never alone.</span></li>
+          <li><strong>Weekly Progress Calibration</strong> <br><span>Data-driven adjustments to ensure constant progression.</span></li>
+          <li><strong>The NOGS Standard</strong> <br><span>Training environment surrounded by other high-performers.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOUVELLE SECTION THE SHIFT (Comparison) -->
+<section style="padding: 80px 20px; background: #fff;">
+  <div class="container" style="max-width: 1100px; margin: 0 auto;">
+    <h2 style="text-align: center; margin-bottom: 50px; font-size: clamp(32px, 4vw, 42px);">The Shift in Mindset.</h2>
+    
+    <div class="comparison-grid">
+      <!-- Colonne Gauche : The Old Way -->
+      <div class="comparison-card old-way">
+        <h3 class="comp-title">The Old Cycle (Why you're stuck)</h3>
+        <ul class="comp-list old">
+          <li>Relying on fleeting motivation instead of discipline.</li>
+          <li>Generic app programs not built for your body.</li>
+          <li>Inconsistent training and "starting over" every Monday.</li>
+          <li>Seeing fitness as a chore, expense, or punishment.</li>
+          <li>Training alone with zero accountability when it gets hard.</li>
+        </ul>
+      </div>
+      
+      <!-- Colonne Droite : The REACH Way -->
+      <div class="comparison-card new-way">
+        <h3 class="comp-title">The REACH Standard (Where you're going)</h3>
+        <ul class="comp-list new">
+          <li>Building authority through disciplined action.</li>
+          <li>Precision architecture engineered for your physiology.</li>
+          <li>Unwavering consistency driven by 1-on-1 accountability.</li>
+          <li>Viewing your body as your most valuable business asset.</li>
+          <li>A partnership dedicated entirely to your high performance.</li>
+        </ul>
       </div>
     </div>
   </div>
