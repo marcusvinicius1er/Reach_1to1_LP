@@ -99,8 +99,8 @@
       if (window.posthog) {
         window.posthog.capture(eventName, {
           ...properties,
-          ab_test_variant: 'C',
-          page_variant: 'C'
+          ab_test_variant: 'A',
+          page_variant: 'A'
         });
       }
     }
@@ -118,18 +118,18 @@
           defaults: '2025-11-30',
           person_profiles: 'identified_only',
           loaded: function(posthog) {
-            // Identifier la variante C
-            posthog.identify('variant_c');
+            // Identifier la variante A
+            posthog.identify('variant_a');
             posthog.register({
-              ab_test_variant: 'C',
-              page_variant: 'C',
+              ab_test_variant: 'A',
+              page_variant: 'A',
               hero_headline: 'Build a body that commands respect.',
               design_style: 'apple_minimal'
             });
             // Capturer l'événement de vue de la variante
             posthog.capture('ab_test_view', {
-              variant: 'C',
-              page: 'index-c.html'
+              variant: 'A',
+              page: 'index.html'
             });
           }
         });
@@ -2013,7 +2013,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="client-stories-section" style="background: #fff; padding: 40px 20px;">
   <div style="max-width: 1080px; margin: 0 auto;">
     <h2 style="text-align: center; margin-bottom: 20px; font-size: clamp(32px, 5vw, 48px); font-weight: 800;">Client Stories</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; font-size: 18px; color: #666;">Real people. Real transformations. Real results.</p>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 20px; font-size: 22px; color: #1d1d1f; font-weight: 600;">Real Transformations. Real People. No Photoshop.</p>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; font-size: 18px; color: #6e6e73;">These clients stopped guessing and started getting results. You're next.</p>
 
     <div class="client-scroll-container">
       <div class="client-scroll-track" id="clientStoriesTrack">

@@ -99,8 +99,8 @@
       if (window.posthog) {
         window.posthog.capture(eventName, {
           ...properties,
-          ab_test_variant: 'C',
-          page_variant: 'C'
+          ab_test_variant: 'B',
+          page_variant: 'B'
         });
       }
     }
@@ -118,18 +118,18 @@
           defaults: '2025-11-30',
           person_profiles: 'identified_only',
           loaded: function(posthog) {
-            // Identifier la variante C
-            posthog.identify('variant_c');
+            // Identifier la variante B
+            posthog.identify('variant_b');
             posthog.register({
-              ab_test_variant: 'C',
-              page_variant: 'C',
+              ab_test_variant: 'B',
+              page_variant: 'B',
               hero_headline: 'Lose 10kg in 12 weeks. Guaranteed results.',
               design_style: 'apple_minimal'
             });
             // Capturer l'événement de vue de la variante
             posthog.capture('ab_test_view', {
-              variant: 'C',
-              page: 'index-c.html'
+              variant: 'B',
+              page: 'index-b.html'
             });
           }
         });
