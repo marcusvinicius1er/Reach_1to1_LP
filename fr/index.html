@@ -520,6 +520,32 @@
       text-transform: none;
     }
     
+    .why-me-section .why-me-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .why-me-section .why-me-image {
+      text-align: center;
+      order: 0;
+    }
+    .why-me-section .why-me-content {
+      order: 0;
+    }
+    @media (max-width: 768px) {
+      .why-me-section .why-me-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .why-me-section .why-me-image {
+        order: 1;
+      }
+      .why-me-section .why-me-content {
+        order: 2;
+      }
+    }
+    
     /* Pain Points List */
     .pain-list {
       list-style: none;
@@ -2583,6 +2609,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>Équipement premium, environnement concentré, vraie atmosphère d'entraînement.</p>
   <p style="margin-bottom: 0; font-style: italic; color: #6e6e73; font-size: 15px;">(Accessible depuis Sheikh Zayed Rd & Al Khail Rd)</p>
 </div>
+
+<!-- Why Me / About -->
+<section class="why-me-section" id="aboutme" style="background: #ffffff; padding: 80px 20px;">
+  <div class="why-me-container" style="max-width: 1000px; margin: 0 auto;">
+    <div class="why-me-image">
+      <img src="01-IMAGES/hero/coach-2.webp?v=20260104" alt="Coach Antoine - Personal Trainer à NOGS Dubai" loading="lazy" width="280" height="auto" class="why-me-photo" style="width: 100%; max-width: 280px; height: auto; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); object-fit: cover; aspect-ratio: 3/4; object-position: top center;">
+    </div>
+    <div class="why-me-content">
+      <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #1d1d1f; margin-bottom: 24px; letter-spacing: -0.02em;">Pourquoi moi&nbsp;?</h2>
+      <p style="font-size: 18px; color: #1d1d1f; line-height: 1.65; margin-bottom: 16px;">J'ai un diplôme en gestion du sport et des loisirs, un BSc en management du sport, les certifications III et IV en personal training, et 16 ans d'expérience personnelle.</p>
+      <p style="font-size: 18px; color: #6e6e73; line-height: 1.65; margin-bottom: 16px;">Au-delà des diplômes, ce qui compte vraiment c'est qu'on ait un bon feeling et la même passion. Si on est alignés là-dessus, les résultats viendront.</p>
+      <p style="font-size: 18px; color: #6e6e73; line-height: 1.65; margin-bottom: 16px;">Si tu es partant, on continue à avancer ensemble.</p>
+      <p style="font-size: 18px; color: #1d1d1f; line-height: 1.65; margin-bottom: 28px;">Je sais ce qu'on peut accomplir ensemble, et j'ai besoin que tu me fasses confiance sur ce coup.</p>
+      <div class="why-me-cta">
+        <a href="https://wa.me/971585922694?text=Salut%20Antoine,%20je%20voudrais%20réserver%20une%20session%20gratuite" class="btn" target="_blank" rel="noopener noreferrer" onclick="trackEvent('cta_click', {button_location: 'why_me', button_text: 'Réserver une session gratuite'}); fbq('track', 'Contact');">Réserver une session gratuite</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- What You Get -->
 <section class="section-dark">

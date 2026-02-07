@@ -520,6 +520,32 @@
       text-transform: none;
     }
     
+    .why-me-section .why-me-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .why-me-section .why-me-image {
+      text-align: center;
+      order: 0;
+    }
+    .why-me-section .why-me-content {
+      order: 0;
+    }
+    @media (max-width: 768px) {
+      .why-me-section .why-me-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .why-me-section .why-me-image {
+        order: 1;
+      }
+      .why-me-section .why-me-content {
+        order: 2;
+      }
+    }
+    
     /* Pain Points List */
     .pain-list {
       list-style: none;
@@ -2572,6 +2598,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>Premium equipment, focused environment, real training atmosphere.</p>
   <p style="margin-bottom: 0; font-style: italic; color: #6e6e73; font-size: 15px;">(Accessible from Sheikh Zayed Rd & Al Khail Rd)</p>
 </div>
+
+<!-- Why Me / About -->
+<section class="why-me-section" id="aboutme" style="background: #ffffff; padding: 80px 20px;">
+  <div class="why-me-container" style="max-width: 1000px; margin: 0 auto;">
+    <div class="why-me-image">
+      <img src="01-IMAGES/hero/coach-2.webp?v=20260104" alt="Coach Antoine - Personal Trainer at NOGS Dubai" loading="lazy" width="280" height="auto" class="why-me-photo" style="width: 100%; max-width: 280px; height: auto; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); object-fit: cover; aspect-ratio: 3/4; object-position: top center;">
+    </div>
+    <div class="why-me-content">
+      <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #1d1d1f; margin-bottom: 24px; letter-spacing: -0.02em;">Why Me?</h2>
+      <p style="font-size: 18px; color: #1d1d1f; line-height: 1.65; margin-bottom: 16px;">I have a Diploma in Sport and Recreation Management, BSc in Sports Management, Certified III &amp; IV in Personal Training and other bits, 16 years of personal experience.</p>
+      <p style="font-size: 18px; color: #6e6e73; line-height: 1.65; margin-bottom: 16px;">But beyond diplomas—what really matters is that we have a good vibe and share the same passion. If we're aligned there, we'll get results.</p>
+      <p style="font-size: 18px; color: #6e6e73; line-height: 1.65; margin-bottom: 16px;">If you're in, we keep crushing this journey together.</p>
+      <p style="font-size: 18px; color: #1d1d1f; line-height: 1.65; margin-bottom: 28px;">I know what we can achieve together, and I need you to trust me on this one.</p>
+      <div class="why-me-cta">
+        <a href="https://wa.me/971585922694?text=Hi%20Antoine,%20I%20want%20to%20book%20a%20free%20trial%20session" class="btn" target="_blank" rel="noopener noreferrer" onclick="trackEvent('cta_click', {button_location: 'why_me', button_text: 'Book a free trial session'}); fbq('track', 'Contact');">Book a free trial session</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- What You Get -->
 <section class="section-dark">
