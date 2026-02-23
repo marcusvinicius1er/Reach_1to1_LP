@@ -22,4 +22,8 @@ persist = true
 # - AIRTABLE_FIELD_EMAIL = "Email" (par défaut)
 # - AIRTABLE_FIELD_SOURCE = "Source" (par défaut)
 # - AIRTABLE_FIELD_SUBMITTED_AT = "Submitted At" (par défaut)
+#
+# OPTIONNEL - Domaines autorisés pour CORS (séparés par des virgules, sans espaces superflus)
+# - ALLOWED_ORIGINS = "https://1to1.reach.fitness,https://fr.1to1.reach.fitness"
+# Si non défini, les domaines par défaut dans cloudflare-worker.js sont utilisés.
 

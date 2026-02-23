@@ -92,13 +92,19 @@ async function markAsSubmitted(email, env) {
   }
 }
 
-// Domaines autorisés à appeler le Worker (CORS + validation Origin/Referer)
-const ALLOWED_ORIGINS = [
+// Domaines autorisés par défaut (utilisés si ALLOWED_ORIGINS n'est pas défini dans les variables du Worker)
+const DEFAULT_ALLOWED_ORIGINS = [
   'https://1to1.reach.fitness',
   'https://www.1to1.reach.fitness',
   'https://fr.1to1.reach.fitness',
   'https://reach-fitness-1to1-fr.pages.dev'
 ];
+
+function getAllowedOrigins(env) {
+  const raw = env.ALLOWED_ORIGINS;
+  if (!raw || typeof raw !== 'string') return DEFAULT_ALLOWED_ORIGINS;
+  return raw.split(',').map(s => s.trim()).filter(Boolean);
+}
 
 function getRequestOrigin(request) {
   const origin = request.headers.get('Origin');
@@ -115,13 +121,13 @@ function getRequestOrigin(request) {
   return null;
 }
 
-function isOriginAllowed(origin) {
+function isOriginAllowed(origin, allowedOrigins) {
   if (!origin) return false;
-  return ALLOWED_ORIGINS.includes(origin);
+  return allowedOrigins.includes(origin);
 }
 
-function corsHeadersFor(origin) {
-  const allowOrigin = isOriginAllowed(origin) ? origin : ALLOWED_ORIGINS[0];
+function corsHeadersFor(origin, allowedOrigins) {
+  const allowOrigin = isOriginAllowed(origin, allowedOrigins) ? origin : allowedOrigins[0];
   return {
     'Access-Control-Allow-Origin': allowOrigin,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -132,10 +138,11 @@ function corsHeadersFor(origin) {
 
 export default {
   async fetch(request, env) {
+    const allowedOrigins = getAllowedOrigins(env);
     const requestOrigin = getRequestOrigin(request);
 
     // Rejeter les requêtes dont l'origine n'est pas autorisée (évite abus / bots depuis d'autres domaines)
-    if (!isOriginAllowed(requestOrigin)) {
+    if (!isOriginAllowed(requestOrigin, allowedOrigins)) {
       console.warn('[API_CALL] Rejected: origin not allowed', {
         origin: requestOrigin,
         referer: request.headers.get('Referer')
@@ -146,7 +153,7 @@ export default {
       );
     }
 
-    const corsHeaders = corsHeadersFor(requestOrigin);
+    const corsHeaders = corsHeadersFor(requestOrigin, allowedOrigins);
 
     // Gérer les requêtes OPTIONS (preflight CORS)
     if (request.method === 'OPTIONS') {
