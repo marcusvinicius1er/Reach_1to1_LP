@@ -22,32 +22,6 @@
  * 6. Déployez et notez l'URL du worker
  */
 
-// Domaines autorisés à appeler le Worker (CORS + validation Origin/Referer)
-// Évite les appels depuis d'autres sites, bots ou scrapers.
-const ALLOWED_ORIGINS = [
-  'https://1to1.reach.fitness',
-  'https://www.1to1.reach.fitness',
-  'https://fr.1to1.reach.fitness',
-  'https://reach-fitness-1to1-fr.pages.dev'
-];
-
-function isAllowedOrigin(origin) {
-  if (!origin) return false;
-  const o = origin.replace(/\/$/, '');
-  return ALLOWED_ORIGINS.some(allowed => allowed === o);
-}
-
-function getCorsHeaders(request) {
-  const origin = request.headers.get('Origin');
-  const allowOrigin = origin && isAllowedOrigin(origin) ? origin : ALLOWED_ORIGINS[0];
-  return {
-    'Access-Control-Allow-Origin': allowOrigin,
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json'
-  };
-}
-
 // Cache en mémoire pour la déduplication (fallback si pas de KV)
 // ⚠️ Ce cache est perdu à chaque redémarrage du Worker
 const memoryCache = new Map();
