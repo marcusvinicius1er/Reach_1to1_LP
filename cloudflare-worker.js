@@ -22,6 +22,32 @@
  * 6. Déployez et notez l'URL du worker
  */
 
+// Domaines autorisés à appeler le Worker (CORS + validation Origin/Referer)
+// Évite les appels depuis d'autres sites, bots ou scrapers.
+const ALLOWED_ORIGINS = [
+  'https://1to1.reach.fitness',
+  'https://www.1to1.reach.fitness',
+  'https://fr.1to1.reach.fitness',
+  'https://reach-fitness-1to1-fr.pages.dev'
+];
+
+function isAllowedOrigin(origin) {
+  if (!origin) return false;
+  const o = origin.replace(/\/$/, '');
+  return ALLOWED_ORIGINS.some(allowed => allowed === o);
+}
+
+function getCorsHeaders(request) {
+  const origin = request.headers.get('Origin');
+  const allowOrigin = origin && isAllowedOrigin(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    'Access-Control-Allow-Origin': allowOrigin,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json'
+  };
+}
+
 // Cache en mémoire pour la déduplication (fallback si pas de KV)
 // ⚠️ Ce cache est perdu à chaque redémarrage du Worker
 const memoryCache = new Map();
@@ -92,19 +118,65 @@ async function markAsSubmitted(email, env) {
   }
 }
 
+// Domaines autorisés à appeler le Worker (CORS + validation Origin/Referer)
+const ALLOWED_ORIGINS = [
+  'https://1to1.reach.fitness',
+  'https://www.1to1.reach.fitness',
+  'https://fr.1to1.reach.fitness',
+  'https://reach-fitness-1to1-fr.pages.dev'
+];
+
+function getRequestOrigin(request) {
+  const origin = request.headers.get('Origin');
+  if (origin) return origin;
+  const referer = request.headers.get('Referer');
+  if (referer) {
+    try {
+      const url = new URL(referer);
+      return `${url.protocol}//${url.host}`;
+    } catch (_) {
+      return null;
+    }
+  }
+  return null;
+}
+
+function isOriginAllowed(origin) {
+  if (!origin) return false;
+  return ALLOWED_ORIGINS.includes(origin);
+}
+
+function corsHeadersFor(origin) {
+  const allowOrigin = isOriginAllowed(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    'Access-Control-Allow-Origin': allowOrigin,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json'
+  };
+}
+
 export default {
   async fetch(request, env) {
-    // CORS headers pour permettre les requêtes depuis votre domaine
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': '*', // ⚠️ Remplacez par votre domaine en production
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Content-Type': 'application/json'
-    };
+    const requestOrigin = getRequestOrigin(request);
+
+    // Rejeter les requêtes dont l'origine n'est pas autorisée (évite abus / bots depuis d'autres domaines)
+    if (!isOriginAllowed(requestOrigin)) {
+      console.warn('[API_CALL] Rejected: origin not allowed', {
+        origin: requestOrigin,
+        referer: request.headers.get('Referer')
+      });
+      return new Response(
+        JSON.stringify({ error: 'Forbidden', message: 'Origin not allowed' }),
+        { status: 403, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const corsHeaders = corsHeadersFor(requestOrigin);
 
     // Gérer les requêtes OPTIONS (preflight CORS)
     if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders });
+      return new Response(null, { status: 204, headers: corsHeaders });
     }
 
     // Seules les requêtes POST sont autorisées
