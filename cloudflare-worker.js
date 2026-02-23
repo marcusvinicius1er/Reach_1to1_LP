@@ -14,17 +14,67 @@
  *    - AIRTABLE_BASE_ID
  *    - AIRTABLE_TABLE_ID
  *    - AIRTABLE_API_TOKEN
- * 5. (Optionnel) Créez un KV Namespace pour la déduplication persistante :
- *    - Workers & Pages > KV > Create a namespace
- *    - Nommez-le "airtable-dedup" (ou autre)
- *    - Dans votre Worker, allez dans Settings > Variables > KV Namespace Bindings
- *    - Ajoutez le binding avec la variable "DEDUP_KV" (ou laissez vide pour utiliser le cache mémoire)
- * 6. Déployez et notez l'URL du worker
+ * 5. (Optionnel) KV pour dédup : DEDUP_KV (voir étape 5 ci-dessus)
+ * 6. (Optionnel) Rate limiting : par défaut 10 requêtes / 60 sec / IP. Variables :
+ *    - RATE_LIMIT_MAX = nombre max par fenêtre (défaut 10)
+ *    - RATE_LIMIT_WINDOW_SEC = fenêtre en secondes (défaut 60)
+ *    - RATELIMIT_KV (ou DEDUP_KV) = KV pour persistance du rate limit entre redémarrages
+ * 7. Déployez et notez l'URL du worker
  */
 
 // Cache en mémoire pour la déduplication (fallback si pas de KV)
 // ⚠️ Ce cache est perdu à chaque redémarrage du Worker
 const memoryCache = new Map();
+
+// Rate limiting par IP (personnes + bots)
+const RATE_LIMIT_MEMORY = new Map(); // key: IP, value: { count, windowStart }
+const DEFAULT_RATE_LIMIT_MAX = 10;      // max requêtes par fenêtre
+const DEFAULT_RATE_LIMIT_WINDOW_SEC = 60; // fenêtre en secondes
+
+function getRateLimitConfig(env) {
+  const max = env.RATE_LIMIT_MAX ? parseInt(env.RATE_LIMIT_MAX, 10) : DEFAULT_RATE_LIMIT_MAX;
+  const windowSec = env.RATE_LIMIT_WINDOW_SEC ? parseInt(env.RATE_LIMIT_WINDOW_SEC, 10) : DEFAULT_RATE_LIMIT_WINDOW_SEC;
+  return { max: isNaN(max) ? DEFAULT_RATE_LIMIT_MAX : max, windowSec: isNaN(windowSec) ? DEFAULT_RATE_LIMIT_WINDOW_SEC : windowSec };
+}
+
+async function checkAndIncrementRateLimit(ip, env) {
+  const { max, windowSec } = getRateLimitConfig(env);
+  const now = Date.now();
+  const windowMs = windowSec * 1000;
+  const key = `rl:${ip}`;
+
+  const kv = env.RATELIMIT_KV || env.DEDUP_KV;
+
+  if (kv) {
+    try {
+      const raw = await kv.get(key);
+      let data = raw ? JSON.parse(raw) : null;
+      if (!data || (now - data.windowStart) > windowMs) {
+        data = { count: 1, windowStart: now };
+      } else {
+        data.count += 1;
+      }
+      if (data.count > max) {
+        return { allowed: false, retryAfter: Math.ceil((data.windowStart + windowMs - now) / 1000) };
+      }
+      await kv.put(key, JSON.stringify(data), { expirationTtl: windowSec + 10 });
+      return { allowed: true };
+    } catch (e) {
+      console.error('[RateLimit] KV error', e);
+    }
+  }
+
+  let data = RATE_LIMIT_MEMORY.get(ip);
+  if (!data || (now - data.windowStart) > windowMs) {
+    data = { count: 0, windowStart: now };
+  }
+  data.count += 1;
+  RATE_LIMIT_MEMORY.set(ip, data);
+  if (data.count > max) {
+    return { allowed: false, retryAfter: Math.ceil((data.windowStart + windowMs - now) / 1000) };
+  }
+  return { allowed: true };
+}
 
 // Normaliser l'email (lowercase, trim)
 function normalizeEmail(email) {
@@ -168,11 +218,22 @@ export default {
       );
     }
 
+    const ip = request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For') || 'unknown';
+    const rateLimitResult = await checkAndIncrementRateLimit(ip, env);
+    if (!rateLimitResult.allowed) {
+      console.warn('[API_CALL] Rate limit exceeded', { ip });
+      const headers = { ...corsHeaders };
+      if (rateLimitResult.retryAfter) headers['Retry-After'] = String(rateLimitResult.retryAfter);
+      return new Response(
+        JSON.stringify({ error: 'Too Many Requests', message: 'Rate limit exceeded. Please try again later.' }),
+        { status: 429, headers }
+      );
+    }
+
     try {
       // 📊 LOGGING : Identifier la source des appels
       const userAgent = request.headers.get('User-Agent') || 'unknown';
       const origin = request.headers.get('Origin') || request.headers.get('Referer') || 'unknown';
-      const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
       const timestamp = new Date().toISOString();
       
       // Récupérer les variables d'environnement

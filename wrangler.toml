@@ -23,7 +23,11 @@ persist = true
 # - AIRTABLE_FIELD_SOURCE = "Source" (par défaut)
 # - AIRTABLE_FIELD_SUBMITTED_AT = "Submitted At" (par défaut)
 #
-# OPTIONNEL - Domaines autorisés pour CORS (séparés par des virgules, sans espaces superflus)
+# OPTIONNEL - Domaines autorisés pour CORS (séparés par des virgules)
 # - ALLOWED_ORIGINS = "https://1to1.reach.fitness,https://fr.1to1.reach.fitness"
-# Si non défini, les domaines par défaut dans cloudflare-worker.js sont utilisés.
+#
+# OPTIONNEL - Rate limiting (par IP, personnes + bots)
+# - RATE_LIMIT_MAX = 10          (max requêtes par fenêtre, défaut 10)
+# - RATE_LIMIT_WINDOW_SEC = 60  (fenêtre en secondes, défaut 60)
+# - RATELIMIT_KV = (binding KV)  pour persistance entre redémarrages Worker
 
